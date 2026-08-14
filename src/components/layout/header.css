@@ -1,0 +1,170 @@
+.appheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobilebtn {
+  display: none;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobilebtn:hover {
+  background: #dbeafe;
+}
+
+.header-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-search {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 6px 14px;
+  gap: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.header-search:focus-within {
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.header-search input {
+  background: transparent;
+  border: none;
+  color: #0f172a;
+  outline: none;
+  font-size: 0.85rem;
+  width: 180px;
+}
+
+.header-search input::placeholder {
+  color: #94a3b8;
+}
+
+.userbadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 4px 12px;
+  border-radius: 30px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.student-avatar {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.faculty-avatar {
+  background: linear-gradient(135deg, #059669, #10b981);
+}
+
+.admin-avatar {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #0f172a;
+}
+
+.user-role {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.logoutbtn {
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.logoutbtn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+@media (max-width: 768px) {
+  .appheader {
+    padding: 0.75rem 1rem;
+  }
+  .mobilebtn {
+    display: flex;
+  }
+  .header-search {
+    display: none;
+  }
+  .header-title {
+    font-size: 1.1rem;
+  }
+  .user-role {
+    display: none;
+  }
+  .userbadge {
+    padding: 4px 8px;
+  }
+}
