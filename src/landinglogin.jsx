@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import './landinglogin.css';
 import log from './assets/logowithbg(1).png';
-import StudentDashboard from './components/academic/studentdashboard.jsx';
-import FacultyDashboard from './components/academic/facultydashbaord.jsx';
+// import StudentDashboard from './components/academic/studentdashboard.jsx';
+// import FacultyDashboard from './components/academic/facultydashbaord.jsx';
 import customealert from './components/layout/errorcustom.jsx';
 
 
