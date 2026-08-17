@@ -5,13 +5,16 @@ import './navbar.css';
 
 function StudentSidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose }) {
   const mainNavItems = [
-    { name: 'Dashboard', icon: '📊' },
-    { name: 'My Info', icon: '👤' },
-    { name: 'Attendance', icon: '📅' },
-    { name: 'Notes', icon: '📑' },
-    { name: 'Hostel', icon: '🏢' },
-    { name: 'Scorecard', icon: '⭐' },
-    { name: 'Fees & Fine', icon: '💳' },
+    { name: 'home', label: 'Dashboard', icon: '📊' },
+    { name: 'profile', label: 'My Info', icon: '👤' },
+    { name: 'attendance', label: 'Attendance Ledger', icon: '📈' },
+    { name: 'timetable', label: 'Academic Calendar', icon: '📅' },
+    { name: 'updates', label: 'Updates', icon: '🔔' },
+    { name: 'notes', label: 'Notes', icon: '📂' },
+    { name: 'library', label: 'Library Terminal', icon: '📖' },
+    { name: 'fees', label: 'Fee', icon: '💳' },
+    { name: 'hostel', label: 'Hostel Portal', icon: '🏠' },
+    { name: 'Performance', icon: '📈' },
   ];
 
   const handleItemClick = (name) => {

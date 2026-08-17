@@ -10,7 +10,7 @@ import customealert from './components/layout/errorcustom.jsx';
 function LandingLoginApp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [customError, setCustomError] = useState('');
+  // const [customError, setCustomError] = useState('');
   const [userSession, setUserSession] = useState(null);
 
   useEffect(() => {
@@ -19,10 +19,10 @@ function LandingLoginApp() {
       if (savedSession) {
         setUserSession(JSON.parse(savedSession));
       }
-      const savedError = localStorage.getItem('custom_login_error');
-      if (savedError) {
-        setCustomError(savedError);
-      }
+      // const savedError = localStorage.getItem('custom_login_error');
+      // if (savedError) {
+      //   setCustomError(savedError);
+      // }
     } catch (e) {
       console.error('Error reading from localStorage', e);
     }
@@ -33,8 +33,8 @@ function LandingLoginApp() {
 
     if (!email.trim() || !password) {
       const errorMsg = 'Please enter both email and password.';
-      setCustomError(errorMsg);
-      localStorage.setItem('custom_login_error', errorMsg);
+      // setCustomError(errorMsg);
+      // localStorage.setItem('custom_login_error', errorMsg);
       customealert(errorMsg, { timeout: true, time: 3000, button: true });
       return;
     }
@@ -48,7 +48,6 @@ function LandingLoginApp() {
       sessionData = {
         email: email.trim(),
         role: 'student',
-        loginTime: new Date().toISOString()
       };
     } else if (
       email.trim() === 'faculty@gmail.com' &&
@@ -57,22 +56,18 @@ function LandingLoginApp() {
       sessionData = {
         email: email.trim(),
         role: 'faculty',
-        loginTime: new Date().toISOString()
       };
     } else {
       const errorMsg = 'Invalid email or password. Please check your credentials.';
-      setCustomError(errorMsg);
-      localStorage.setItem('custom_login_error', errorMsg);
+      // setCustomError(errorMsg);
+      // localStorage.setItem('custom_login_error', errorMsg);
       customealert(errorMsg, { timeout: true, time: 3500, button: true });
       return;
     }
 
     try {
-      localStorage.setItem(
-        'student_session',
-        JSON.stringify(sessionData)
-      );
-      localStorage.removeItem('custom_login_error');
+      localStorage.setItem('user_session', JSON.stringify(sessionData));
+      // localStorage.removeItem('custom_login_error');
     } catch (err) {
       console.error('Error saving session:', err);
     }
@@ -83,28 +78,28 @@ function LandingLoginApp() {
       button: false
     });
 
-    setCustomError('');
+    // setCustomError('');
     setUserSession(sessionData);
   };
 
   const handleLogout = () => {
     try {
       localStorage.removeItem('student_session');
-      localStorage.removeItem('custom_login_error');
+      // localStorage.removeItem('custom_login_error');
     } catch (err) {
       console.error('Error clearing localStorage', err);
     }
     setUserSession(null);
-    setEmail('');
-    setPassword('');
-    setCustomError('');
+    // setEmail('');
+    // setPassword('');
+    // setCustomError('');
   };
 
-  if (userSession?.role=='student') {
+  if (userSession?.role === 'student') {
     return <StudentDashboard user={userSession} onLogout={handleLogout} />;
   }
-  else if (userSession?.role=='faculty'){
-    return <FacultyDashboard user={userSession} onLogout={handleLogout}/>
+  else if (userSession?.role === 'faculty') {
+    return <FacultyDashboard user={userSession} onLogout={handleLogout} />
   }
 
   return (
@@ -114,35 +109,26 @@ function LandingLoginApp() {
       </div>
 
       <form className='form' onSubmit={handleLogin}>
-       
+
 
         <div>
           <label htmlFor="email">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            placeholder='Enter your mail'
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setCustomError('');
-            }}
-            
+          <input type="email" id="email" placeholder='Enter your mail' value={email} onChange={(e) => {
+            setEmail(e.target.value);
+            // setCustomError('');
+          }}
+
           />
         </div>
 
         <div>
           <label htmlFor="password">Password</label>
-          <input 
-            type="password" 
-            id="password" 
-            placeholder='Enter your Password'
-            value={password}
+          <input type="password" id="password" placeholder='Enter your Password' value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setCustomError('');
+              // setCustomError('');
             }}
-            
+
           />
         </div>
 
@@ -151,7 +137,7 @@ function LandingLoginApp() {
         </button>
       </form>
 
-      
+
     </div>
   );
 
