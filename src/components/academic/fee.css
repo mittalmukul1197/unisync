@@ -1,11 +1,18 @@
-.fee-dues-panel, .fee-history-panel {
+
+.fee-dues-panel, 
+.fee-history-panel {
   padding: 20px;
   margin-bottom: 20px;
 }
 
-.fee-dues-panel h3, .fee-history-panel h3 {
-  font-size: 14.5px;
+.fee-dues-panel h3, 
+.fee-history-panel h3 {
+  font-family: var(--font-heading);
+  font-size:   15px;
+  font-weight: 700;
+  color:       var(--text-primary);
   margin-bottom: 14px;
+  letter-spacing: -0.3px;
 }
 
 .dues-ledger-grid {
@@ -25,13 +32,18 @@
 }
 
 .due-item-meta h4 {
-  font-size: 12.5px;
+  font-family: var(--font-heading);
+  font-size:   13.5px;
   font-weight: 700;
+  color:       var(--text-primary);
+  margin: 0 0 2px 0;
+  letter-spacing: -0.2px;
 }
 
 .due-item-meta p {
   font-size: 10px;
   color: var(--text-muted);
+  margin: 0;
 }
 
 .due-item-value-badge {
@@ -43,18 +55,18 @@
 
 .due-item-value-badge .due-val {
   font-size: 13.5px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .due-badge {
   font-family: var(--font-mono);
   font-size: 8.5px;
-  font-weight: 700;
+  font-weight: 600;
   padding: 1px 5px;
   border-radius: 4px;
 }
 
-.due-badge.paid { background: rgba(16, 185, 129, 0.08); color: var(--accent-green); }
+.due-badge.paid    { background: rgba(16, 185, 129, 0.08); color: var(--accent-green); }
 .due-badge.pending { background: rgba(245, 153, 11, 0.08); color: var(--accent-orange); }
 
 .history-subtitle {
@@ -76,7 +88,7 @@
 
 .history-table th {
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--text-muted);
   padding: 10px;
@@ -101,10 +113,16 @@
   padding: 4px 10px;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .print-receipt-btn:hover {
   background: #cbd5e1;
   color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .dues-ledger-grid {
+    grid-template-columns: 1fr;
+  }
 }

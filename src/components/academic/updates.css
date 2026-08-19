@@ -1,36 +1,42 @@
+
 .updates-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
+
+.updates-container .updates-header-meta {
+  margin-bottom: 0;
+}
+
 
 .updates-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
 .updates-search-wrapper {
   position: relative;
   flex: 1;
-  min-width: 250px;
-  max-width: 400px;
+  min-width: 240px;
+  max-width: 380px;
 }
 
 .updates-search-bar {
   width: 100%;
-  padding: 10px 14px 10px 38px;
+  padding: 8px 14px 8px 36px;
   border-radius: 12px;
   border: 1px solid var(--border-subtle);
   background: var(--bg-card);
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: 13px;
   color: var(--text-primary);
   outline: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
 }
 
@@ -41,7 +47,7 @@
 
 .updates-search-icon {
   position: absolute;
-  left: 14px;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 14px;
@@ -55,8 +61,8 @@
 }
 
 .updates-filter-pill {
-  padding: 8px 16px;
-  font-size: 12.5px;
+  padding: 6px 14px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
   background: var(--bg-card);
@@ -77,28 +83,27 @@
   background: var(--primary-indigo);
   color: #ffffff;
   border-color: var(--primary-indigo);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+  box-shadow: 0 3px 8px rgba(79, 70, 229, 0.25);
 }
 
 .updates-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 8px;
+  gap: 12px;
+  margin-top: 2px;
 }
 
 .update-card {
-  padding: 20px;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+  gap: 10px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .update-card:hover {
-  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
 }
 
 .update-card-header {
@@ -112,17 +117,19 @@
 .update-title-area {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   flex: 1;
   min-width: 200px;
 }
 
 .update-title-area h3 {
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size:   15px;
+  font-weight: 700;
+  color:       var(--text-primary);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
 }
 
 .update-meta {
@@ -141,26 +148,33 @@
 
 .update-badge {
   font-family: var(--font-mono);
-  font-size: 9.5px;
-  font-weight: 700;
+  font-size: 9px;
+  font-weight: 600;
   padding: 2px 8px;
   border-radius: 4px;
   text-transform: uppercase;
 }
 
+.update-badge.tag-red    { color: var(--accent-red);    background-color: rgba(239, 68, 68, 0.08); }
+.update-badge.tag-purple { color: var(--accent-purple); background-color: rgba(139, 92, 246, 0.08); }
+.update-badge.tag-green  { color: var(--accent-green);  background-color: rgba(16, 185, 129, 0.08); }
+.update-badge.tag-sky    { color: var(--accent-sky);    background-color: rgba(14, 165, 233, 0.08); }
+.update-badge.tag-orange { color: var(--accent-orange); background-color: rgba(245, 158, 11, 0.08); }
+
 .update-desc {
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 12.5px;
+  line-height: 1.55;
   color: var(--text-secondary);
   margin: 0;
 }
+
 
 .updates-empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 40px;
+  padding: 50px 30px;
   text-align: center;
   background: var(--bg-card);
   border: 1px dashed var(--border-subtle);
@@ -169,19 +183,21 @@
 }
 
 .updates-empty-icon {
-  font-size: 40px;
-  margin-bottom: 12px;
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
 .updates-empty-state h3 {
-  font-size: 16px;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text-primary);
   margin: 0 0 4px 0;
+  letter-spacing: -0.2px;
 }
 
 .updates-empty-state p {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text-muted);
   margin: 0;
 }

@@ -1,57 +1,57 @@
 import React from "react";
 import "./performance.css";
 
-function Performance() {
-    // Only completed semesters are shown. Student is currently in Semester III
-    // so only Semester I and II have results.
-    const semesters = [
-        {
-            sem: "Semester I",
-            courses: [
-                { code: "24CSL0101", name: "Introduction to Programming", credits: 4, grade: "O", points: 10 },
-                { code: "24MTL0102", name: "Mathematics for Computing", credits: 4, grade: "O", points: 10 },
-                { code: "24ECL0103", name: "Digital Electronics", credits: 3, grade: "A", points: 9 },
-                { code: "24PHL0104", name: "Applied Physics", credits: 4, grade: "B+", points: 8 },
-                { code: "24HUL0105", name: "Communication Skills", credits: 2, grade: "O", points: 10 }
-            ]
-        },
-        {
-            sem: "Semester II",
-            courses: [
-                { code: "24CSL0201", name: "Data Structures & Algorithms", credits: 4, grade: "O", points: 10 },
-                { code: "24MTL0202", name: "Discrete Mathematics", credits: 4, grade: "O", points: 10 },
-                { code: "24CSL0203", name: "Computer Architecture", credits: 4, grade: "A", points: 9 },
-                { code: "24CHL0204", name: "Environmental Sciences", credits: 2, grade: "B+", points: 8 },
-                { code: "24CSL0205", name: "Python Programming Lab", credits: 3, grade: "A", points: 9 }
-            ]
-        }
-    ];
+const SEMESTERS = [
+    {
+        sem: "Semester I",
+        courses: [
+            { code: "24CSL0101", name: "Introduction to Programming", credits: 4, grade: "O", points: 10 },
+            { code: "24MTL0102", name: "Mathematics for Computing", credits: 4, grade: "O", points: 10 },
+            { code: "24ECL0103", name: "Digital Electronics", credits: 3, grade: "A", points: 9 },
+            { code: "24PHL0104", name: "Applied Physics", credits: 4, grade: "B+", points: 8 },
+            { code: "24HUL0105", name: "Communication Skills", credits: 2, grade: "O", points: 10 }
+        ]
+    },
+    {
+        sem: "Semester II",
+        courses: [
+            { code: "24CSL0201", name: "Data Structures & Algorithms", credits: 4, grade: "O", points: 10 },
+            { code: "24MTL0202", name: "Discrete Mathematics", credits: 4, grade: "O", points: 10 },
+            { code: "24CSL0203", name: "Computer Architecture", credits: 4, grade: "A", points: 9 },
+            { code: "24CHL0204", name: "Environmental Sciences", credits: 2, grade: "B+", points: 8 },
+            { code: "24CSL0205", name: "Python Programming Lab", credits: 3, grade: "A", points: 9 }
+        ]
+    }
+];
 
-    const calculateSGPA = (semester) => {
-        const totalCredits = semester.courses.reduce((acc, c) => acc + c.credits, 0);
-        if (totalCredits === 0) return 0;
-        const totalPoints = semester.courses.reduce((acc, c) => acc + (c.credits * c.points), 0);
-        return totalPoints / totalCredits;
-    };
+function calculateSGPA(semester) {
+    const totalCredits = semester.courses.reduce((acc, c) => acc + c.credits, 0);
+    if (totalCredits === 0) return 0;
+    const totalPoints = semester.courses.reduce((acc, c) => acc + c.credits * c.points, 0);
+    return totalPoints / totalCredits;
+}
 
-    const calculateCumulativeCGPA = (sems) => {
-        let accumulatedPoints = 0;
-        let accumulatedCredits = 0;
-        sems.forEach(sem => {
-            const semCredits = sem.courses.reduce((acc, c) => acc + c.credits, 0);
-            const semPoints = sem.courses.reduce((acc, c) => acc + (c.credits * c.points), 0);
-            accumulatedPoints += semPoints;
-            accumulatedCredits += semCredits;
+function calculateCumulativeCGPA(sems) {
+    let accumulatedPoints = 0;
+    let accumulatedCredits = 0;
+    sems.forEach((sem) => {
+        sem.courses.forEach((c) => {
+            accumulatedPoints += c.credits * c.points;
+            accumulatedCredits += c.credits;
         });
-        if (accumulatedCredits === 0) return 0;
-        return accumulatedPoints / accumulatedCredits;
-    };
+    });
+    return accumulatedCredits === 0 ? 0 : accumulatedPoints / accumulatedCredits;
+}
 
-    const totalCGPA = calculateCumulativeCGPA(semesters);
-    const totalCredits = semesters.reduce(
+function Performance() {
+    const totalCGPA = calculateCumulativeCGPA(SEMESTERS);
+    const totalCredits = SEMESTERS.reduce(
         (acc, s) => acc + s.courses.reduce((cAcc, c) => cAcc + c.credits, 0),
         0
     );
+
+    const circumference = 314.16;
+    const strokeDashoffset = circumference - (circumference * totalCGPA) / 10;
 
     return (
         <div className="performance-container page-fade-in">
@@ -60,17 +60,17 @@ function Performance() {
                 <p>Track your semester-wise grades, credit distribution, and overall grade point average.</p>
             </div>
 
-            {/* Overall CGPA Summary Card */}
             <div className="cgpa-summary-card glass">
                 <div className="cgpa-card-visual">
                     <div className="cgpa-radial-progress">
                         <svg width="120" height="120" viewBox="0 0 120 120">
                             <circle cx="60" cy="60" r="50" className="radial-bg" />
-                            <circle cx="60" cy="60" r="50" className="radial-fill"
-                                style={{
-                                    strokeDasharray: 314.16,
-                                    strokeDashoffset: 314.16 - (314.16 * totalCGPA) / 10
-                                }}
+                            <circle
+                                cx="60"
+                                cy="60"
+                                r="50"
+                                className="radial-fill"
+                                style={{ strokeDasharray: circumference, strokeDashoffset }}
                             />
                         </svg>
                         <div className="radial-center-val">
@@ -90,9 +90,8 @@ function Performance() {
                 </div>
             </div>
 
-            {/* Semester Accordion/Card list */}
             <div className="performance-semesters-grid">
-                {semesters.map((sem, semIdx) => {
+                {SEMESTERS.map((sem, semIdx) => {
                     const sgpa = calculateSGPA(sem);
                     return (
                         <div key={semIdx} className="semester-performance-card glass">

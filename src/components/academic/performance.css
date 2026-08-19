@@ -1,3 +1,4 @@
+
 .performance-container {
   display: flex;
   flex-direction: column;
@@ -5,14 +6,16 @@
 }
 
 .performance-header-meta h2 {
-  font-size: 20px;
-  font-weight: 800;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 650;
   color: var(--text-primary);
-  margin: 0 0 6px 0;
+  letter-spacing: -0.2px;
+  margin: 0 0 4px 0;
 }
 
 .performance-header-meta p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
   margin: 0;
 }
@@ -72,14 +75,14 @@
 .cgpa-number {
   font-family: var(--font-mono);
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text-primary);
   line-height: 1;
 }
 
 .cgpa-label {
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-top: 2px;
@@ -97,7 +100,8 @@
   flex-wrap: wrap;
 }
 
-.standing-badge, .credits-badge {
+.standing-badge, 
+.credits-badge {
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
@@ -106,13 +110,8 @@
   color: var(--text-secondary);
 }
 
-.standing-badge strong {
-  color: var(--accent-green);
-}
-
-.credits-badge strong {
-  color: var(--primary-indigo);
-}
+.standing-badge strong { color: var(--accent-green); font-weight: 600; }
+.credits-badge strong  { color: var(--primary-indigo); font-weight: 600; }
 
 .cgpa-academic-note {
   font-size: 12px;
@@ -135,12 +134,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
-  transition: transform 0.2s ease;
-}
-
-.semester-performance-card:hover {
-  transform: translateY(-2px);
 }
 
 .semester-card-header {
@@ -152,9 +145,11 @@
 }
 
 .semester-title {
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size:   16px;
+  font-weight: 700;
+  color:       var(--text-primary);
+  letter-spacing: -0.3px;
 }
 
 .semester-sgpa-badge {
@@ -162,7 +157,7 @@
   background: var(--primary-indigo-glow);
   color: var(--primary-indigo);
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
 }
 
@@ -178,7 +173,7 @@
 
 .sem-courses-table th {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--text-muted);
   padding: 8px 12px;
@@ -204,8 +199,15 @@
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--primary-indigo);
   background: var(--primary-indigo-glow);
   border: 1px solid rgba(26, 58, 143, 0.15);
+}
+
+@media (max-width: 768px) {
+  .cgpa-summary-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

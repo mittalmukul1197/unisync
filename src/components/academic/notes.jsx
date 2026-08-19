@@ -1,52 +1,55 @@
 import React, { useState } from "react";
 import "./notes.css";
 
-function Notes() {
-    // Initial notes data list
-    const [notes, setNotes] = useState([
-        { id: 1, title: "Backprop_Derivation_Chain_Rule.ipynb", subject: "Deep Learning", size: "15 KB", author: "Prof. Neha Sen", date: "Yesterday" },
-        { id: 2, title: "CNN_Architecture_CheatSheet_v2.pdf", subject: "Deep Learning", size: "1.2 MB", author: "Lab Assistant", date: "2 days ago" },
-        { id: 3, title: "Markov_Decision_Processes_Notes.pdf", subject: "Reinforcement Learning", size: "450 KB", author: "Prof. Vikram Sen", date: "3 days ago" },
-        { id: 4, title: "DBMS_Normal_Forms_Guide.docx", subject: "DBMS", size: "85 KB", author: "Prof. R. Sharma", date: "4 days ago" },
-        { id: 5, title: "Probability_Distribution_Formulas.pdf", subject: "Mathematics", size: "320 KB", author: "Student Mukul", date: "5 days ago" }
-    ]);
+const INITIAL_NOTES = [
+    { id: 1, title: "Backprop_Derivation_Chain_Rule.ipynb", subject: "Deep Learning", size: "15 KB", author: "Prof. Neha Sen", date: "Yesterday" },
+    { id: 2, title: "CNN_Architecture_CheatSheet_v2.pdf", subject: "Deep Learning", size: "1.2 MB", author: "Lab Assistant", date: "2 days ago" },
+    { id: 3, title: "Markov_Decision_Processes_Notes.pdf", subject: "Reinforcement Learning", size: "450 KB", author: "Prof. Vikram Sen", date: "3 days ago" },
+    { id: 4, title: "DBMS_Normal_Forms_Guide.docx", subject: "DBMS", size: "85 KB", author: "Prof. R. Sharma", date: "4 days ago" },
+    { id: 5, title: "Probability_Distribution_Formulas.pdf", subject: "Mathematics", size: "320 KB", author: "Student Mukul", date: "5 days ago" }
+];
 
+const SUBJECT_FILTERS = ["All", "Deep Learning", "Reinforcement Learning", "DBMS", "Mathematics"];
+
+function getFileTypeInfo(title) {
+    const lower = title.toLowerCase();
+    if (lower.endsWith(".pdf")) return { className: "pdf", icon: "📕" };
+    if (lower.endsWith(".ipynb")) return { className: "ipynb", icon: "📓" };
+    if (lower.endsWith(".docx") || lower.endsWith(".doc")) return { className: "doc", icon: "📘" };
+    return { className: "doc", icon: "📄" };
+}
+
+function Notes() {
+    const [notes] = useState(INITIAL_NOTES);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedSubjectFilter, setSelectedSubjectFilter] = useState("All");
     const [downloadingId, setDownloadingId] = useState(null);
     const [downloadedIds, setDownloadedIds] = useState({});
 
-    // Handle download action with loading simulation
     const handleDownload = (noteId, noteTitle) => {
         setDownloadingId(noteId);
         setTimeout(() => {
             setDownloadingId(null);
-            setDownloadedIds(prev => ({ ...prev, [noteId]: true }));
+            setDownloadedIds((prev) => ({ ...prev, [noteId]: true }));
             alert(`Downloaded: ${noteTitle} successfully!`);
         }, 1000);
     };
 
-    // Filter notes based on search & subject dropdown
-    const filteredNotes = notes.filter(note => {
-        const matchesSearch = note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                             note.author.toLowerCase().includes(searchQuery.toLowerCase());
+    const filteredNotes = notes.filter((note) => {
+        const query = searchQuery.toLowerCase();
+        const matchesSearch = note.title.toLowerCase().includes(query) || note.author.toLowerCase().includes(query);
         const matchesSubject = selectedSubjectFilter === "All" || note.subject === selectedSubjectFilter;
         return matchesSearch && matchesSubject;
     });
 
     return (
         <div className="notes-container page-fade-in">
-
-            {/* Header section */}
             <div className="notes-header-meta">
                 <h2>Notes &amp; Study Material Hub</h2>
                 <p>Consolidated campus shared notes and study guides.</p>
             </div>
 
-            {/* Notes list and search — full width */}
-            <div className="notes-list-pane notes-full-width">
-
-                {/* Search bar */}
+            <div className="notes-list-pane">
                 <div className="notes-filters-row">
                     <input
                         type="text"
@@ -60,17 +63,16 @@ function Notes() {
                         onChange={(e) => setSelectedSubjectFilter(e.target.value)}
                         className="notes-filter-select"
                     >
-                        <option value="All">All Subjects</option>
-                        <option value="Deep Learning">Deep Learning</option>
-                        <option value="Reinforcement Learning">Reinforcement Learning</option>
-                        <option value="DBMS">DBMS</option>
-                        <option value="Mathematics">Mathematics</option>
+                        {SUBJECT_FILTERS.map((subj) => (
+                            <option key={subj} value={subj}>
+                                {subj === "All" ? "All Subjects" : subj}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
-                {/* Horizontal Subject Pills for Quick Filters */}
                 <div className="notes-subject-pills">
-                    {["All", "Deep Learning", "Reinforcement Learning", "DBMS", "Mathematics"].map((subj) => (
+                    {SUBJECT_FILTERS.map((subj) => (
                         <button
                             key={subj}
                             className={`notes-pill ${selectedSubjectFilter === subj ? "active" : ""}`}
@@ -81,25 +83,12 @@ function Notes() {
                     ))}
                 </div>
 
-                {/* Notes catalog */}
                 <div className="notes-catalog-list">
                     {filteredNotes.length > 0 ? (
-                        filteredNotes.map((note, idx) => {
-                            const titleLower = note.title.toLowerCase();
-                            let fileTypeClass = "doc";
-                            let fileTypeIcon = "📄";
-                            if (titleLower.endsWith(".pdf")) {
-                                fileTypeClass = "pdf";
-                                fileTypeIcon = "📕";
-                            } else if (titleLower.endsWith(".ipynb")) {
-                                fileTypeClass = "ipynb";
-                                fileTypeIcon = "📓";
-                            } else if (titleLower.endsWith(".docx") || titleLower.endsWith(".doc")) {
-                                fileTypeClass = "doc";
-                                fileTypeIcon = "📘";
-                            }
+                        filteredNotes.map((note) => {
+                            const { className: fileTypeClass, icon: fileTypeIcon } = getFileTypeInfo(note.title);
                             return (
-                                <div key={idx} className="note-resource-card">
+                                <div key={note.id} className="note-resource-card">
                                     <div className="note-card-details">
                                         <div className={`note-type-icon ${fileTypeClass}`}>
                                             {fileTypeIcon}
@@ -134,7 +123,6 @@ function Notes() {
                     )}
                 </div>
             </div>
-
         </div>
     );
 }

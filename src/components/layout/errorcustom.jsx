@@ -1,115 +1,42 @@
-import React from 'react';
+import React from "react";
+import "./errorcustom.css";
 
 function customealert(message, options = {}) {
+  const {
+    timeout = false,
+    button = true,
+    time = 3000
+  } = options;
 
-    const {
-        timeout = false,
-        button = true,
-        time = 3000
-    } = options;
+  const box = document.createElement("div");
 
-    const style = document.createElement("style");
+  box.className = "custom-alert-box";
 
-    style.innerHTML = `
-        .custom-alert-box {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 18px 24px;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            min-width: 300px;
-            max-width: 400px;
-            z-index: 9999;
-            text-align: center;
-            color: #f8fafc;
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-            animation: slideInAlert 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+  const text = document.createElement("p");
 
-        @keyframes slideInAlert {
-            from {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+  text.innerText = message;
 
-        .custom-alert-box p {
-            margin: 0 0 14px;
-            font-size: 15px;
-            font-weight: 500;
-            color: #f1f5f9;
-            line-height: 1.5;
-        }
+  box.appendChild(text);
 
-        .custom-alert-box button {
-            padding: 8px 22px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+  if (button) {
+    const btn = document.createElement("button");
 
-        .custom-alert-box button:hover {
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-            transform: translateY(-1px);
-        }
-    `;
+    btn.innerText = "OK";
 
-    document.head.appendChild(style);
+    btn.onclick = () => {
+      box.remove();
+    };
 
+    box.appendChild(btn);
+  }
 
-    const box = document.createElement("div");
+  document.body.appendChild(box);
 
-    box.className = "custom-alert-box";
-
-
-    
-    const text = document.createElement("p");
-
-    text.innerText = message;
-
-    box.appendChild(text);
-
-
-    if (button) {
-
-        const btn = document.createElement("button");
-
-        btn.innerText = "OK";
-
-        btn.onclick = () => {
-            box.remove();
-            style.remove();
-        };
-
-        box.appendChild(btn);
-    }
-
-
-    document.body.appendChild(box);
-
-
-    if (timeout) {
-
-        setTimeout(() => {
-
-            box.remove();
-            style.remove();
-
-        }, time);
-    }
+  if (timeout) {
+    setTimeout(() => {
+      box.remove();
+    }, time);
+  }
 }
 
 export default customealert;
