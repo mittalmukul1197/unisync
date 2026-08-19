@@ -43,7 +43,7 @@
   letter-spacing: 0.5px;
   transition-duration: 0.3s;
 font-family: Arial, Helvetica, sans-serif;
-  animation: blink 3s infinite ease-in-out ;
+  animation: blink 1.5s infinite ease-in-out ;
   
 }
 
@@ -52,7 +52,8 @@ font-family: Arial, Helvetica, sans-serif;
 
   }
   50%{
-    text-shadow:0px 0px 2px  #2563eb;
+    /* text-shadow:0px 0px 2px  #2563eb; */
+    text-shadow:0px 0px 5px  #17889fc9;
 
   }
   100%{

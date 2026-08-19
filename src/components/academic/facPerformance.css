@@ -1,0 +1,222 @@
+/* Faculty Performance & Gradebook Styling */
+.fac-perf-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  font-family: inherit;
+}
+
+.fac-perf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fac-perf-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.fac-perf-header p {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.fac-perf-header-stats {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Stat Cards Grid */
+.fac-perf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 1100px) {
+  .fac-perf-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.fac-stat-card {
+  background: #ffffff;
+  padding: 1.35rem;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.fac-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.06);
+  border-color: #cbd5e1;
+}
+
+.fac-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fac-card-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.fac-card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.blue-icon { background: #eff6ff; border: 1px solid #bfdbfe; }
+.purple-icon { background: #faf5ff; border: 1px solid #e9d5ff; }
+.green-icon { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.orange-icon { background: #fff7ed; border: 1px solid #fed7aa; }
+
+.fac-stat-card h1 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.4rem 0;
+  line-height: 1.1;
+}
+
+.sub-denom {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.badge.positive { background: #dcfce7; color: #15803d; }
+.badge.neutral { background: #eff6ff; color: #1d4ed8; }
+.badge.warning { background: #ffedd5; color: #c2410c; }
+
+/* Table Container */
+.fac-perf-content-box {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.fac-perf-section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+
+.fac-perf-section-title h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+}
+
+.modern-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.modern-data-table th {
+  background: #f8fafc;
+  padding: 0.85rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modern-data-table td {
+  padding: 0.85rem 1rem;
+  font-size: 0.86rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.modern-data-table tr:hover {
+  background-color: #f8fafc;
+}
+
+.mono-text {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-weight: 600;
+  color: #334155;
+}
+
+.grade-pill {
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.grade-a {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.grade-b {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.pill {
+  font-size: 0.78rem;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+.id-pill {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+  font-weight: 600;
+}
+
+.focus-pill {
+  background: #faf5ff;
+  color: #7e22ce;
+  border-color: #e9d5ff;
+  font-weight: 600;
+}

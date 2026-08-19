@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './landinglogin.css';
 import log from './assets/logowithbg(1).png';
 import StudentDashboard from './components/academic/studentdashboard.jsx';
-// import FacultyDashboard from './components/academic/facultydashbaord.jsx';
+import FacultyDashboard from './components/academic/facFacultyDashboard.jsx';
 import customealert from './components/layout/errorcustom.jsx';
 import eyeon from './assets/eyeon.png'
 import eyeoff from './assets/eyeoff.png'
