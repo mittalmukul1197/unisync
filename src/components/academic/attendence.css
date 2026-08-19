@@ -1,4 +1,4 @@
-
+/* ─── Attendance Table ────────────────────────────────────────── */
 .attendance-table-card {
   padding: 20px;
   margin-bottom: 20px;
@@ -17,6 +17,29 @@
   background: rgba(239, 68, 68, 0.02);
 }
 
+.status-badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.status-badge-chip.eligible {
+  color: var(--accent-green);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.18);
+}
+
+.status-badge-chip.shortage {
+  color: var(--accent-red);
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.18);
+}
+
 .compliance-pct-lbl {
   font-weight: 600;
 }
@@ -24,6 +47,7 @@
 .compliance-pct-lbl.safe   { color: var(--accent-green); }
 .compliance-pct-lbl.danger { color: var(--accent-red); }
 
+/* ─── Attendance Chart ────────────────────────────────────────── */
 .attendance-chart-card {
   padding: 20px;
   margin-bottom: 20px;

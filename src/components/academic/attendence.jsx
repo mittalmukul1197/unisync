@@ -2,10 +2,10 @@ import React from "react";
 import "./attendence.css";
 
 const SUBJECTS = [
-    { id: 1, code: "24CSE0209", name: "Database Management System", faculty: "Harsh Bansal", range: "30-06-2026 to 11-08-2026", conducted: 24, attended: 22 },
-    { id: 2, code: "25CAI0201", name: "Statistics and Data Engineering", faculty: "Paras Maurya", range: "03-07-2026 to 03-08-2026", conducted: 18, attended: 16 },
-    { id: 3, code: "25CSE0203", name: "Front End Engineering-II", faculty: "Yogendra Sharma", range: "30-06-2026 to 30-07-2026", conducted: 28, attended: 26 },
-    { id: 4, code: "25CSE0204", name: "Object Oriented Programming", faculty: "Sumit Mohan", range: "30-06-2026 to 11-08-2026", conducted: 56, attended: 50 }
+    { id: 1, code: "24CSE0209", name: "Database Management System", faculty: "Harsh Bansal", conducted: 24, attended: 22 },
+    { id: 2, code: "25CAI0201", name: "Statistics and Data Engineering", faculty: "Paras Maurya", conducted: 18, attended: 16 },
+    { id: 3, code: "25CSE0203", name: "Front End Engineering-II", faculty: "Yogendra Sharma", conducted: 28, attended: 26 },
+    { id: 4, code: "25CSE0204", name: "Object Oriented Programming", faculty: "Sumit Mohan", conducted: 56, attended: 50 }
 ];
 
 function Attendance() {
@@ -24,8 +24,8 @@ function Attendance() {
                             <tr>
                                 <th>Subject Code</th>
                                 <th>Subject Title</th>
-                                <th>Faculty mentor</th>
-                                <th>Session Date Range</th>
+                                <th>Faculty Mentor</th>
+                                <th>Status</th>
                                 <th>Conducted</th>
                                 <th>Attended</th>
                                 <th>Percentage (%)</th>
@@ -34,16 +34,21 @@ function Attendance() {
                         <tbody>
                             {SUBJECTS.map((sub) => {
                                 const pct = ((sub.attended / sub.conducted) * 100).toFixed(2);
+                                const isEligible = pct >= 75;
                                 return (
-                                    <tr key={sub.id} className={pct < 75 ? "danger-row" : ""}>
+                                    <tr key={sub.id} className={!isEligible ? "danger-row" : ""}>
                                         <td className="font-mono"><strong>{sub.code}</strong></td>
                                         <td><strong>{sub.name}</strong></td>
                                         <td>{sub.faculty}</td>
-                                        <td className="font-mono">{sub.range}</td>
+                                        <td>
+                                            <span className={`status-badge-chip ${isEligible ? "eligible" : "shortage"}`}>
+                                                {isEligible ? "Eligible ✅" : "Shortage ⚠️"}
+                                            </span>
+                                        </td>
                                         <td className="font-mono">{sub.conducted}</td>
                                         <td className="font-mono">{sub.attended}</td>
                                         <td className="font-mono">
-                                            <span className={`compliance-pct-lbl ${pct >= 75 ? "safe" : "danger"}`}>
+                                            <span className={`compliance-pct-lbl ${isEligible ? "safe" : "danger"}`}>
                                                 {pct}%
                                             </span>
                                         </td>
