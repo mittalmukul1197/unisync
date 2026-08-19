@@ -5,17 +5,20 @@ import log from './assets/logowithbg(1).png';
 // import StudentDashboard from './components/academic/studentdashboard.jsx';
 // import FacultyDashboard from './components/academic/facultydashbaord.jsx';
 import customealert from './components/layout/errorcustom.jsx';
+import eyeon from './assets/eyeon.png'
+import eyeoff from './assets/eyeoff.png'
 
 
 function LandingLoginApp() {
   const [email, setEmail] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
   // const [customError, setCustomError] = useState('');
   const [userSession, setUserSession] = useState(null);
 
   useEffect(() => {
     try {
-      const savedSession = localStorage.getItem('student_session');
+      const savedSession = localStorage.getItem('user_session');
       if (savedSession) {
         setUserSession(JSON.parse(savedSession));
       }
@@ -84,7 +87,7 @@ function LandingLoginApp() {
 
   const handleLogout = () => {
     try {
-      localStorage.removeItem('student_session');
+      localStorage.removeItem('user_session');
       // localStorage.removeItem('custom_login_error');
     } catch (err) {
       console.error('Error clearing localStorage', err);
@@ -121,7 +124,7 @@ function LandingLoginApp() {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor="password">Password</label>
           <input type="password" id="password" placeholder='Enter your Password' value={password}
             onChange={(e) => {
@@ -130,7 +133,34 @@ function LandingLoginApp() {
             }}
 
           />
-        </div>
+        </div> */}
+        <div>
+  <label htmlFor="password">Password</label>
+
+  <div className="password-box">
+    <input
+      type={showPassword ? 'text' : 'password'}
+      id="password"
+      placeholder="Enter your Password"
+      value={password}
+      onChange={(e) => {
+        setPassword(e.target.value);
+      }}
+    />
+
+    <button
+      type="button"
+      className="password-toggle"
+      onClick={() => setShowPassword(!showPassword)}
+      aria-label={showPassword ? 'Hide password' : 'Show password'}
+    >
+      <img
+       src={showPassword ? eyeoff : eyeon}
+        alt=""
+      />
+    </button>
+  </div>
+</div>
 
         <button type="submit" className="login-btn">
           Log In
