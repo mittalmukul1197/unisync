@@ -1,4 +1,3 @@
-/* Footer CSS - White & Blue Theme with Responsive Mobile Support */
 .portal-footer {
   position: relative;
   width: 100%;
@@ -16,14 +15,13 @@
 .footer-container {
   max-width: 1400px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 48px !important;
 }
 
-/* Left Section Styles */
-.brand-section {
+.footer-brand-section {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -32,7 +30,7 @@
   flex-wrap: wrap;
 }
 
-.brand-name {
+.footer-brand-name {
   color: #2563eb;
   font-weight: 600;
 }
@@ -42,7 +40,6 @@
   font-size: 12px;
 }
 
-/* Center Status Badge */
 .status-section {
   display: flex;
   align-items: center;
@@ -59,7 +56,6 @@
   font-weight: 500;
 }
 
-/* Glowing Green Dot */
 .dot {
   width: 7px;
   height: 7px;
@@ -93,7 +89,6 @@
   }
 }
 
-/* Right Section Styles */
 .right-section {
   display: flex;
   align-items: center;
@@ -135,11 +130,20 @@
     gap: 8px;
   }
 
-  .brand-section, .status-section, .right-section {
+  .footer-brand-section, .status-section, .right-section {
     justify-content: center;
   }
 
   .separator {
     display: none;
   }
+}
+
+div:has(> .student-dashboard-content) {
+  overflow-y: auto !important;
+}
+
+.student-dashboard-content {
+  overflow-y: visible !important;
+  flex: none !important;
 }

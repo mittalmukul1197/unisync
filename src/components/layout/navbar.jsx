@@ -14,7 +14,7 @@ function StudentSidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose
     { name: 'library', label: 'Library Terminal', icon: '📖' },
     { name: 'fees', label: 'Fee', icon: '💳' },
     { name: 'hostel', label: 'Hostel Portal', icon: '🏠' },
-    { name: 'Performance', icon: '📈' },
+    { name: 'Performance', label: 'Performance', icon: '🏆' },
   ];
 
   const handleItemClick = (name) => {

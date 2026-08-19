@@ -1,0 +1,120 @@
+.timetable-day-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: var(--bg-slate);
+  padding: 4px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.day-btn {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.day-btn:hover {
+  color: var(--text-primary);
+}
+
+.day-btn.active {
+  background: #ffffff;
+  color: var(--primary-indigo);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.timetable-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.timetable-slot-card {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.slot-time-column {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 170px;
+  flex-shrink: 0;
+}
+
+.clock-icon {
+  font-size: 14px;
+}
+
+.slot-meta-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.slot-period-num {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.slot-time-text {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.slot-vertical-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+  margin: 0 24px;
+}
+
+.slot-info-column {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slot-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slot-room-badge {
+  font-size: 9px;
+  font-weight: 700;
+  background: rgba(14, 165, 233, 0.08);
+  color: var(--accent-sky);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.slot-code {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.slot-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.slot-footer-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}

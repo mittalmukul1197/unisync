@@ -1,0 +1,211 @@
+.performance-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.performance-header-meta h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 6px 0;
+}
+
+.performance-header-meta p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.cgpa-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+}
+
+.cgpa-card-visual {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cgpa-radial-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.cgpa-radial-progress svg {
+  transform: rotate(-90deg);
+}
+
+.cgpa-radial-progress circle {
+  fill: none;
+  stroke-width: 10px;
+}
+
+.cgpa-radial-progress circle.radial-bg {
+  stroke: var(--bg-slate);
+}
+
+.cgpa-radial-progress circle.radial-fill {
+  stroke: var(--primary-indigo);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease-in-out;
+}
+
+.radial-center-val {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cgpa-number {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.cgpa-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.cgpa-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.status-badge-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.standing-badge, .credits-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-slate);
+  color: var(--text-secondary);
+}
+
+.standing-badge strong {
+  color: var(--accent-green);
+}
+
+.credits-badge strong {
+  color: var(--primary-indigo);
+}
+
+.cgpa-academic-note {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.performance-semesters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.semester-performance-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+  transition: transform 0.2s ease;
+}
+
+.semester-performance-card:hover {
+  transform: translateY(-2px);
+}
+
+.semester-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 12px;
+}
+
+.semester-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.semester-sgpa-badge {
+  padding: 4px 10px;
+  background: var(--primary-indigo-glow);
+  color: var(--primary-indigo);
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.semester-courses-table-container {
+  overflow-x: auto;
+}
+
+.sem-courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.sem-courses-table th {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-bottom: 1.5px solid var(--border-subtle);
+}
+
+.sem-courses-table td {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--bg-slate);
+}
+
+.course-name-cell {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.course-grade-display {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-indigo);
+  background: var(--primary-indigo-glow);
+  border: 1px solid rgba(26, 58, 143, 0.15);
+}

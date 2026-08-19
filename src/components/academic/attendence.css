@@ -1,0 +1,253 @@
+.attendance-table-card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.attendance-table-card h3 {
+  font-size: 14.5px;
+  margin-bottom: 14px;
+}
+
+.history-table tr.danger-row td {
+  background: rgba(239, 68, 68, 0.02);
+}
+
+.compliance-pct-lbl {
+  font-weight: 700;
+}
+
+.compliance-pct-lbl.safe { color: var(--accent-green); }
+.compliance-pct-lbl.danger { color: var(--accent-red); }
+
+.attendance-chart-card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.attendance-chart-card h3 {
+  font-size: 14.5px;
+  margin-bottom: 2px;
+}
+
+.chart-lbl-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.visual-bar-chart-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 160px;
+  padding: 20px 10px 0;
+  margin-top: 10px;
+}
+
+.chart-bar-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.bar-track-outer {
+  width: 26px;
+  height: 110px;
+  background: var(--bg-slate);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill-inner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 0 0 6px 6px;
+  transition: height 0.6s ease;
+}
+
+.bar-fill-inner.high { background: linear-gradient(to top, #10b981, #34d399); }
+.bar-fill-inner.medium { background: linear-gradient(to top, #f59e0b, #fbbf24); }
+.bar-fill-inner.low { background: linear-gradient(to top, #ef4444, #f87171); }
+
+.bar-val-pct {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.bar-sub-code {
+  font-size: 9px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.bar-sub-name-trunc {
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
+.chart-axis-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-color.high { background-color: var(--accent-green); }
+.legend-color.medium { background-color: var(--accent-orange); }
+.legend-color.low { background-color: var(--accent-red); }
+
+.calculator-redesigned {
+  padding: 24px;
+}
+
+.calculator-redesigned .calc-header h3 {
+  font-size: 15px;
+}
+
+.forecaster-sliders-wrap {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.slider-card-glow {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  padding: 16px;
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.slider-card-glow:hover {
+  border-color: var(--primary-indigo);
+}
+
+.slider-card-glow.secondary:hover {
+  border-color: var(--accent-sky);
+}
+
+.slider-meta-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.slider-val-box {
+  font-size: 11px;
+  background: var(--primary-indigo-glow);
+  color: var(--primary-indigo);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.slider-card-glow.secondary .slider-val-box {
+  background: rgba(14, 165, 233, 0.1);
+  color: var(--accent-sky);
+}
+
+.calc-range {
+  width: 100%;
+  accent-color: var(--primary-indigo);
+  cursor: pointer;
+}
+
+.forecaster-dial-result {
+  flex: 0.9;
+  position: relative;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  background: linear-gradient(135deg, #fff, #f8fafc);
+}
+
+.forecaster-dial-result.safe { border-left: 4px solid var(--accent-green); }
+.forecaster-dial-result.unsafe { border-left: 4px solid var(--accent-red); }
+
+.dial-glow-bg {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.12;
+  z-index: 1;
+}
+
+.forecaster-dial-result.safe .dial-glow-bg { background: var(--accent-green); }
+.forecaster-dial-result.unsafe .dial-glow-bg { background: var(--accent-red); }
+
+.dial-label {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.dial-value {
+  font-size: 34px;
+  font-weight: 800;
+  margin: 6px 0;
+  z-index: 2;
+}
+
+.forecaster-dial-result.safe .dial-value { color: var(--accent-green); }
+.forecaster-dial-result.unsafe .dial-value { color: var(--accent-red); }
+
+.dial-meta-details {
+  z-index: 2;
+}
+
+.dial-fraction {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.dial-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.dial-badge.safe { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+.dial-badge.unsafe { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }

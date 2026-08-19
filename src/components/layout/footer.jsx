@@ -9,10 +9,10 @@ const Footer = () => {
       <div className="footer-container">
         
         
-        <div className="brand-section">
+        <div className="footer-brand-section">
           <span className="copyright-symbol">©</span>
           <span className="current-year">{new Date().getFullYear()}</span>
-          <span className="brand-name">Arogya University.</span>
+          <span className="footer-brand-name">Arogya University.</span>
           <span className="rights-text">All rights reserved.</span>
         </div>
 

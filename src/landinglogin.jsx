@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import './landinglogin.css';
 import log from './assets/logowithbg(1).png';
-// import StudentDashboard from './components/academic/studentdashboard.jsx';
+import StudentDashboard from './components/academic/studentdashboard.jsx';
 // import FacultyDashboard from './components/academic/facultydashbaord.jsx';
 import customealert from './components/layout/errorcustom.jsx';
 
@@ -15,7 +15,7 @@ function LandingLoginApp() {
 
   useEffect(() => {
     try {
-      const savedSession = localStorage.getItem('student_session');
+      const savedSession = localStorage.getItem('user_session');
       if (savedSession) {
         setUserSession(JSON.parse(savedSession));
       }
@@ -95,7 +95,7 @@ function LandingLoginApp() {
     // setCustomError('');
   };
 
-  if (userSession?.role === 'student') {
+  if (userSession?.role == 'student') {
     return <StudentDashboard user={userSession} onLogout={handleLogout} />;
   }
   else if (userSession?.role === 'faculty') {
