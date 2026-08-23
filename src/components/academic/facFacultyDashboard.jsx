@@ -256,7 +256,7 @@ function FacultyDashboard({ user, onLogout }) {
 
                                 <div className="right-column">
                                     {/* Teacher Updates & Notices Widget */}
-                                    <TeacherUpdatesWidget onOpenAll={() => setActiveTab("Teacher Updates")} />
+                                    <TeacherUpdatesWidget onOpenAll={() => setActiveTab("Updates")} />
 
                                     {/* Recent Activity */}
                                     <div className="content-box">
@@ -333,7 +333,7 @@ function FacultyDashboard({ user, onLogout }) {
 
                     {activeTab === "My Info" && <MyInfo />}
 
-                    {activeTab === "Teacher Updates" && (
+                    {activeTab === "Updates" && (
                         <TeacherUpdates onBack={() => setActiveTab("Dashboard")} />
                     )}
 
