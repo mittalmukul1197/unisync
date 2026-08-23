@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./facTeacherUpdates.css";
 
-const MOCK_TEACHER_UPDATES = [
+const updatesData = [
   {
     id: 1,
     title: "End-Semester Theory & Practical Invigilation Duties",
@@ -85,7 +85,7 @@ const MOCK_TEACHER_UPDATES = [
 ];
 
 export default function TeacherUpdates({ onBack }) {
-  const [updates, setUpdates] = useState(MOCK_TEACHER_UPDATES);
+  const [updates, setUpdates] = useState(updatesData);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -248,8 +248,8 @@ export default function TeacherUpdates({ onBack }) {
 }
 
 export function TeacherUpdatesWidget({ onOpenAll }) {
-  const [updates, setUpdates] = useState(MOCK_TEACHER_UPDATES.slice(0, 3));
-  const unreadCount = MOCK_TEACHER_UPDATES.filter((n) => !n.read).length;
+  const [updates, setUpdates] = useState(updatesData.slice(0, 3));
+  const unreadCount = updatesData.filter((n) => !n.read).length;
 
   return (
     <div className="teacher-updates-widget">
@@ -311,7 +311,7 @@ export function TeacherUpdatesDrawer({ isOpen, onClose }) {
           </button>
         </div>
         <div className="drawer-body">
-          <TeacherUpdates />
+          <TeacherUpdates/>
         </div>
       </div>
     </div>

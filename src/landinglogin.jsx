@@ -13,7 +13,6 @@ function LandingLoginApp() {
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
-  // const [customError, setCustomError] = useState('');
   const [userSession, setUserSession] = useState(null);
 
   useEffect(() => {
@@ -22,10 +21,7 @@ function LandingLoginApp() {
       if (savedSession) {
         setUserSession(JSON.parse(savedSession));
       }
-      // const savedError = localStorage.getItem('custom_login_error');
-      // if (savedError) {
-      //   setCustomError(savedError);
-      // }
+     
     } catch (e) {
       console.error('Error reading from localStorage', e);
     }
@@ -36,8 +32,6 @@ function LandingLoginApp() {
 
     if (!email.trim() || !password) {
       const errorMsg = 'Please enter both email and password.';
-      // setCustomError(errorMsg);
-      // localStorage.setItem('custom_login_error', errorMsg);
       customealert(errorMsg, { timeout: true, time: 3000, button: true });
       return;
     }
@@ -62,15 +56,12 @@ function LandingLoginApp() {
       };
     } else {
       const errorMsg = 'Invalid email or password. Please check your credentials.';
-      // setCustomError(errorMsg);
-      // localStorage.setItem('custom_login_error', errorMsg);
       customealert(errorMsg, { timeout: true, time: 3500, button: true });
       return;
     }
 
     try {
       localStorage.setItem('user_session', JSON.stringify(sessionData));
-      // localStorage.removeItem('custom_login_error');
     } catch (err) {
       console.error('Error saving session:', err);
     }
@@ -81,21 +72,19 @@ function LandingLoginApp() {
       button: false
     });
 
-    // setCustomError('');
     setUserSession(sessionData);
   };
 
   const handleLogout = () => {
     try {
       localStorage.removeItem('user_session');
-      // localStorage.removeItem('custom_login_error');
     } catch (err) {
       console.error('Error clearing localStorage', err);
     }
     setUserSession(null);
-    // setEmail('');
-    // setPassword('');
-    // setCustomError('');
+    setEmail('');
+setPassword('');
+setShowPassword(false);
   };
 
   if (userSession?.role == 'student') {
@@ -118,22 +107,12 @@ function LandingLoginApp() {
           <label htmlFor="email">Email</label>
           <input type="email" id="email" placeholder='Enter your mail' value={email} onChange={(e) => {
             setEmail(e.target.value);
-            // setCustomError('');
           }}
 
           />
         </div>
 
-        {/* <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" placeholder='Enter your Password' value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              // setCustomError('');
-            }}
-
-          />
-        </div> */}
+        
         <div>
   <label htmlFor="password">Password</label>
 

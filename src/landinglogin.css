@@ -167,7 +167,7 @@ body::before {
   text-align: center;
 }
 
-.demo-hint {
+/* .demo-hint {
   font-size: 0.8rem;
   color: #94a3b8;
   background: rgba(255, 255, 255, 0.04);
@@ -180,7 +180,7 @@ body::before {
 
 .demo-hint strong {
   color: #60a5fa;
-}
+} */
 
 @media (max-width: 480px) {
   .logincard {
