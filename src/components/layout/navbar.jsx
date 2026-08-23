@@ -153,6 +153,7 @@ function FacultySidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose
   const mainNavItems = [
     { name: 'Dashboard', icon: '📊' },
     { name: 'My Info', icon: '👤' },
+    { name: 'Teacher Updates', icon: '🔔' },
     { name: 'Attendance Update', icon: '📝' },
     { name: 'Students', icon: '🎓' },
     { name: 'Notes Upload', icon: '📤' },

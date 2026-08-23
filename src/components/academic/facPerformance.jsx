@@ -11,9 +11,6 @@ const MOCK_STUDENT_MARKS = [
   { roll: "2110990202", name: "Charu Singla", batch: "Batch B", midTerm: 27, lab: 19, assignment: 19 },
   { roll: "2110990204", name: "Harshita Kaur", batch: "Batch B", midTerm: 16, lab: 12, assignment: 14 },
   { roll: "2110990205", name: "Kabir Bedi", batch: "Batch B", midTerm: 30, lab: 20, assignment: 20 },
-  { roll: "2110990301", name: "Aryan Mahajan", batch: "Batch C", midTerm: 23, lab: 18, assignment: 17 },
-  { roll: "2110990304", name: "Kunal Bansal", batch: "Batch C", midTerm: 19, lab: 15, assignment: 16 },
-  { roll: "2110990307", name: "Simran Gill", batch: "Batch C", attendance: 91, midTerm: 27, lab: 19, assignment: 19 },
 ];
 
 function FacPerformance({

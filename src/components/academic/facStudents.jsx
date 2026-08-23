@@ -11,9 +11,6 @@ const MOCK_COURSE_STUDENTS = [
   { roll: "2110990202", name: "Charu Singla", batch: "Batch B", attendance: 90, status: "Good" },
   { roll: "2110990204", name: "Harshita Kaur", batch: "Batch B", attendance: 62, status: "At Risk (<75%)" },
   { roll: "2110990205", name: "Kabir Bedi", batch: "Batch B", attendance: 96, status: "Good" },
-  { roll: "2110990301", name: "Aryan Mahajan", batch: "Batch C", attendance: 84, status: "Good" },
-  { roll: "2110990304", name: "Kunal Bansal", batch: "Batch C", attendance: 71, status: "At Risk (<75%)" },
-  { roll: "2110990307", name: "Simran Gill", batch: "Batch C", attendance: 91, status: "Good" },
 ];
 
 function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intelligence & Machine Learning" }) {
@@ -24,10 +21,7 @@ function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intellige
   const filteredStudents = studentsList.filter((student) => {
     const matchesBatch =
       studentBatchFilter === "All" || student.batch === studentBatchFilter;
-    const query = studentSearch.toLowerCase();
-    const matchesQuery =
-      student.name.toLowerCase().includes(query) || student.roll.includes(query);
-    return matchesBatch && matchesQuery;
+    return matchesBatch;
   });
 
   return (
@@ -39,7 +33,7 @@ function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intellige
         </div>
         <div className="fac-students-header-stats">
           <span className="pill">Total: {filteredStudents.length} shown</span>
-          <span className="pill id-pill">Batches: 6A, 6B, 6C</span>
+          <span className="pill id-pill">Batches: 6A, 6B</span>
         </div>
       </div>
 
@@ -56,7 +50,7 @@ function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intellige
           </div>
 
           <div className="fac-students-batches">
-            {["All", "Batch A", "Batch B", "Batch C"].map((batchName) => (
+            {["All", "Batch A", "Batch B"].map((batchName) => (
               <button
                 key={batchName}
                 type="button"

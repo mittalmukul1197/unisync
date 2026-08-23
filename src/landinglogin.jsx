@@ -106,68 +106,53 @@ function LandingLoginApp() {
   }
 
   return (
-    <div className='logincard'>
-      <div>
-        <img src={log} alt="Unisync Logo" />
-      </div>
-
-      <form className='form' onSubmit={handleLogin}>
-
-
+    <div className="login-wrapper">
+      <div className='logincard'>
         <div>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder='Enter your mail' value={email} onChange={(e) => {
-            setEmail(e.target.value);
-            // setCustomError('');
-          }}
-
-          />
+          <img src={log} alt="Unisync Logo" />
         </div>
 
-        {/* <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" placeholder='Enter your Password' value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              // setCustomError('');
+        <form className='form' onSubmit={handleLogin}>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" placeholder='Enter your mail' value={email} onChange={(e) => {
+              setEmail(e.target.value);
             }}
+            />
+          </div>
 
-          />
-        </div> */}
-        <div>
-  <label htmlFor="password">Password</label>
+          <div>
+            <label htmlFor="password">Password</label>
+            <div className="password-box">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                placeholder="Enter your Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
 
-  <div className="password-box">
-    <input
-      type={showPassword ? 'text' : 'password'}
-      id="password"
-      placeholder="Enter your Password"
-      value={password}
-      onChange={(e) => {
-        setPassword(e.target.value);
-      }}
-    />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                <img
+                  src={showPassword ? eyeoff : eyeon}
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
 
-    <button
-      type="button"
-      className="password-toggle"
-      onClick={() => setShowPassword(!showPassword)}
-      aria-label={showPassword ? 'Hide password' : 'Show password'}
-    >
-      <img
-       src={showPassword ? eyeoff : eyeon}
-        alt=""
-      />
-    </button>
-  </div>
-</div>
-
-        <button type="submit" className="login-btn">
-          Log In
-        </button>
-      </form>
-
-
+          <button type="submit" className="login-btn">
+            Log In
+          </button>
+        </form>
+      </div>
     </div>
   );
 
