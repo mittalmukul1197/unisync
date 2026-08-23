@@ -297,23 +297,3 @@ export function TeacherUpdatesWidget({ onOpenAll }) {
     </div>
   );
 }
-
-export function TeacherUpdatesDrawer({ isOpen, onClose }) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="updates-drawer-overlay" onClick={onClose}>
-      <div className="updates-drawer" onClick={(e) => e.stopPropagation()}>
-        <div className="drawer-header">
-          <h3>🔔 Teacher Updates & Circulars</h3>
-          <button className="drawer-close-btn" onClick={onClose} title="Close Drawer">
-            ✕
-          </button>
-        </div>
-        <div className="drawer-body">
-          <TeacherUpdates/>
-        </div>
-      </div>
-    </div>
-  );
-}

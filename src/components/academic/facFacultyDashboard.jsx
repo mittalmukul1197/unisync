@@ -5,7 +5,7 @@ import Header from "../layout/header";
 import Footer from "../layout/footer";
 import MyInfo from "./facMyInfo";
 import AttendanceUpdate from "./facAttendanceUpdate";
-import TeacherUpdates, { TeacherUpdatesWidget, TeacherUpdatesDrawer } from "./facTeacherUpdates";
+import TeacherUpdates, { TeacherUpdatesWidget} from "./facTeacherUpdates";
 import FacStudents from "./facStudents";
 import FacNotesUpload from "./facNotesUpload";
 import FacPerformance from "./facPerformance";
@@ -395,10 +395,7 @@ function FacultyDashboard({ user, onLogout }) {
                 </div>
 
                 <Footer />
-                <TeacherUpdatesDrawer
-                    isOpen={isUpdatesDrawerOpen}
-                    onClose={() => setIsUpdatesDrawerOpen(false)}
-                />
+                
             </main>
 
             {/* {showNoticeModal && (
