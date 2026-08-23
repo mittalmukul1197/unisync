@@ -8,7 +8,7 @@
 
 .profile-compact-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid #e2e8f0;
+  border: 1px solid #f0e5e2;
   border-radius: 18px;
   padding: 1.75rem;
   display: flex;
@@ -91,22 +91,22 @@
   margin-top: 0.4rem;
 }
 
-.pill {
+/* .pill {
   font-size: 0.78rem;
   background: #f1f5f9;
   color: #334155;
   padding: 0.25rem 0.65rem;
   border-radius: 6px;
   font-weight: 500;
-  border: 1px solid #e2e8f0;
-}
-
+  border: 1px solid #006eff;
+}  */
+/* 
 .id-pill {
   background: #eff6ff;
   color: #1d4ed8;
   border-color: #bfdbfe;
   font-weight: 600;
-}
+} */
 
 .focus-pill {
   background: #faf5ff;
@@ -286,7 +286,7 @@
   content: "";
   position: absolute;
   left: 4px;
-  top: 6px;
+  top: 6px; 
   bottom: 6px;
   width: 2px;
   background: #e2e8f0;
@@ -306,6 +306,7 @@
   background: #10b981;
   border: 2px solid #ffffff;
   box-shadow: 0 0 0 2px #bbf7d0;
+  
 }
 
 .cred-content strong {

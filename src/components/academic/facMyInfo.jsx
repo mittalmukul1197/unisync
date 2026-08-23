@@ -75,12 +75,12 @@ function MyInfo() {
           <div className="info-details-table">
             <div className="detail-item">
               <span className="label">Assigned Batches</span>
-              <strong className="value highlight-val">B.Tech CSE - Sem 6 (Batches 6A, 6B, 6C)</strong>
+              <strong className="value highlight-val">B.Tech CSE - Sem 6 (Batches 6A, 6B)</strong>
             </div>
 
             <div className="detail-item">
               <span className="label">Total Enrolled Students</span>
-              <strong className="value">180 Students across 3 sections</strong>
+              <strong className="value">120 Students across 2 sections</strong>
             </div>
 
             <div className="detail-item">

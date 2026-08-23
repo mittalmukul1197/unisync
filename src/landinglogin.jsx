@@ -95,10 +95,11 @@ setShowPassword(false);
   }
 
   return (
-    <div className='logincard'>
-      <div>
-        <img src={log} alt="Unisync Logo" />
-      </div>
+    <div className="login-wrapper">
+      <div className='logincard'>
+        <div>
+          <img src={log} alt="Unisync Logo" />
+        </div>
 
       <form className='form' onSubmit={handleLogin}>
 
@@ -127,26 +128,25 @@ setShowPassword(false);
       }}
     />
 
-    <button
-      type="button"
-      className="password-toggle"
-      onClick={() => setShowPassword(!showPassword)}
-      aria-label={showPassword ? 'Hide password' : 'Show password'}
-    >
-      <img
-       src={showPassword ? eyeoff : eyeon}
-        alt=""
-      />
-    </button>
-  </div>
-</div>
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                <img
+                  src={showPassword ? eyeoff : eyeon}
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
 
-        <button type="submit" className="login-btn">
-          Log In
-        </button>
-      </form>
-
-
+          <button type="submit" className="login-btn">
+            Log In
+          </button>
+        </form>
+      </div>
     </div>
   );
 

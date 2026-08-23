@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="status-section">
           {statusItems.map((item, index) => (
             <div key={index} className="status-badge">
-              <span className="dot pulse"></span>
+              <span className="dot"></span>
               <span>{item}</span>
             </div>
           ))}
