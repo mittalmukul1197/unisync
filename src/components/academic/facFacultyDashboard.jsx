@@ -20,7 +20,7 @@ function FacultyDashboard({ user, onLogout }) {
 
     const courseCode = "CS-301";
     const courseName = "Artificial Intelligence & Machine Learning";
-    const facultyName = "Dr. Yogender Sharma";
+    const facultyName = "Mr. Yogendra Sharma";
 
     
 
@@ -45,7 +45,6 @@ function FacultyDashboard({ user, onLogout }) {
                     onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 />
 
-                {/* Dynamic Body Content according to activeTab */}
                 <div className="faculty-body">
                     {activeTab === "Dashboard" && (
                         <>
@@ -73,7 +72,7 @@ function FacultyDashboard({ user, onLogout }) {
                                 </div>
                             </div>
 
-                            {/* 4 KPI Cards */}
+                            {/* 4 Cards */}
                             <div className="dashboard-grid">
                                 <div className="card stat-card-hover" onClick={() => setActiveTab("Students")}>
                                     <div className="card-top">
@@ -250,6 +249,7 @@ function FacultyDashboard({ user, onLogout }) {
                                 <div className="right-column">
                                     {/* Teacher Updates & Notices Widget */}
                                     <TeacherUpdatesWidget onOpenAll={() => setActiveTab("Updates")} />
+                                        
 
                                     {/* Recent Activity */}
                                     <div className="content-box">
@@ -385,43 +385,6 @@ function FacultyDashboard({ user, onLogout }) {
                 
             </main>
 
-            {/* {showNoticeModal && (
-        <div className="modal-backdrop" onClick={() => setShowNoticeModal(false)}>
-          <div className="edit-modal-box" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>📢 Post Course Notice ({courseCode})</h3>
-              <button className="close-btn" onClick={() => setShowNoticeModal(false)}>✕</button>
-            </div>
-            {noticeSuccess ? (
-              <div className="modal-success-msg">
-                ✅ Notice successfully published to Batches 6A, 6B, and 6C!
-              </div>
-            ) : (
-              <form onSubmit={handlePostNotice} className="edit-form-grid">
-                <div className="form-field full-width">
-                  <label>Announcement Message</label>
-                  <textarea
-                    rows={4}
-                    className="notice-textarea"
-                    placeholder="Write an announcement for all students enrolled in AI & ML..."
-                    value={noticeText}
-                    onChange={(e) => setNoticeText(e.target.value)}
-                    required
-                  ></textarea>
-                </div>
-                <div className="modal-actions full-width">
-                  <button type="button" className="cancel-btn" onClick={() => setShowNoticeModal(false)}>
-                    Cancel
-                  </button>
-                  <button type="submit" className="save-btn">
-                    📢 Post to All Batches
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        </div>
-      )} */}
         </div>
     );
 }

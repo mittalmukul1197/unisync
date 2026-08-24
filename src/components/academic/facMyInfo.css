@@ -265,15 +265,15 @@ background: linear-gradient(120deg, #eef2ff 0%, #f5f3ff 45%, #ecfeff 100%);  pad
 }
 
 .highlight-val {
-  color: #1d4ed8 !important;
+  color: #1d4ed8 
 }
 
 .highlight-hours {
-  color: #059669 !important;
+  color: #059669 
 }
 
 .email-link {
-  color: #2563eb !important;
+  color: #2563eb
 }
 
 /* Timeline Credentials */
