@@ -153,3 +153,17 @@
 .legend-color.high   { background-color: var(--accent-green); }
 .legend-color.medium { background-color: var(--accent-orange); }
 .legend-color.low    { background-color: var(--accent-red); }
+
+@media (max-width: 768px) {
+  .visual-bar-chart-row {
+    height: 180px;
+    padding: 10px 0 0;
+  }
+  .chart-axis-legend {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+  .history-table-container {
+    overflow-x: auto;
+  }
+}

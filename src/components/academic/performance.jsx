@@ -3,55 +3,35 @@ import "./performance.css";
 
 const SEMESTERS = [
     {
+        id: 1,
         sem: "Semester I",
+        sgpa: "9.35",
         courses: [
-            { code: "24CSL0101", name: "Introduction to Programming", credits: 4, grade: "O", points: 10 },
-            { code: "24MTL0102", name: "Mathematics for Computing", credits: 4, grade: "O", points: 10 },
-            { code: "24ECL0103", name: "Digital Electronics", credits: 3, grade: "A", points: 9 },
-            { code: "24PHL0104", name: "Applied Physics", credits: 4, grade: "B+", points: 8 },
-            { code: "24HUL0105", name: "Communication Skills", credits: 2, grade: "O", points: 10 }
+            { code: "24CSL0101", name: "Introduction to Programming", credits: 4, grade: "O" },
+            { code: "24MTL0102", name: "Mathematics for Computing", credits: 4, grade: "O" },
+            { code: "24ECL0103", name: "Digital Electronics", credits: 3, grade: "A" },
+            { code: "24PHL0104", name: "Applied Physics", credits: 4, grade: "B+" },
+            { code: "24HUL0105", name: "Communication Skills", credits: 2, grade: "O" }
         ]
     },
     {
+        id: 2,
         sem: "Semester II",
+        sgpa: "9.35",
         courses: [
-            { code: "24CSL0201", name: "Data Structures & Algorithms", credits: 4, grade: "O", points: 10 },
-            { code: "24MTL0202", name: "Discrete Mathematics", credits: 4, grade: "O", points: 10 },
-            { code: "24CSL0203", name: "Computer Architecture", credits: 4, grade: "A", points: 9 },
-            { code: "24CHL0204", name: "Environmental Sciences", credits: 2, grade: "B+", points: 8 },
-            { code: "24CSL0205", name: "Python Programming Lab", credits: 3, grade: "A", points: 9 }
+            { code: "24CSL0201", name: "Data Structures & Algorithms", credits: 4, grade: "O" },
+            { code: "24MTL0202", name: "Discrete Mathematics", credits: 4, grade: "O" },
+            { code: "24CSL0203", name: "Computer Architecture", credits: 4, grade: "A" },
+            { code: "24CHL0204", name: "Environmental Sciences", credits: 2, grade: "B+" },
+            { code: "24CSL0205", name: "Python Programming Lab", credits: 3, grade: "A" }
         ]
     }
 ];
 
-function calculateSGPA(semester) {
-    const totalCredits = semester.courses.reduce((acc, c) => acc + c.credits, 0);
-    if (totalCredits === 0) return 0;
-    const totalPoints = semester.courses.reduce((acc, c) => acc + c.credits * c.points, 0);
-    return totalPoints / totalCredits;
-}
-
-function calculateCumulativeCGPA(sems) {
-    let accumulatedPoints = 0;
-    let accumulatedCredits = 0;
-    sems.forEach((sem) => {
-        sem.courses.forEach((c) => {
-            accumulatedPoints += c.credits * c.points;
-            accumulatedCredits += c.credits;
-        });
-    });
-    return accumulatedCredits === 0 ? 0 : accumulatedPoints / accumulatedCredits;
-}
-
 function Performance() {
-    const totalCGPA = calculateCumulativeCGPA(SEMESTERS);
-    const totalCredits = SEMESTERS.reduce(
-        (acc, s) => acc + s.courses.reduce((cAcc, c) => cAcc + c.credits, 0),
-        0
-    );
-
-    const circumference = 314.16;
-    const strokeDashoffset = circumference - (circumference * totalCGPA) / 10;
+    const overallCGPA = "9.35";
+    const totalCredits = 34;
+    const cgpaPct = 93.5;
 
     return (
         <div className="performance-container page-fade-in">
@@ -62,19 +42,14 @@ function Performance() {
 
             <div className="cgpa-summary-card glass">
                 <div className="cgpa-card-visual">
-                    <div className="cgpa-radial-progress">
-                        <svg width="120" height="120" viewBox="0 0 120 120">
-                            <circle cx="60" cy="60" r="50" className="radial-bg" />
-                            <circle
-                                cx="60"
-                                cy="60"
-                                r="50"
-                                className="radial-fill"
-                                style={{ strokeDasharray: circumference, strokeDashoffset }}
-                            />
-                        </svg>
-                        <div className="radial-center-val">
-                            <span className="cgpa-number">{totalCGPA.toFixed(2)}</span>
+                    <div
+                        className="cgpa-ring"
+                        style={{
+                            background: `conic-gradient(#1a3a8f 0%, #3b82f6 ${cgpaPct}%, #f1f5f9 ${cgpaPct}% 100%)`
+                        }}
+                    >
+                        <div className="cgpa-ring-inner">
+                            <span className="cgpa-number">{overallCGPA}</span>
                             <span className="cgpa-label">CGPA</span>
                         </div>
                     </div>
@@ -91,42 +66,39 @@ function Performance() {
             </div>
 
             <div className="performance-semesters-grid">
-                {SEMESTERS.map((sem, semIdx) => {
-                    const sgpa = calculateSGPA(sem);
-                    return (
-                        <div key={semIdx} className="semester-performance-card glass">
-                            <div className="semester-card-header">
-                                <span className="semester-title font-mono">{sem.sem}</span>
-                                <span className="semester-sgpa-badge font-mono">SGPA: {sgpa.toFixed(2)}</span>
-                            </div>
-
-                            <div className="semester-courses-table-container">
-                                <table className="sem-courses-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Code</th>
-                                            <th>Course Name</th>
-                                            <th>Credits</th>
-                                            <th>Grade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {sem.courses.map((course, courseIdx) => (
-                                            <tr key={courseIdx}>
-                                                <td className="font-mono">{course.code}</td>
-                                                <td className="course-name-cell"><strong>{course.name}</strong></td>
-                                                <td className="font-mono">{course.credits}</td>
-                                                <td>
-                                                    <span className="course-grade-display font-mono">{course.grade}</span>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                {SEMESTERS.map((sem) => (
+                    <div key={sem.id} className="semester-performance-card glass">
+                        <div className="semester-card-header">
+                            <span className="semester-title font-mono">{sem.sem}</span>
+                            <span className="semester-sgpa-badge font-mono">SGPA: {sem.sgpa}</span>
                         </div>
-                    );
-                })}
+
+                        <div className="semester-courses-table-container">
+                            <table className="sem-courses-table">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Course Name</th>
+                                        <th>Credits</th>
+                                        <th>Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {sem.courses.map((course, index) => (
+                                        <tr key={index}>
+                                            <td className="font-mono">{course.code}</td>
+                                            <td className="course-name-cell"><strong>{course.name}</strong></td>
+                                            <td className="font-mono">{course.credits}</td>
+                                            <td>
+                                                <span className="course-grade-display font-mono">{course.grade}</span>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

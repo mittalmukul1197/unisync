@@ -37,38 +37,23 @@
   justify-content: center;
 }
 
-.cgpa-radial-progress {
-  position: relative;
+.cgpa-ring {
   width: 120px;
   height: 120px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.cgpa-radial-progress svg {
-  transform: rotate(-90deg);
-}
-
-.cgpa-radial-progress circle {
-  fill: none;
-  stroke-width: 10px;
-}
-
-.cgpa-radial-progress circle.radial-bg {
-  stroke: var(--bg-slate);
-}
-
-.cgpa-radial-progress circle.radial-fill {
-  stroke: var(--primary-indigo);
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.6s ease-in-out;
-}
-
-.radial-center-val {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.cgpa-ring-inner {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--bg-card, #ffffff);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 

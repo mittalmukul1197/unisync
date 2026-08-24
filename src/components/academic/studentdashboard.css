@@ -652,14 +652,20 @@
 }
 
 @media (max-width: 1200px) {
-  .bento-grid { grid-template-columns: repeat(2, 1fr); }
-  .profile-card     { grid-column: span 2; }
-  .attendance-card  { grid-column: span 1; }
-  .notes-card-bento { grid-column: span 2; }
+  .student-dashboard-content { padding: 20px 22px; }
+  .bento-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .profile-card         { grid-column: span 2; }
+  .attendance-card      { grid-column: span 1; }
+  .timetable-card-bento { grid-column: span 1; }
+  .library-card-bento   { grid-column: span 1; }
+  .notes-card-bento     { grid-column: span 2; }
+  .placement-card-bento { grid-column: span 1; }
+  .lms-assignments-bento { grid-column: span 1; }
 }
 
 @media (max-width: 768px) {
-  .bento-grid { grid-template-columns: 1fr; }
+  .student-dashboard-content { padding: 16px 14px; }
+  .bento-grid { grid-template-columns: 1fr; gap: 14px; }
   .profile-card,
   .attendance-card,
   .timetable-card-bento,
@@ -667,4 +673,21 @@
   .lms-assignments-bento,
   .notes-card-bento,
   .placement-card-bento { grid-column: span 1; }
+
+  .profile-title { font-size: 19px; }
+  .student-stats-row { flex-wrap: wrap; gap: 12px; }
+  .view-details-action { margin-left: 0; width: 100%; margin-top: 4px; }
+}
+
+@media (max-width: 480px) {
+  .student-dashboard-content { padding: 12px 10px; }
+  .bento-card { padding: 14px; }
+  .welcome-banner-split { flex-direction: column-reverse; align-items: flex-start; gap: 14px; }
+  .welcome-avatar-container,
+  .welcome-avatar-img-wrap { width: 60px; height: 60px; }
+  .profile-title { font-size: 17.5px; }
+  .focus-pills { gap: 6px; }
+  .focus-pill { font-size: 9.5px; padding: 2px 6px; }
+  .notes-peek-item { padding: 8px 10px; }
+  .notes-txt strong { max-width: 130px; }
 }

@@ -6,6 +6,21 @@
   border-radius: 16px;
 }
 
+@media (max-width: 640px) {
+  .library-ebooks-full {
+    padding: 16px;
+  }
+  .ebook-row-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .read-ebook-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 .library-ebooks-full h3 {
   font-family: var(--font-heading);
   font-size:   15px;
