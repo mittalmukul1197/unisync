@@ -3,7 +3,7 @@ import log from '../../assets/logowithbg(1).png';
 import aplh from '../../assets/stylishname(dark).png';
 import './navbar.css';
 
-function StudentSidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose }) {
+function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
   const mainNavItems = [
     { name: 'home', label: 'Dashboard', icon: '📊' },
     { name: 'profile', label: 'My Info', icon: '👤' },
