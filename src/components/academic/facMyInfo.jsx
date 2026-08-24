@@ -1,8 +1,9 @@
 import React from "react";
 import "./facMyInfo.css";
+import fac_img from "../../assets/facimage.jpeg"
 
 const FACULTY_INFO = {
-  name: "Dr. Yogender Sharma",
+  name: "Mr. Yogendra Sharma",
   designation: "Associate Professor",
   department: "Department of Computer Science & Engineering",
   empId: "CU-CSE-408",
@@ -24,7 +25,8 @@ function MyInfo() {
         <div className="profile-left-section">
           <div className="avatar-wrapper">
             <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80"
+              src=
+              {fac_img}
               alt="Faculty Avatar"
               className="compact-avatar"
             />
