@@ -1,4 +1,3 @@
-/* ─── Attendance Table ────────────────────────────────────────── */
 .attendance-table-card {
   padding: 20px;
   margin-bottom: 20px;
@@ -47,7 +46,7 @@
 .compliance-pct-lbl.safe   { color: var(--accent-green); }
 .compliance-pct-lbl.danger { color: var(--accent-red); }
 
-/* ─── Attendance Chart ────────────────────────────────────────── */
+
 .attendance-chart-card {
   padding: 20px;
   margin-bottom: 20px;

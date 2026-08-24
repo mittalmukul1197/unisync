@@ -118,9 +118,7 @@ function Updates() {
                     ))
                 ) : (
                     <div className="updates-empty-state">
-                        <span className="updates-empty-icon">📭</span>
                         <h3>No updates found</h3>
-                        <p>Try refining your search query or choosing another category filter.</p>
                     </div>
                 )}
             </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import "./profile.css";
+import studentAvatar from "../../assets/student_profile.jpg";
 
 const ENROLLED_SUBJECTS = [
     { code: "24CSE0209", name: "Database Management System", faculty: "Harsh Bansal", room: "LH-501", credits: 4 },
@@ -34,11 +35,13 @@ function Profile() {
                     </div>
 
                     <div className="id-card-body">
-                        <img
-                            src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150&h=150"
-                            alt="Rohit Verma Profile"
-                            className="id-avatar"
-                        />
+                        <div className="id-avatar-wrap">
+                            <img
+                                src={studentAvatar}
+                                alt="Rohit Verma Profile"
+                                className="id-avatar"
+                            />
+                        </div>
                         <div className="id-details">
                             <h2 className="id-name">Rohit Verma</h2>
                             <p className="id-reg">Roll Number: <strong>25109928</strong></p>

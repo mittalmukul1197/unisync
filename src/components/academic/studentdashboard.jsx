@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./studentdashboard.css";
+import studentAvatar from "../../assets/student_profile.jpg";
 
 import StudentSidebar from "../layout/navbar";
 import Header from "../layout/header";
@@ -191,11 +192,13 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                         </div>
                         <div className="welcome-banner-avatar-side">
                             <div className="welcome-avatar-container">
-                                <img
-                                    src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=150&h=150"
-                                    alt="Rohit Verma Avatar"
-                                    className="welcome-banner-avatar"
-                                />
+                                <div className="welcome-avatar-img-wrap">
+                                    <img
+                                        src={studentAvatar}
+                                        alt="Rohit Verma Avatar"
+                                        className="welcome-banner-avatar"
+                                    />
+                                </div>
                                 <span className="welcome-avatar-status-badge"></span>
                             </div>
                         </div>
@@ -233,28 +236,13 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                     <span className="card-subtitle font-mono">89.8%</span>
                 </div>
                 <div className="attendance-circle-container">
-                    <div className="attendance-circle-wrap">
-                        <svg width="100" height="100" viewBox="0 0 100 100" className="progress-ring-svg">
-                            <defs>
-                                <linearGradient id="attendanceCardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#60a5fa" />
-                                    <stop offset="50%" stopColor="#1a3a8f" />
-                                    <stop offset="100%" stopColor="#06b6d4" />
-                                </linearGradient>
-                            </defs>
-                            <circle className="ring-bg" cx="50" cy="50" r="42" strokeWidth="8" fill="transparent" />
-                            <circle
-                                className="ring-fill"
-                                cx="50" cy="50" r="42"
-                                stroke="url(#attendanceCardGradient)"
-                                strokeWidth="8"
-                                fill="transparent"
-                                strokeDasharray="263.89"
-                                strokeDashoffset={263.89 - (263.89 * 89.8) / 100}
-                                strokeLinecap="round"
-                            />
-                        </svg>
-                        <div className="ring-center-text">
+                    <div
+                        className="attendance-ring"
+                        style={{
+                            background: "conic-gradient(#60a5fa 0%, #06b6d4 89.8%, #e2e8f0 89.8% 100%)"
+                        }}
+                    >
+                        <div className="attendance-ring-inner">
                             <span className="attendance-percentage font-mono">89.8%</span>
                             <span className="attendance-ratio-lbl font-mono">135 / 150</span>
                         </div>
