@@ -4,20 +4,20 @@
   gap: 1.5rem;
   font-family: inherit;
   width: 100%;
+  
 }
 
 .profile-compact-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid #f0e5e2;
-  border-radius: 18px;
-  padding: 1.75rem;
+background: linear-gradient(120deg, #eef2ff 0%, #f5f3ff 45%, #ecfeff 100%);  padding: 1.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
   flex-wrap: wrap;
+  border-radius: 20px;
 }
+
 
 .profile-left-section {
   display: flex;
@@ -27,6 +27,7 @@
 
 .avatar-wrapper {
   position: relative;
+  
 }
 
 .compact-avatar {
@@ -44,9 +45,11 @@
   right: 4px;
   width: 14px;
   height: 14px;
-  background: #22c55e;
+  background: #02ff30;
   border-radius: 50%;
   border: 2px solid #ffffff;
+      animation: blink 1.5s infinite;
+
 }
 
 .compact-details {
@@ -129,8 +132,8 @@
 }
 
 .info-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: #f1f7ff;
+  border: 1px solid #bfdbfe;
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
@@ -306,7 +309,18 @@
   background: #10b981;
   border: 2px solid #ffffff;
   box-shadow: 0 0 0 2px #bbf7d0;
+      animation: blink 1.5s infinite;
+
   
+}
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .cred-content strong {

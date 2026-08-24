@@ -50,7 +50,6 @@ function FacultyDashboard({ user, onLogout }) {
 
                 {/* Dynamic Body Content according to activeTab */}
                 <div className="faculty-body">
-                    {/* ==================== TAB 1: DASHBOARD ==================== */}
                     {activeTab === "Dashboard" && (
                         <>
                             {/* Hero Banner */}
@@ -246,10 +245,7 @@ function FacultyDashboard({ user, onLogout }) {
                                                 <span className="action-icon">✍️</span>
                                                 <span>Enter Marks</span>
                                             </button>
-                                            <button className="action-btn" onClick={() => setActiveTab("Teacher Updates")}>
-                                                <span className="action-icon">📢</span>
-                                                <span>Course Notice</span>
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -318,13 +314,7 @@ function FacultyDashboard({ user, onLogout }) {
                                             <span className="deadline-tag normal">Upcoming</span>
                                         </div>
 
-                                        <div className="deadline-item">
-                                            <div>
-                                                <strong>AI Course Committee Meeting</strong>
-                                                <p>28 Aug • Dean's Conference Room</p>
-                                            </div>
-                                            <span className="deadline-tag normal">Upcoming</span>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

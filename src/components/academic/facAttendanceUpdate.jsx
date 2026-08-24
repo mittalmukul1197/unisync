@@ -80,20 +80,10 @@ function AttendanceUpdate() {
       [selectedBatch]: updatedList,
     });
   };
-
-  const handleSaveAttendance = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSaved(true);
-
-      setTimeout(() => {
-        setIsSaved(false);
-      }, 4000);
-    }, 400);
-  };
+const handleSaveAttendance = (e) => {
+  e.preventDefault();
+  alert("Attendance saved successfully!");
+};
 
   const totalStudents = currentBatchStudents.length;
   const presentCount = currentBatchStudents.filter((s) => s.status === "P").length;

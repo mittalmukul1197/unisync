@@ -380,7 +380,7 @@
 .status-btn {
   border: none;
   background: transparent;
-  padding: 0.35rem 0.65rem;
+  /* padding: 0.35rem 0.65rem; */
   border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -389,11 +389,11 @@
   color: #64748b;
 }
 
-.status-btn.p-status.active {
+/* .status-btn.p-status.active {
   background: #22c55e;
   color: #ffffff;
   box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
-}
+} */
 
 .status-btn.a-status.active {
   background: #ef4444;
