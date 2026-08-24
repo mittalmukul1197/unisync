@@ -3,9 +3,9 @@ import "./attendence.css";
 
 const SUBJECTS = [
     { id: 1, code: "24CSE0209", name: "Database Management System", faculty: "Harsh Bansal", conducted: 24, attended: 22 },
-    { id: 2, code: "25CAI0201", name: "Statistics and Data Engineering", faculty: "Paras Maurya", conducted: 18, attended: 16 },
-    { id: 3, code: "25CSE0203", name: "Front End Engineering-II", faculty: "Yogendra Sharma", conducted: 28, attended: 26 },
-    { id: 4, code: "25CSE0204", name: "Object Oriented Programming", faculty: "Sumit Mohan", conducted: 56, attended: 50 }
+    { id: 2, code: "25CAI0201", name: "Statistics and Data Engineering", faculty: "Paras Maurya", conducted: 18, attended: 12 },
+    { id: 3, code: "25CSE0203", name: "Front End Engineering-II", faculty: "Yogendra Sharma", conducted: 28, attended: 24 },
+    { id: 4, code: "25CSE0204", name: "Object Oriented Programming", faculty: "Sumit Mohan", conducted: 56, attended: 44 }
 ];
 
 function Attendance() {

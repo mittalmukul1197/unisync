@@ -23,17 +23,6 @@ function Notes() {
     const [notes] = useState(INITIAL_NOTES);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedSubjectFilter, setSelectedSubjectFilter] = useState("All");
-    const [downloadingId, setDownloadingId] = useState(null);
-    const [downloadedIds, setDownloadedIds] = useState({});
-
-    const handleDownload = (noteId, noteTitle) => {
-        setDownloadingId(noteId);
-        setTimeout(() => {
-            setDownloadingId(null);
-            setDownloadedIds((prev) => ({ ...prev, [noteId]: true }));
-            alert(`Downloaded: ${noteTitle} successfully!`);
-        }, 1000);
-    };
 
     const filteredNotes = notes.filter((note) => {
         const query = searchQuery.toLowerCase();
@@ -107,10 +96,9 @@ function Notes() {
 
                                     <button
                                         className="note-download-action"
-                                        onClick={() => handleDownload(note.id, note.title)}
-                                        disabled={downloadingId === note.id}
+                                        onClick={() => alert(`Downloaded: ${note.title} successfully!`)}
                                     >
-                                        {downloadingId === note.id ? "⏳ Downloading..." : downloadedIds[note.id] ? "✅ Downloaded" : "📥 Download"}
+                                        📥 Download
                                     </button>
                                 </div>
                             );
