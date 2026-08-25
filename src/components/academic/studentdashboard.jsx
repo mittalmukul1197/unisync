@@ -9,7 +9,7 @@ import Footer from "../layout/footer";
 
 import Profile from "./profile";
 import Attendance from "./attendence";
-import Timetable from "./timetable";
+import Timetable, { SCHEDULE_DATA } from "./timetable";
 import Updates from "./updates";
 import Notes from "./notes";
 import Library from "./library";
@@ -18,116 +18,55 @@ import Performance from "./performance";
 import HostelStudentDashboard from "../hostel/studentdashboard";
 import SettingsPlaceholder from "./settings";
 
-const CLASS_SCHEDULES = {
-    Monday: [
-        { start: 540, end: 630, timeStr: "09:00 AM - 10:30 AM", name: "Database Management System", code: "24CSE0209" },
-        { start: 640, end: 730, timeStr: "10:40 AM - 12:10 PM", name: "Statistics and Data Engineering", code: "25CAI0201" },
-        { start: 780, end: 870, timeStr: "01:00 PM - 02:30 PM", name: "Object Oriented Programming", code: "25CSE0204" },
-    ],
-    Tuesday: [
-        { start: 540, end: 630, timeStr: "09:00 AM - 10:30 AM", name: "Front End Engineering-II", code: "25CSE0203" },
-        { start: 640, end: 730, timeStr: "10:40 AM - 12:10 PM", name: "Database Management System", code: "24CSE0209" },
-        { start: 780, end: 870, timeStr: "01:00 PM - 02:30 PM", name: "Statistics and Data Engineering", code: "25CAI0201" },
-    ],
-    Wednesday: [
-        { start: 540, end: 630, timeStr: "09:00 AM - 10:30 AM", name: "Object Oriented Programming", code: "25CSE0204" },
-        { start: 640, end: 730, timeStr: "10:40 AM - 12:10 PM", name: "Front End Engineering-II", code: "25CSE0203" },
-    ],
-    Thursday: [
-        { start: 540, end: 630, timeStr: "09:00 AM - 10:30 AM", name: "Database Management System", code: "24CSE0209" },
-        { start: 640, end: 730, timeStr: "10:40 AM - 12:10 PM", name: "Front End Engineering-II", code: "25CSE0203" },
-        { start: 780, end: 870, timeStr: "01:00 PM - 02:30 PM", name: "Object Oriented Programming", code: "25CSE0204" },
-    ],
-    Friday: [
-        { start: 540, end: 630, timeStr: "09:00 AM - 10:30 AM", name: "Statistics and Data Engineering", code: "25CAI0201" },
-        { start: 640, end: 730, timeStr: "10:40 AM - 12:10 PM", name: "Object Oriented Programming", code: "25CSE0204" },
-        { start: 780, end: 870, timeStr: "01:00 PM - 02:30 PM", name: "Front End Engineering-II", code: "25CSE0203" },
-    ],
-};
-
 const DAYS_OF_WEEK = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+function getMinutes(timeStr) {
+    const [time, period] = timeStr.trim().split(" ");
+    let [hours, minutes] = time.split(":").map(Number);
+    if (period === "PM" && hours < 12) hours += 12;
+    if (period === "AM" && hours === 12) hours = 0;
+    return hours * 60 + minutes;
+}
 
 function getLiveTimetableStatus() {
     const now = new Date();
-    const day = now.getDay();
     const currentMins = now.getHours() * 60 + now.getMinutes();
-    const currentDayName = DAYS_OF_WEEK[day];
-    const todayClasses = CLASS_SCHEDULES[currentDayName] || [];
 
-    const getNextDayFirstClass = (dayIndex) => {
-        for (let i = 1; i <= 7; i++) {
-            const nextDay = DAYS_OF_WEEK[(dayIndex + i) % 7];
-            const classes = CLASS_SCHEDULES[nextDay];
-            if (classes && classes.length > 0) {
-                return { ...classes[0], day: nextDay };
-            }
-        }
-        return { name: "Database Management System", code: "24CSE0209", timeStr: "09:00 AM - 10:30 AM", day: "Monday" };
-    };
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const today = days[now.getDay()];
+    const classes = SCHEDULE_DATA[today] || SCHEDULE_DATA["Monday"];
 
-    if (todayClasses.length === 0) {
-        const next = getNextDayFirstClass(day);
-        return {
-            status: "WEEKEND - NO CLASSES",
-            current: { name: "Relax & Recharge Node", code: "FREE", timeStr: "Off-Hours" },
-            upcoming: { name: next.name, code: next.code, info: `Next: ${next.day} at ${next.timeStr.split(" - ")[0]}` },
-        };
-    }
+    // Step 1: Check if any class is running RIGHT NOW
+    for (let i = 0; i < classes.length; i++) {
+        const [startStr, endStr] = classes[i].time.split(" - ");
+        const start = getMinutes(startStr);
+        const end = getMinutes(endStr);
 
-    const firstClass = todayClasses[0];
-    const lastClass = todayClasses[todayClasses.length - 1];
-
-    if (currentMins < firstClass.start) {
-        return {
-            status: "CLASSES NOT STARTED YET",
-            current: { name: "Commences at 09:00 AM", code: "OFFLINE", timeStr: "Waiting" },
-            upcoming: { name: firstClass.name, code: firstClass.code, info: `First: ${firstClass.name}` },
-        };
-    }
-
-    if (currentMins >= lastClass.end) {
-        const next = getNextDayFirstClass(day);
-        return {
-            status: "ALL CLASSES COMPLETED",
-            current: { name: "Arogya Batch Closed for Today", code: "FINISHED", timeStr: "Off-Hours" },
-            upcoming: { name: next.name, code: next.code, info: `Next: ${next.day} at ${next.timeStr.split(" - ")[0]}` },
-        };
-    }
-
-    for (let i = 0; i < todayClasses.length; i++) {
-        const cls = todayClasses[i];
-        if (currentMins >= cls.start && currentMins < cls.end) {
-            const nextCls = todayClasses[i + 1];
+        if (currentMins >= start && currentMins < end) {
+            const next = classes[i + 1] || classes[0];
             return {
-                status: "IN PROGRESS",
-                current: { name: cls.name, code: cls.code, timeStr: cls.timeStr },
-                upcoming: nextCls
-                    ? { name: nextCls.name, code: nextCls.code, info: `Next: ${nextCls.name} (${nextCls.timeStr.split(" - ")[0]})` }
-                    : { name: "All sessions done", code: "END", info: "Last class of today" },
+                first: { status: "IN PROGRESS", name: classes[i].name, code: classes[i].code, timeStr: classes[i].time },
+                second: { status: "UPCOMING", name: next.name, code: next.code, timeStr: next.time }
             };
         }
     }
 
-    for (let i = 0; i < todayClasses.length - 1; i++) {
-        const cls = todayClasses[i];
-        const nextCls = todayClasses[i + 1];
-        if (currentMins >= cls.end && currentMins < nextCls.start) {
+    // Step 2: If time is before class starts (e.g. before 4:10 PM)
+    for (let i = 0; i < classes.length; i++) {
+        const start = getMinutes(classes[i].time.split(" - ")[0]);
+        if (currentMins < start) {
+            const next = classes[i + 1] || classes[0];
             return {
-                status: "RECESS / BREAK",
-                current: {
-                    name: "Recess Period",
-                    code: "BREAK",
-                    timeStr: `${cls.timeStr.split(" - ")[1]} - ${nextCls.timeStr.split(" - ")[0]}`,
-                },
-                upcoming: { name: nextCls.name, code: nextCls.code, info: `Next starts: ${nextCls.timeStr.split(" - ")[0]}` },
+                first: { status: "UPCOMING", name: classes[i].name, code: classes[i].code, timeStr: classes[i].time },
+                second: { status: "UPCOMING", name: next.name, code: next.code, timeStr: next.time }
             };
         }
     }
 
+    // Step 3: Default fallback to first classes
     return {
-        status: "CLASSES NOT STARTED YET",
-        current: { name: "Awaiting Session Commencement", code: "OFFLINE", timeStr: "N/A" },
-        upcoming: { name: firstClass.name, code: firstClass.code, info: "N/A" },
+        first: { status: "UPCOMING", name: classes[0].name, code: classes[0].code, timeStr: classes[0].time },
+        second: { status: "UPCOMING", name: classes[1].name, code: classes[1].code, timeStr: classes[1].time }
     };
 }
 
@@ -263,15 +202,15 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                 </div>
                 <div className="timetable-peek-details">
                     <div className="peek-section">
-                        <span className="peek-label">{liveTimetable.status}</span>
-                        <h4>{liveTimetable.current.name}</h4>
-                        <span className="peek-sub font-mono">{liveTimetable.current.timeStr}</span>
+                        <span className="peek-label">{liveTimetable.first.status}</span>
+                        <h4>{liveTimetable.first.name}</h4>
+                        <span className="peek-sub font-mono">{liveTimetable.first.timeStr}</span>
                     </div>
                     <div className="peek-divider"></div>
                     <div className="peek-section">
-                        <span className="peek-label">UPCOMING</span>
-                        <h4>{liveTimetable.upcoming.name}</h4>
-                        <span className="peek-sub font-mono">{liveTimetable.upcoming.info}</span>
+                        <span className="peek-label">{liveTimetable.second.status}</span>
+                        <h4>{liveTimetable.second.name}</h4>
+                        <span className="peek-sub font-mono">{liveTimetable.second.timeStr}</span>
                     </div>
                 </div>
             </div>

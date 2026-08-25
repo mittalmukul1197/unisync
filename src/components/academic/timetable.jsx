@@ -3,7 +3,7 @@ import "./timetable.css";
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-const SCHEDULE_DATA = {
+export const SCHEDULE_DATA = {
     Monday: [
         { id: 101, period: "Period 1", time: "04:10 PM - 05:00 PM", name: "Statistics and Data Engineering", code: "25CAI0201", room: "LH-501", faculty: "Paras Maurya" },
         { id: 102, period: "Period 2", time: "05:00 PM - 05:50 PM", name: "Statistics and Data Engineering", code: "25CAI0201", room: "LH-501", faculty: "Paras Maurya" },
