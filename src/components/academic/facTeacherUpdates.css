@@ -43,7 +43,9 @@
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  
 }
+
 
 .unread-count-pill {
   background: #fee2e2;
@@ -53,6 +55,20 @@
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 700;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%{
+
+  }
+  50%{
+    box-shadow: 0px 0px 7px red;
+  }
+  100%{
+
+  }
+  
 }
 
 .updates-filter-bar {
@@ -150,7 +166,7 @@
   position: relative;
   opacity: 1;
   display: flex;
-   border-top: 4px solid #1e2882;
+  border-top: 4px solid #1e2882;
   flex-direction: column;
   gap: 0.75rem;
 }
@@ -197,6 +213,7 @@
   color: #64748b;
 }
 
+
 .notice-badges-row {
   display: flex;
   align-items: center;
@@ -213,7 +230,7 @@
 .priority-badge.urgent {
   background: #fee2e2;
   color: #dc2626;
-  animation: blinksp 1.2s infinite ease-in-out;
+  animation: blinksp 1s infinite ease-in-out;
 }
 
 @keyframes blinksp {
@@ -221,7 +238,6 @@
   }
 
   50% {
-    display: none;
     opacity: 0;
   }
 
@@ -276,13 +292,11 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 0.6rem;
-  border-top: 1px solid #f1f5f9;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
 .attachment-pill {
-  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   background: #f8fafc;
@@ -437,47 +451,3 @@
 .widget-priority.normal {
   color: #2563eb;
 }
-
-.updates-drawer-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(4px);
-  z-index: 1100;
-  display: flex;
-  justify-content: flex-end;
-  animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.updates-drawer {
-  width: 540px;
-  max-width: 90vw;
-  height: 100vh;
-  background: #ffffff;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow-y: auto;
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
-

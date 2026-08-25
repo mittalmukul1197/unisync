@@ -11,16 +11,13 @@ import FacNotesUpload from "./facNotesUpload";
 import FacPerformance from "./facPerformance";
 
 function FacultyDashboard({ user, onLogout }) {
-    // Navigation State
     const [activeTab, setActiveTab] = useState("Dashboard");
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isUpdatesDrawerOpen, setIsUpdatesDrawerOpen] = useState(false);
 
-    // Settings State
     const [autoSync, setAutoSync] = useState(true);
     const [defaulterAlerts, setDefaulterAlerts] = useState(true);
 
-    // Single Course Info
     const courseCode = "CS-301";
     const courseName = "Artificial Intelligence & Machine Learning";
     const facultyName = "Dr. Yogender Sharma";

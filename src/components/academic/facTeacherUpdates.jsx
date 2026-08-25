@@ -110,7 +110,7 @@ export default function TeacherUpdates({ onBack }) {
   const filteredUpdates = updates.filter((item) => {
     const matchesCategory =
       activeCategory === "All" ||
-      (activeCategory === "Urgent" && item.priority === "Urgent") ||
+      (activeCategory === "Urgent" && item.priority === "Urgent") || (activeCategory === "Unread" && item.read === false) ||
       item.category === activeCategory;
 
     const q = searchQuery.toLowerCase();
@@ -180,6 +180,7 @@ export default function TeacherUpdates({ onBack }) {
             "Research",
             "Exam Cell",
             "Administrative",
+            "Unread"
           ].map((cat) => (
             <button
               key={cat}
@@ -207,7 +208,7 @@ export default function TeacherUpdates({ onBack }) {
           >
             <div className="notice-card-top">
               <div className="notice-sender-group">
-                <div
+                <div 
                   className="sender-icon-box"
                   style={{ background: notice.iconBg }}
                 >
@@ -276,7 +277,7 @@ export default function TeacherUpdates({ onBack }) {
                 >
                   {notice.read
                     ? "Mark Unread"
-                    : "✓ Mark as Read"}
+                    : "Mark as Read"}
                 </button>
               </div>
             </div>
