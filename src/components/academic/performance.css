@@ -1,8 +1,12 @@
 
-.performance-container {
-  display: flex;
-  flex-direction: column;
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+}
+
+.performance-header-meta {
+  grid-column: span 2;
 }
 
 .performance-header-meta h2 {
@@ -21,6 +25,7 @@
 }
 
 .cgpa-summary-card {
+  grid-column: span 2;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -191,6 +196,13 @@
 }
 
 @media (max-width: 768px) {
+  .performance-grid {
+    grid-template-columns: 1fr;
+  }
+  .performance-header-meta,
+  .cgpa-summary-card {
+    grid-column: span 1;
+  }
   .cgpa-summary-card {
     flex-direction: column;
     align-items: flex-start;
