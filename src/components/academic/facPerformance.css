@@ -1,4 +1,4 @@
-/* Faculty Performance & Gradebook Styling */
+
 .fac-perf-container {
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@
   align-items: center;
 }
 
-/* Stat Cards Grid */
+
 .fac-perf-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -118,7 +118,7 @@
 .badge.neutral { background: #eff6ff; color: #1d4ed8; }
 .badge.warning { background: #ffedd5; color: #c2410c; }
 
-/* Table Container */
+
 .fac-perf-content-box {
   background: #ffffff;
   padding: 1.5rem;
@@ -141,9 +141,6 @@
   margin: 0;
 }
 
-/* .table-responsive-wrapper {
-  overflow-x: auto;
-} */
 
 .modern-data-table {
   width: 100%;

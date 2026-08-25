@@ -36,7 +36,6 @@ function getLiveTimetableStatus() {
     const today = days[now.getDay()];
     const classes = SCHEDULE_DATA[today] || SCHEDULE_DATA["Monday"];
 
-    // Step 1: Check if any class is running RIGHT NOW
     for (let i = 0; i < classes.length; i++) {
         const [startStr, endStr] = classes[i].time.split(" - ");
         const start = getMinutes(startStr);
@@ -51,7 +50,6 @@ function getLiveTimetableStatus() {
         }
     }
 
-    // Step 2: If time is before class starts (e.g. before 4:10 PM)
     for (let i = 0; i < classes.length; i++) {
         const start = getMinutes(classes[i].time.split(" - ")[0]);
         if (currentMins < start) {
@@ -63,7 +61,7 @@ function getLiveTimetableStatus() {
         }
     }
 
-    // Step 3: Default fallback to first classes
+
     return {
         first: { status: "UPCOMING", name: classes[0].name, code: classes[0].code, timeStr: classes[0].time },
         second: { status: "UPCOMING", name: classes[1].name, code: classes[1].code, timeStr: classes[1].time }
