@@ -57,13 +57,16 @@ function FacultyHeader({ title = 'Faculty Portal', user, onLogout, onToggleMobil
         <h1 className="header-title">{title}</h1>
       </div>
 
+<div className='header-center'>
+
+        <h2>Explore <span>Your</span> Potential</h2>
+
+      </div>
+
       
 
       <div className="header-right">
-        <div className="header-search">
-          <span>🔍</span>
-          <input type="text" placeholder="Search students, batches..." />
-        </div>
+        
 
         <div className="userbadge">
           <div className="avatar faculty-avatar">
