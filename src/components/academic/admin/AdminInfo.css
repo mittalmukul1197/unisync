@@ -221,10 +221,6 @@ flex-grow: 1;
     font-weight: 600;
 }
 
-.admininfo-role-badge {
-    background: #dbeafe;
-    color: #1d4ed8;
-}
 
 .admininfo-active-badge {
     background: #dcfce7;

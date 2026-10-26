@@ -177,7 +177,7 @@ export default function AdminInfo() {
                                         <td>{log.present}</td>
                                         <td>{log.leaves}</td>
                                         <td>
-                                            <span className="admininfo-role-badge" style={{ backgroundColor: "#e0f2fe", color: "#0369a1" }}>
+                                            <span className="admininfo-role-badge" >
                                                 {log.percentage}
                                             </span>
                                         </td>
