@@ -1,0 +1,104 @@
+.admin-batches-page {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.admin-batches-header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #1a202c;
+}
+
+.admin-batches-header p {
+  margin-top: 5px;
+  color: #718096;
+}
+
+.admin-batches-stats {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+.admin-batches-stat-card {
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  flex: 1; 
+}
+
+.admin-batches-stat-card span {
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.admin-batches-stat-card h2 {
+  margin: 10px 0 0 0;
+  font-size: 28px;
+  color: #2b6cb0;
+}
+
+.admin-batches-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.admin-batches-card h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.admin-batches-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.admin-batches-toolbar input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 250px;
+}
+
+.admin-batches-toolbar select {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.admin-batches-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-batches-table th {
+  background-color: #f7fafc;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #4a5568;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.admin-batches-table td {
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-batches-table tbody tr:hover {
+  background-color: #f8fafc;
+}

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./facTeacherUpdates.css";
 
@@ -99,31 +100,67 @@ export default function TeacherUpdates({ onBack }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const toggleReadStatus = (id) => {
-    setUpdates(
-      updates.map((item) =>
-        item.id === id ? { ...item, read: !item.read } : item
-      )
-    );
-  };
+  function toggleReadStatus(id) {
+    const updatedNotices = updates.map((notice) => {
+      if (notice.id === id) {
+        return {
+          ...notice,
+          read: !notice.read,
+        };
+      }
 
-  const filteredUpdates = updates.filter((item) => {
-    const matchesCategory =
-      activeCategory === "All" ||
-      (activeCategory === "Urgent" && item.priority === "Urgent") || (activeCategory === "Unread" && item.read === false) ||
-      item.category === activeCategory;
+      return notice;
+    });
 
-    const q = searchQuery.toLowerCase();
+    setUpdates(updatedNotices);
+  }
+
+  let unreadCount = 0;
+
+  updates.forEach((notice) => {
+    if (notice.read === false) {
+      unreadCount++;
+    }
+  });
+
+  const filteredUpdates = updates.filter((notice) => {
+    let matchesCategory = false;
+
+    if (activeCategory === "All") {
+      matchesCategory = true;
+    } else if (
+      activeCategory === "Urgent" &&
+      notice.priority === "Urgent"
+    ) {
+      matchesCategory = true;
+    } else if (
+      activeCategory === "Unread" &&
+      notice.read === false
+    ) {
+      matchesCategory = true;
+    } else if (notice.category === activeCategory) {
+      matchesCategory = true;
+    }
+
+    const searchText = searchQuery.toLowerCase();
 
     const matchesSearch =
-      item.title.toLowerCase().includes(q) ||
-      item.sender.toLowerCase().includes(q) ||
-      item.summary.toLowerCase().includes(q);
+      notice.title.toLowerCase().includes(searchText) ||
+      notice.sender.toLowerCase().includes(searchText) ||
+      notice.summary.toLowerCase().includes(searchText);
 
     return matchesCategory && matchesSearch;
   });
 
-  const unreadCount = updates.filter((item) => !item.read).length;
+  const categories = [
+    "All",
+    "Urgent",
+    "Academic",
+    "Research",
+    "Exam Cell",
+    "Administrative",
+    "Unread",
+  ];
 
   return (
     <div className="teacher-updates-container">
@@ -139,7 +176,7 @@ export default function TeacherUpdates({ onBack }) {
             </button>
           )}
 
-          <h2>📢 Teacher Updates & Official Notices</h2>
+          <h2>📢Teacher Updates & Official Notices</h2>
 
           <p>
             Official circulars, exam duty allocations, meeting notices, and
@@ -168,134 +205,119 @@ export default function TeacherUpdates({ onBack }) {
             type="text"
             placeholder="Search circulars, duties, notices..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(event) => setSearchQuery(event.target.value)}
           />
         </div>
 
         <div className="updates-category-pills">
-          {[
-            "All",
-            "Urgent",
-            "Academic",
-            "Research",
-            "Exam Cell",
-            "Administrative",
-            "Unread"
-          ].map((cat) => (
+          {categories.map((category) => (
             <button
-              key={cat}
+              key={category}
               type="button"
-              className={`cat-filter-btn ${
-                activeCategory === cat ? "active" : ""
-              }`}
-              onClick={() => setActiveCategory(cat)}
+              className={`cat-filter-btn ${activeCategory === category ? "active" : ""
+                }`}
+              onClick={() => setActiveCategory(category)}
             >
-              {cat === "Urgent" ? "🚨 Urgent" : cat}
+              {category === "Urgent" ? "🚨 Urgent" : category}
             </button>
           ))}
         </div>
       </div>
 
       <div className="updates-list-grid">
-        {filteredUpdates.map((notice) => (
-          <div
-            key={notice.id}
-            className={`notice-card ${
-              !notice.read ? "unread" : ""
-            } ${
-              notice.priority === "Urgent" ? "urgent-notice" : notice.priority === "Important" ?"import-notice":""
-            }`}
-          >
-            <div className="notice-card-top">
-              <div className="notice-sender-group">
-                <div 
-                  className="sender-icon-box"
-                  style={{ background: notice.iconBg }}
-                >
-                  {notice.icon}
-                </div>
+        {filteredUpdates.map((notice) => {
+          let priorityClass = "info";
+          let noticeClass = "";
 
-                <div className="sender-info">
-                  <strong>{notice.sender}</strong>
-                  <span>{notice.senderDept}</span>
-                </div>
-              </div>
+          if (notice.priority === "Urgent") {
+            priorityClass = "urgent";
+            noticeClass = "urgent-notice";
+          } else if (notice.priority === "Important") {
+            priorityClass = "important";
+            noticeClass = "import-notice";
+          }
 
-              <div className="notice-badges-row">
-                <span
-                  className={`priority-badge ${
-                    notice.priority === "Urgent"
-                      ? "urgent"
-                      : notice.priority === "Important"
-                      ? "important"
-                      : "info"
-                  }`}
-                >
-                  {notice.priority}
-                </span>
-
-                <span className="category-tag">
-                  {notice.category}
-                </span>
-
-                <span className="notice-date-text">
-                  📅 {notice.date} • {notice.time}
-                </span>
-              </div>
-            </div>
-
-            <div className="notice-card-content">
-              <h3>{notice.title}</h3>
-
-              <p>{notice.summary}</p>
-
+          return (
+            <div
+              key={notice.id}
+              className={`notice-card ${notice.read ? "" : "unread"
+                } ${noticeClass}`}
+            >
+              <div className="notice-card-top">
               
-            </div>
+                <div>
+                <span className={`priority-badge ${priorityClass}`}>
+                      {notice.priority}
+                    </span>
 
-            <div className="notice-card-footer">
-              {notice.attachment ? (
-                <button
-                  type="button"
-                  className="attachment-pill"
-                  onClick={() =>
-                    alert(
-                      `Downloading attachment: ${notice.attachment}`
-                    )
-                  }
-                >
-                  📎 {notice.attachment} (Download)
-                </button>
-              ) : (
-                <span></span>
-              )}
+                    <span className="category-tag">
+                      {notice.category}
+                    </span>
+                
 
-              <div className="notice-actions">
-                <button
-                  type="button"
-                  className="mark-read-btn"
-                  onClick={() => toggleReadStatus(notice.id)}
-                >
-                  {notice.read
-                    ? "Mark Unread"
-                    : "Mark as Read"}
-                </button>
+                </div>
+                <div className="notice-badges-row">
+
+                  
+                    <span className="notice-date-text">
+                      {notice.date} - {notice.time}
+                    </span>
+
+                </div>
+              </div>
+
+              <div className="notice-card-content">
+                <h3>{notice.title}</h3>
+                <p>{notice.summary}</p>
+              </div>
+
+              <div className="notice-card-footer">
+                {notice.attachment ? (
+                  <button
+                    type="button"
+                    className="attachment-pill"
+                    onClick={() => {
+                      alert(
+                        "Downloading attachment: " + notice.attachment
+                      );
+                    }}
+                  >
+                    {notice.attachment} (Download)
+                  </button>
+                ) : (
+                  <span></span>
+                )}
+
+                <div className="notice-actions">
+                  <button
+                    type="button"
+                    className="mark-read-btn"
+                    onClick={() => toggleReadStatus(notice.id)}
+                  >
+                    {notice.read
+                      ? "Mark Unread"
+                      : "Mark as Read"}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 }
 
 export function TeacherUpdatesWidget({ onOpenAll }) {
-  const [updates, setUpdates] = useState(
-    updatesData.slice(0, 3)
-  );
+  const widgetUpdates = updatesData.slice(0, 3);
 
-  const unreadCount = updatesData.filter(
-    (n) => !n.read
-  ).length;
+  let unreadCount = 0;
+
+  updatesData.forEach((notice) => {
+    if (notice.read === false) {
+      unreadCount++;
+    }
+  });
 
   return (
     <div className="teacher-updates-widget">
@@ -321,38 +343,35 @@ export function TeacherUpdatesWidget({ onOpenAll }) {
       </div>
 
       <div className="widget-items-list">
-        {updates.map((item) => (
+        {widgetUpdates.map((notice) => (
           <div
-            key={item.id}
-            className={`widget-notice-item ${
-              !item.read ? "unread-item" : ""
-            }`}
+            key={notice.id}
+            className={`widget-notice-item ${notice.read ? "" : "unread-item"
+              }`}
             onClick={onOpenAll}
           >
             <span className="widget-item-icon">
-              {item.icon}
+              {notice.icon}
             </span>
 
             <div className="widget-item-content">
-              <strong>{item.title}</strong>
+              <strong>{notice.title}</strong>
 
               <p>
-                {item.senderDept} •{" "}
-                {item.summary.slice(0, 75)}...
+                {notice.senderDept} <b>|</b> {notice.summary.slice(0, 75)}...
               </p>
 
               <div className="widget-item-meta">
                 <span
-                  className={`widget-priority ${
-                    item.priority === "Urgent"
+                  className={`widget-priority ${notice.priority === "Urgent"
                       ? "urgent"
                       : "normal"
-                  }`}
+                    }`}
                 >
-                  {item.priority}
+                  {notice.priority}
                 </span>
 
-                <span>• {item.date}</span>
+                <span> {notice.date}</span>
               </div>
             </div>
           </div>
