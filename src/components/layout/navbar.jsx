@@ -1,7 +1,11 @@
-import React from 'react';
+// import React from 'react';
 import log from '../../assets/logowithbg(1).png';
 import aplh from '../../assets/stylishname(dark).png';
 import './navbar.css';
+import { Navigate} from 'react-router-dom';
+import React, { createContext, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+export const AdminTabContext = createContext();
 
 function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
   const mainNavItems = [
@@ -16,6 +20,7 @@ function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
     { name: 'hostel', label: 'Hostel Portal', icon: '🏠' },
     { name: 'Performance', label: 'Performance', icon: '🏆' },
   ];
+
 
   const handleItemClick = (name) => {
     if (setActiveTab) setActiveTab(name);
@@ -79,24 +84,40 @@ function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
   );
 }
 
-function AdminSidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose }) {
+
+
+function AdminSidebar({ isOpen, onClose }) {
   const mainNavItems = [
-    { name: 'Dashboard', icon: '📊' },
-    { name: 'My Info', icon: '👤' },
-    { name: 'Attendance', icon: '📅' },
-    { name: 'Faculty', icon: '👨‍🏫' },
-    { name: 'Batches', icon: '👥' },
-    { name: 'Performance', icon: '📈' },
+    { name: 'Dashboard', icon: '📊', path: '/admin' },
+    { name: 'My Info', icon: '👤', path: '/admin/info' },
+    { name: 'Updates', icon: '🔔', path: '/admin/updates' },
+    { name: 'Attendance', icon: '📅', path: '/admin/attendence' },
+    { name: 'Faculty', icon: '👨‍🏫', path: '/admin/faculty' },
+    { name: 'Batches', icon: '👥', path: '/admin/batches' },
+    { name: 'Performance', icon: '📈', path: '/admin/performance' },
   ];
 
-  const handleItemClick = (name) => {
-    if (setActiveTab) setActiveTab(name);
-    if (onClose) onClose();
+  const navigate = useNavigate();
+
+  const { activeTab, setActiveTab } = useContext(AdminTabContext);
+
+  const handleItemClick = (item) => {
+    setActiveTab(item.name);
+
+    sessionStorage.setItem('activeTab', item.name);
+
+    navigate(item.path);
+
+    if (onClose) {
+      onClose();
+    }
   };
 
   return (
     <>
-      {isOpen && <div className="sdb-overlay" onClick={onClose}></div>}
+      {isOpen && (
+        <div className="sdb-overlay" onClick={onClose}></div>
+      )}
 
       <aside className={`sdb ${isOpen ? 'open' : ''}`}>
         <div className="sdb-header">
@@ -124,31 +145,23 @@ function AdminSidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose }
                 className={`sdb-nav-item ${
                   activeTab === item.name ? 'active' : ''
                 }`}
-                onClick={() => handleItemClick(item.name)}
+                onClick={() => handleItemClick(item)}
               >
                 <span className="sdb-icon">{item.icon}</span>
-                <span className="sdb-text">{item.name}</span>
+
+                <span className="sdb-text">
+                  {item.name}
+                </span>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="sdb-footer">
-          <div
-            className={`sdb-nav-item ${
-              activeTab === 'Settings' ? 'active' : ''
-            }`}
-            onClick={() => handleItemClick('Settings')}
-          >
-            <span className="sdb-icon">⚙️</span>
-            <span className="sdb-text">Settings</span>
-          </div>
-        </div>
+        
       </aside>
     </>
   );
 }
-
 function FacultySidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose }) {
   const mainNavItems = [
     { name: 'Dashboard', icon: '📊' },
@@ -159,10 +172,16 @@ function FacultySidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose
     { name: 'Notes Upload', icon: '📤' },
     { name: 'Performance', icon: '📈' },
   ];
+    const navigate=useNavigate();
+
 
   const handleItemClick = (name) => {
     if (setActiveTab) setActiveTab(name);
-    if (onClose) onClose();
+// if (name === "My Info") {
+//           console.log("Navigating to /myinfo");
+
+        // navigate("/myinfo");}
+            if (onClose) onClose();
   };
 
   return (

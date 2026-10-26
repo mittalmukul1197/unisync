@@ -1,0 +1,44 @@
+.faculty {
+    display: flex;
+    min-height: 75vh;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+width: 100%;
+text-align: center;
+position: relative;
+z-index: 1;
+}
+
+.faculty h1 {
+margin: 22px 0 16px;
+color: #172033;
+font-size: clamp(30px, 5vw, 46px);
+font-weight: 800;
+letter-spacing: -1.5px;
+line-height: 1.2;
+}
+
+.faculty h1 span {
+    color: #4f46e5;
+}
+
+.faculty p{
+    color: grey;
+    font-size: 12px;
+}
+
+
+
+@media (max-width: 600px) {
+.faculty {
+min-height: 70vh;
+padding: 35px 16px;
+border-radius: 14px;
+}
+
+.faculty h1 {
+letter-spacing: -0.8px;
+}
+
+}

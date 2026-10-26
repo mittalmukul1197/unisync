@@ -28,7 +28,7 @@ function StudentHeader({ title = 'Student Dashboard', user, onLogout, onToggleMo
           </div>
           <div className="user-info">
             <span className="user-name">{name}</span>
-            <span className="user-role">Student • CSE Dept</span>
+            <span className="user-role">Student <b>-</b>CSE Dept</span>
           </div>
         </div>
 
@@ -74,7 +74,7 @@ function FacultyHeader({ title = 'Faculty Portal', user, onLogout, onToggleMobil
           </div>
           <div className="user-info">
             <span className="user-name">{name}</span>
-            <span className="user-role">Faculty • CS Dept</span>
+            <span className="user-role">Faculty <b>-</b> CS Dept</span>
           </div>
         </div>
 
@@ -90,7 +90,8 @@ function FacultyHeader({ title = 'Faculty Portal', user, onLogout, onToggleMobil
 
 function AdminHeader({ title = 'Admin Control Panel', user, onLogout, onToggleMobileMenu }) {
   const email = user?.email || 'admin@gmail.com';
-  const name = email.split('@')[0];
+  const name = "Dean";
+
 
   return (
     <header className="appheader">
@@ -104,10 +105,6 @@ function AdminHeader({ title = 'Admin Control Panel', user, onLogout, onToggleMo
       </div>
 
       <div className="header-right">
-        <div className="header-search">
-          <span>🔍</span>
-          <input type="text" placeholder="Search system logs, users..." />
-        </div>
 
         <div className="userbadge">
           <div className="avatar admin-avatar">
@@ -115,7 +112,7 @@ function AdminHeader({ title = 'Admin Control Panel', user, onLogout, onToggleMo
           </div>
           <div className="user-info">
             <span className="user-name">{name}</span>
-            <span className="user-role">System Admin</span>
+            <span className="user-role">Dean - AIML</span>
           </div>
         </div>
 

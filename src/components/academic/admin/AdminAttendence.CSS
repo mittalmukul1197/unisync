@@ -1,0 +1,242 @@
+.admin-attendance-page {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #111827;
+    background-color: #f9fafb;
+
+}
+
+.admin-attendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.admin-attendance-header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.admin-attendance-header p {
+    color: #6b7280;
+    margin: 4px 0 0;
+    font-size: 14px;
+}
+
+.admin-attendance-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.admin-attendance-date small {
+    display: block;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.admin-attendance-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.admin-attendance-stat-card {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.admin-attendance-stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.admin-attendance-stat-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.admin-attendance-stat-icon.blue {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.admin-attendance-stat-icon.green {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.admin-attendance-stat-icon.red {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.admin-attendance-stat-icon.purple {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.admin-attendance-stat-card h2 {
+    font-size: 22px;
+    margin: 10px 0 4px;
+}
+
+.admin-attendance-stat-card p {
+    margin: 0;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.admin-attendance-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.admin-attendance-section-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-attendance-section-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.admin-attendance-section-header p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.admin-attendance-date-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.admin-attendance-date-filter input {
+    padding: 6px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+.admin-attendance-toolbar {
+    padding: 16px 20px;
+    background-color: #f9fafb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.admin-attendance-filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.admin-attendance-filters input,
+.admin-attendance-filter-select {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.admin-attendance-table-wrapper {
+    overflow-x: auto;
+}
+
+.admin-attendance-table {
+    width: 100%;
+    /* border-collapse: collapse; */
+    text-align: left;
+    font-size: 14px;
+}
+
+.admin-attendance-table th,
+.admin-attendance-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.admin-attendance-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+}
+
+.admin-attendance-student-id {
+    color: blue;    
+    font-weight: bold;
+}
+
+.admin-attendance-empty {
+    text-align: center;
+    color: #6b7280;
+    padding: 32px;
+}
+
+.admin-attendance-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+
+.admin-attendance-status.present {
+    background-color: #168943;
+    color: #ffffff;
+}
+
+
+
+.admin-attendance-status.absent {
+    background-color:#991b1b;
+    color: #ffffff;
+}
+
+
+.admin-attendance-status.not-marked {
+    background-color: #ffe74b;
+    color: #000000;
+}
+
+
+.admin-attendance-table-footer {
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #6b7280;
+}

@@ -9,7 +9,7 @@ import TeacherUpdates, { TeacherUpdatesWidget } from "./facTeacherUpdates";
 import FacStudents from "./facStudents";
 import FacNotesUpload from "./facNotesUpload";
 import FacPerformance from "./facPerformance";
-
+// import { Outlet } from "react-router-dom";
 function FacultyDashboard({ user, onLogout }) {
     const [activeTab, setActiveTab] = useState("Dashboard");
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -319,7 +319,7 @@ function FacultyDashboard({ user, onLogout }) {
                     )}
 
                     {activeTab === "My Info" && <MyInfo />}
-
+                    {/* <Outlet/> */}
                     {activeTab === "Updates" && (
                         <TeacherUpdates onBack={() => setActiveTab("Dashboard")} />
                     )}
