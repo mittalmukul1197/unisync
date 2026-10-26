@@ -12,7 +12,7 @@ const getLocalDate = () => {
 const today = getLocalDate();
 
 const attendanceRecords = [
-    // October 20, 2026
+    // October 20, 
     { id: "STU001", name: "Rahul Sharma", course: "B.Tech CSE", group: "G1", date: "2026-10-20", lecture: 1, status: "Present" },
     { id: "STU001", name: "Rahul Sharma", course: "B.Tech CSE", group: "G1", date: "2026-10-20", lecture: 2, status: "Present" },
     { id: "STU001", name: "Rahul Sharma", course: "B.Tech CSE", group: "G1", date: "2026-10-20", lecture: 3, status: "Present" },
