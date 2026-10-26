@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./facMyInfo.css";
-import fac_img from "../../assets/facimage.jpeg";
-
+import fac_img from "../../assets/student_profile.jpg";
 const FACULTY_INFO = {
-  name: "Mr. Yogendra Sharma",
+  name: "Mr. Rakesh Sharma",
   designation: "Associate Professor",
   department: "Department of Computer Science & Engineering",
   empId: "CU-CSE-408",
@@ -54,7 +53,6 @@ function MyInfo() {
 
   return (
     <div className="myinfo-page">
-      {/* Toast Notification */}
       {showSuccessToast && (
         <div className="fac-toast-notification">
           <span>✅ Profile updated successfully!</span>
@@ -149,7 +147,7 @@ function MyInfo() {
 
             <div className="detail-item">
               <span className="label">Course Coordinator</span>
-              <strong className="value">Dr. Yogender Sharma (Lead Course Architect)</strong>
+              <strong className="value">Dr. Rakesh Sharma (Lead Course Architect)</strong>
             </div>
           </div>
         </div>

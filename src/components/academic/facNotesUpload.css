@@ -285,3 +285,101 @@
 .fac-btn-submit:hover {
   background: #1d4ed8;
 }
+
+/* Header Actions */
+.fac-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.fac-reset-small-btn {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fac-reset-small-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* File input styling */
+.fac-file-input {
+  cursor: pointer;
+  font-size: 0.82rem !important;
+}
+
+/* Toast notification */
+.fac-notes-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.85rem 1.4rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: facToastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@keyframes facToastSlideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Empty State */
+.fac-notes-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3.5rem 1rem;
+}
+
+.fac-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.fac-notes-empty h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.fac-notes-empty p {
+  margin: 0.5rem 0 1.25rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.fac-empty-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}

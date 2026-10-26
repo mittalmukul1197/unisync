@@ -31,12 +31,14 @@ const INITIAL_MATERIALS = [
   },
 ];
 
- 
 function FacNotesUpload({
   courseCode = "CS-301",
   courseName = "Artificial Intelligence & Machine Learning",
 }) {
-  const [materials, setMaterials] = useState(INITIAL_MATERIALS);
+  const [materials, setMaterials] = useState(() => {
+    const saved = localStorage.getItem("facultyNotes");
+    return saved ? JSON.parse(saved) : INITIAL_MATERIALS;
+  });
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState("");
   const [unit, setUnit] = useState("Unit 1");
@@ -57,14 +59,18 @@ function FacNotesUpload({
       downloads: 0,
     };
 
-    setMaterials([newDoc, ...materials]);
+    const updated = [newDoc, ...materials];
+    setMaterials(updated);
+    localStorage.setItem("facultyNotes", JSON.stringify(updated));
     setTitle("");
     setShowModal(false);
   };
 
   // Delete handler
   const handleDelete = (id) => {
-    setMaterials(materials.filter((item) => item.id !== id));
+    const updated = materials.filter((item) => item.id !== id);
+    setMaterials(updated);
+    localStorage.setItem("facultyNotes", JSON.stringify(updated));
   };
 
   return (

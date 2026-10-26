@@ -217,13 +217,7 @@ function AttendanceUpdate() {
                       <p className="empty-search-text">
                         No students found matching "<strong>{searchText}</strong>"
                       </p>
-                      <button
-                        type="button"
-                        className="empty-clear-search-btn"
-                        onClick={() => setSearchText("")}
-                      >
-                        Reset search filter
-                      </button>
+                      
                     </div>
                   </td>
                 </tr>

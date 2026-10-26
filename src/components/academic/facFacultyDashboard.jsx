@@ -5,7 +5,7 @@ import Header from "../layout/header";
 import Footer from "../layout/footer";
 import MyInfo from "./facMyInfo";
 import AttendanceUpdate from "./facAttendanceUpdate";
-import TeacherUpdates, { TeacherUpdatesWidget} from "./facTeacherUpdates";
+import TeacherUpdates, { TeacherUpdatesWidget } from "./facTeacherUpdates";
 import FacStudents from "./facStudents";
 import FacNotesUpload from "./facNotesUpload";
 import FacPerformance from "./facPerformance";
@@ -20,9 +20,9 @@ function FacultyDashboard({ user, onLogout }) {
 
     const courseCode = "CS-301";
     const courseName = "Artificial Intelligence & Machine Learning";
-    const facultyName = "Mr. Yogendra Sharma";
+    const facultyName = "Mr. Rakesh Sharma";
 
-    
+
 
     return (
         <div className="faculty-dashboard">
@@ -241,7 +241,7 @@ function FacultyDashboard({ user, onLogout }) {
                                                 <span className="action-icon">✍️</span>
                                                 <span>Enter Marks</span>
                                             </button>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +249,7 @@ function FacultyDashboard({ user, onLogout }) {
                                 <div className="right-column">
                                     {/* Teacher Updates & Notices Widget */}
                                     <TeacherUpdatesWidget onOpenAll={() => setActiveTab("Updates")} />
-                                        
+
 
                                     {/* Recent Activity */}
                                     <div className="content-box">
@@ -311,7 +311,7 @@ function FacultyDashboard({ user, onLogout }) {
                                             <span className="deadline-tag normal">Upcoming</span>
                                         </div>
 
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -382,7 +382,7 @@ function FacultyDashboard({ user, onLogout }) {
                 </div>
 
                 <Footer />
-                
+
             </main>
 
         </div>
