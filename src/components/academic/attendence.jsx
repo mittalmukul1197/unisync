@@ -11,13 +11,8 @@ const SUBJECTS = [
 function Attendance() {
     return (
         <div className="attendance-container page-fade-in">
-            <div className="attendance-header-meta">
-                <h2>Course Attendance Ledger</h2>
-                <p>Consolidated Arogya University session logs. Verify compliance status across all subjects.</p>
-            </div>
-
             <div className="attendance-table-card glass">
-                <h3>Subject-wise Attendance Logs</h3>
+                <h3>Subject-wise Attendance</h3>
                 <div className="history-table-container">
                     <table className="history-table">
                         <thead>
@@ -61,9 +56,7 @@ function Attendance() {
             </div>
 
             <div className="attendance-chart-card glass">
-                <h3>Visual Attendance Analytics</h3>
-                <p className="chart-lbl-subtitle">Percentage compliance comparison across subject nodes</p>
-
+                <h3 class="attendence-analytics-heading">Visual Attendance Analytics</h3>
                 <div className="visual-bar-chart-row">
                     {SUBJECTS.map((sub) => {
                         const pct = ((sub.attended / sub.conducted) * 100).toFixed(2);

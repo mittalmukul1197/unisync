@@ -124,7 +124,7 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                             <p className="student-meta">Roll Number: 25109928 | Mentor: Dr. Lakshita</p>
                             <div className="welcome-academic-alert">
                                 <span className="alert-emoji">💡</span>
-                                <span className="alert-text">Maintain &gt;75% attendance to avoid detention during Term-End exams.</span>
+                                <span className="alert-text">Maintain 75% and more attendance to avoid detention during Term-End exams.</span>
                             </div>
                         </div>
                         <div className="welcome-banner-avatar-side">
@@ -154,18 +154,21 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                     <div className="student-stats-row">
                         <div className="mini-stat">
                             <span className="mini-val font-mono">9.35</span>
-                            <span className="mini-lbl">Cumulative CGPA</span>
+                            <span className="mini-lbl">Cumulative GPA</span>
                         </div>
                         <div className="mini-stat">
                             <span className="mini-val font-mono">3rd</span>
                             <span className="mini-lbl">Semester</span>
                         </div>
                         <button className="view-details-action" onClick={() => setActiveTab("profile")}>
-                            View Full Profile ➔
+                           View Full Profile 
                         </button>
                     </div>
                 </div>
             </div>
+
+
+
 
             <div className="bento-card attendance-card glass" onClick={() => setActiveTab("attendance")}>
                 <div className="card-header-simple">
@@ -195,7 +198,7 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
 
             <div className="bento-card timetable-card-bento glass" onClick={() => setActiveTab("timetable")}>
                 <div className="card-header-simple">
-                    <h3>Timetable Peek</h3>
+                    <h3>Timetable</h3>
                     <span className="live-tag">LH-501</span>
                 </div>
                 <div className="timetable-peek-details">
