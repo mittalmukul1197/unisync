@@ -14,16 +14,6 @@ const INITIAL_STUDENTS_DATA = {
     { roll: "2110990109", name: "Pranav Aggarwal", status: "P", remarks: "" },
     { roll: "2110990110", name: "Riya Thakur", status: "P", remarks: "" },
   ],
-  "CSE - Sem 6 (Batch B)": [
-    { roll: "2110990201", name: "Aditya Nanda", status: "P", remarks: "" },
-    { roll: "2110990202", name: "Charu Singla", status: "P", remarks: "" },
-    { roll: "2110990203", name: "Gaurav Sen", status: "P", remarks: "" },
-    { roll: "2110990204", name: "Harshita Kaur", status: "A", remarks: "Unwell" },
-    { roll: "2110990205", name: "Kabir Bedi", status: "P", remarks: "" },
-    { roll: "2110990206", name: "Mehak Chawla", status: "P", remarks: "" },
-    { roll: "2110990207", name: "Nikhil Dhawan", status: "P", remarks: "" },
-    { roll: "2110990208", name: "Pooja Batra", status: "P", remarks: "" },
-  ],
 };
 
 function AttendanceUpdate() {
@@ -32,14 +22,21 @@ function AttendanceUpdate() {
   const [timeSlot, setTimeSlot] = useState("09:00 AM - 10:00 AM");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [searchText, setSearchText] = useState("");
-  const [isSaved, setIsSaved] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [studentsData, setStudentsData] = useState(INITIAL_STUDENTS_DATA);
 
   const courseTitle = "Artificial Intelligence & Machine Learning (CS-301)";
 
   const currentBatchStudents = studentsData[selectedBatch] || [];
+
+  const filteredStudents = currentBatchStudents.filter((student) => {
+    if (!searchText.trim()) return true;
+    const q = searchText.toLowerCase().trim();
+    return (
+      student.name.toLowerCase().includes(q) ||
+      student.roll.toLowerCase().includes(q)
+    );
+  });
 
   const handleStatus = (rollNumber, newStatus) => {
     const updatedList = currentBatchStudents.map((student) => {
@@ -69,21 +66,10 @@ function AttendanceUpdate() {
     });
   };
 
-  const handleMarkAll = (status) => {
-    const updatedList = currentBatchStudents.map((student) => ({
-      ...student,
-      status: status,
-    }));
-
-    setStudentsData({
-      ...studentsData,
-      [selectedBatch]: updatedList,
-    });
+  const handleSaveAttendance = (e) => {
+    e.preventDefault();
+    alert("Attendance saved successfully!");
   };
-const handleSaveAttendance = (e) => {
-  e.preventDefault();
-  alert("Attendance saved successfully!");
-};
 
   const totalStudents = currentBatchStudents.length;
   const presentCount = currentBatchStudents.filter((s) => s.status === "P").length;
@@ -118,7 +104,6 @@ const handleSaveAttendance = (e) => {
               onChange={(e) => setSelectedBatch(e.target.value)}
             >
               <option value="CSE - Sem 6 (Batch A)">CSE - Sem 6 (Batch A)</option>
-              <option value="CSE - Sem 6 (Batch B)">CSE - Sem 6 (Batch B)</option>
             </select>
           </div>
 
@@ -172,46 +157,45 @@ const handleSaveAttendance = (e) => {
         <div className="table-top-bar">
           <div className="table-title">
             <h3>Student Attendance Sheet</h3>
-            <span>{selectedBatch} • {sessionType} • {date}</span>
+            <span>
+              {selectedBatch} • {sessionType} • {date}
+              {searchText && ` • Filtered: ${filteredStudents.length} student${filteredStudents.length === 1 ? "" : "s"}`}
+            </span>
           </div>
 
           <div className="table-actions-wrapper">
             <div className="student-search-input">
-              <span>🔍</span>
+              <span className="search-icon-symbol" title="Search">🔍</span>
               <input
                 type="text"
                 placeholder="Search by name or roll no..."
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
+                aria-label="Search students by name or roll number"
               />
+              {searchText && (
+                <button
+                  type="button"
+                  className="search-clear-btn"
+                  onClick={() => setSearchText("")}
+                  title="Clear search"
+                  aria-label="Clear search"
+                >
+                  ✕
+                </button>
+              )}
             </div>
-
-            <div className="quick-mark-actions">
+            {searchText && (
               <button
                 type="button"
-                className="quick-btn p-btn"
-                onClick={() => handleMarkAll("P")}
-                title="Mark all as Present"
+                className="search-reset-tag"
+                onClick={() => setSearchText("")}
               >
-                ✓ All Present
+                Clear Filter
               </button>
-              <button
-                type="button"
-                className="quick-btn a-btn"
-                onClick={() => handleMarkAll("A")}
-                title="Mark all as Absent"
-              >
-                ✕ All Absent
-              </button>
-            </div>
+            )}
           </div>
         </div>
-
-        {isSaved && (
-          <div className="success-banner">
-            ✅ Attendance successfully saved and synced to University ERP for {selectedBatch}!
-          </div>
-        )}
 
         <div className="att-table-wrapper">
           <table className="att-table">
@@ -225,65 +209,85 @@ const handleSaveAttendance = (e) => {
               </tr>
             </thead>
             <tbody>
-              {currentBatchStudents.map((student, index) => (
-                <tr key={student.roll} className={student.status === "A" ? "row-absent" : ""}>
-                  <td>{index + 1}</td>
-                  <td className="roll-col">{student.roll}</td>
-                  <td className="name-col">
-                    <strong>{student.name}</strong>
-                    <span className="stu-batch-tag">{selectedBatch.replace("CSE - Sem 6 ", "")}</span>
-                  </td>
-                  <td>
-                    <div className="toggle-btn-group">
+              {filteredStudents.length === 0 ? (
+                <tr>
+                  <td colSpan="5" className="empty-search-state-cell">
+                    <div className="empty-search-state-box">
+                      <span className="empty-search-icon">🔍</span>
+                      <p className="empty-search-text">
+                        No students found matching "<strong>{searchText}</strong>"
+                      </p>
                       <button
                         type="button"
-                        className={`status-btn p-status ${student.status === "P" ? "active" : ""}`}
-                        onClick={() => handleStatus(student.roll, "P")}
+                        className="empty-clear-search-btn"
+                        onClick={() => setSearchText("")}
                       >
-                        P (Present)
-                      </button>
-                      <button
-                        type="button"
-                        className={`status-btn a-status ${student.status === "A" ? "active" : ""}`}
-                        onClick={() => handleStatus(student.roll, "A")}
-                      >
-                        A (Absent)
+                        Reset search filter
                       </button>
                     </div>
                   </td>
-                  <td>
-                    <input
-                      type="text"
-                      className="remark-input"
-                      placeholder="Optional remarks..."
-                      value={student.remarks || ""}
-                      onChange={(e) => handleRemark(student.roll, e.target.value)}
-                    />
-                  </td>
                 </tr>
-              ))}
+              ) : (
+                filteredStudents.map((student, index) => (
+                  <tr key={student.roll} className={student.status === "A" ? "row-absent" : ""}>
+                    <td>{index + 1}</td>
+                    <td className="roll-col">{student.roll}</td>
+                    <td className="name-col">
+                      <strong>{student.name}</strong>
+                      <span className="stu-batch-tag">{selectedBatch.replace("CSE - Sem 6 ", "")}</span>
+                    </td>
+                    <td>
+                      <div className="toggle-btn-group">
+                        <button
+                          type="button"
+                          className={`status-btn p-status ${student.status === "P" ? "active" : ""}`}
+                          onClick={() => handleStatus(student.roll, "P")}
+                        >
+                          P (Present)
+                        </button>
+                        <button
+                          type="button"
+                          className={`status-btn a-status ${student.status === "A" ? "active" : ""}`}
+                          onClick={() => handleStatus(student.roll, "A")}
+                        >
+                          A (Absent)
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        className="remark-input"
+                        placeholder="Optional remarks..."
+                        value={student.remarks || ""}
+                        onChange={(e) => handleRemark(student.roll, e.target.value)}
+                      />
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
 
         <div className="table-footer">
           <div className="footer-summary-text">
-            Marking attendance for <strong>{totalStudents} students</strong> in <strong>{courseTitle}</strong>.
-            {isSaved && (
-              <span className="footer-saved-text"> ✅ Synced to ERP!</span>
+            {searchText ? (
+              <>
+                Showing <strong>{filteredStudents.length}</strong> of <strong>{totalStudents} students</strong> (filtered by "{searchText}").
+              </>
+            ) : (
+              <>
+                Marking attendance for <strong>{totalStudents} students</strong> in <strong>{courseTitle}</strong>.
+              </>
             )}
           </div>
           <button
             type="button"
-            className={`submit-attendance-btn ${isSaved ? "saved" : ""} ${isSubmitting ? "submitting" : ""}`}
+            className="submit-attendance-btn"
             onClick={handleSaveAttendance}
-            disabled={isSubmitting}
           >
-            {isSubmitting
-              ? "⏳ Saving Attendance..."
-              : isSaved
-              ? "✅ Attendance Saved & Synced!"
-              : "💾 Save & Submit Attendance"}
+            💾 Save & Submit Attendance
           </button>
         </div>
       </div>

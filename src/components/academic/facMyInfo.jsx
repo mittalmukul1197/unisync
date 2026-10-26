@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./facMyInfo.css";
-import fac_img from "../../assets/facimage.jpeg"
+import fac_img from "../../assets/facimage.jpeg";
 
 const FACULTY_INFO = {
   name: "Mr. Yogendra Sharma",
@@ -14,19 +14,58 @@ const FACULTY_INFO = {
   qualification: "Ph.D. in Computer Science (IIT Delhi)",
   officeHours: "Mon - Thu • 03:30 PM - 05:00 PM",
   mentorship: "Group M-14 (28 Assigned 3rd-Year Mentees)",
+  specialization: "AI & Neural Systems",
 };
-
 function MyInfo() {
-  const profile = FACULTY_INFO;
+  const [profile, setProfile] = useState(() => {
+    const saved = localStorage.getItem("facultyProfile");
+    return saved ? JSON.parse(saved) : FACULTY_INFO;
+  });
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [formData, setFormData] = useState(FACULTY_INFO);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+
+  const handleOpenEdit = () => {
+    setFormData(profile);
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseEdit = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    setProfile(formData);
+    localStorage.setItem("facultyProfile", JSON.stringify(formData));
+    setIsEditModalOpen(false);
+    setShowSuccessToast(true);
+    setTimeout(() => {
+      setShowSuccessToast(false);
+    }, 2500);
+  };
 
   return (
     <div className="myinfo-page">
+      {/* Toast Notification */}
+      {showSuccessToast && (
+        <div className="fac-toast-notification">
+          <span>✅ Profile updated successfully!</span>
+        </div>
+      )}
+
       <div className="profile-compact-card">
         <div className="profile-left-section">
           <div className="avatar-wrapper">
             <img
-              src=
-              {fac_img}
+              src={fac_img}
               alt="Faculty Avatar"
               className="compact-avatar"
             />
@@ -47,9 +86,22 @@ function MyInfo() {
               <span className="pill id-pill">🆔 #{profile.empId}</span>
               <span className="pill">🏢 {profile.cabin}</span>
               <span className="pill">📅 Joined July 2019</span>
-              <span className="pill focus-pill">🎯 AI & Neural Systems</span>
+              <span className="pill focus-pill">🎯 {profile.specialization || "AI & Neural Systems"}</span>
             </div>
           </div>
+        </div>
+
+        {/* Edit Profile Action Button */}
+        <div className="profile-actions">
+          <button
+            type="button"
+            className="edit-profile-btn"
+            onClick={handleOpenEdit}
+            title="Edit Faculty Profile"
+          >
+            <span className="edit-btn-icon">✏️</span>
+            <span>Edit Profile</span>
+          </button>
         </div>
       </div>
 
@@ -226,6 +278,148 @@ function MyInfo() {
           </div>
         </div>
       </div>
+
+      {/* Edit Profile Modal */}
+      {isEditModalOpen && (
+        <div className="fac-modal-overlay" onClick={handleCloseEdit}>
+          <div className="fac-modal-content edit-profile-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="fac-modal-header">
+              <div className="fac-modal-header-title">
+                <h3>Edit Faculty Profile</h3>
+                <span>Update your academic, contact, and cabin logistics</span>
+              </div>
+              <button
+                type="button"
+                className="fac-modal-close"
+                onClick={handleCloseEdit}
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSave} className="fac-profile-form">
+              <div className="fac-form-grid">
+                <div className="fac-input-group">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    value={formData.name || ""}
+                    onChange={(e) => handleChange("name", e.target.value)}
+                    placeholder="e.g. Mr. Yogendra Sharma"
+                    required
+                  />
+                </div>
+
+                <div className="fac-input-group">
+                  <label>Designation</label>
+                  <input
+                    type="text"
+                    value={formData.designation || ""}
+                    onChange={(e) => handleChange("designation", e.target.value)}
+                    placeholder="e.g. Associate Professor"
+                    required
+                  />
+                </div>
+
+                <div className="fac-input-group">
+                  <label>Department</label>
+                  <input
+                    type="text"
+                    value={formData.department || ""}
+                    onChange={(e) => handleChange("department", e.target.value)}
+                    placeholder="e.g. Department of Computer Science & Engineering"
+                    required
+                  />
+                </div>
+
+                <div className="fac-input-group">
+                  <label>Cabin Location</label>
+                  <input
+                    type="text"
+                    value={formData.cabin || ""}
+                    onChange={(e) => handleChange("cabin", e.target.value)}
+                    placeholder="e.g. Block-3, Room 412"
+                    required
+                  />
+                </div>
+
+                <div className="fac-input-group">
+                  <label>Official Email</label>
+                  <input
+                    type="email"
+                    value={formData.email || ""}
+                    onChange={(e) => handleChange("email", e.target.value)}
+                    placeholder="e.g. name@chitkara.edu.in"
+                    required
+                  />
+                </div>
+
+                <div className="fac-input-group">
+                  <label>Mobile Number</label>
+                  <input
+                    type="text"
+                    value={formData.phone || ""}
+                    onChange={(e) => handleChange("phone", e.target.value)}
+                    placeholder="e.g. +91 98765 43210"
+                    required
+                  />
+                </div>
+
+                <div className="fac-input-group">
+                  <label>Office Hours for Doubts</label>
+                  <input
+                    type="text"
+                    value={formData.officeHours || ""}
+                    onChange={(e) => handleChange("officeHours", e.target.value)}
+                    placeholder="e.g. Mon - Thu • 03:30 PM - 05:00 PM"
+                    required
+                  />
+                </div>
+
+                <div className="fac-input-group">
+                  <label>Focus / Specialization</label>
+                  <input
+                    type="text"
+                    value={formData.specialization || ""}
+                    onChange={(e) => handleChange("specialization", e.target.value)}
+                    placeholder="e.g. AI & Neural Systems"
+                  />
+                </div>
+
+                <div className="fac-input-group full-width">
+                  <label>Total Experience</label>
+                  <input
+                    type="text"
+                    value={formData.experience || ""}
+                    onChange={(e) => handleChange("experience", e.target.value)}
+                    placeholder="e.g. 7+ Years at Chitkara University (12 Years Total)"
+                  />
+                </div>
+
+                <div className="fac-input-group full-width">
+                  <label>Student Mentorship</label>
+                  <input
+                    type="text"
+                    value={formData.mentorship || ""}
+                    onChange={(e) => handleChange("mentorship", e.target.value)}
+                    placeholder="e.g. Group M-14 (28 Assigned 3rd-Year Mentees)"
+                  />
+                </div>
+              </div>
+
+              <div className="fac-modal-footer">
+                <button
+                  type="submit"
+                  className="btn-primary"
+                >
+                  💾 Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

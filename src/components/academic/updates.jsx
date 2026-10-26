@@ -55,8 +55,8 @@ function Updates() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
 
+    const query = searchQuery.trim().toLowerCase();
     const filteredUpdates = UPDATES_DATA.filter((item) => {
-        const query = searchQuery.toLowerCase();
         const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
         const matchesSearch = item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query);
         return matchesCategory && matchesSearch;

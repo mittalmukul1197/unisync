@@ -5,22 +5,26 @@
 
 .attendance-table-card h3 {
   font-family: var(--font-heading);
-  font-size:   15px;
+  font-size:   20px;
   font-weight: 700;
-  color:       var(--text-primary);
+  color:var(--text-primary);
   margin-bottom: 14px;
   letter-spacing: -0.3px;
+  transform: translateY(-10px);
+  
 }
+
 
 .history-table tr.danger-row td {
   background: rgba(239, 68, 68, 0.02);
+  font-size: 15px;
 }
 
 .status-badge-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 600;
   padding: 3px 8px;
   border-radius: 6px;
@@ -54,37 +58,33 @@
 
 .attendance-chart-card h3 {
   font-family: var(--font-heading);
-  font-size:   15px;
+  font-size:   20px;
   font-weight: 700;
   color:       var(--text-primary);
   margin-bottom: 2px;
-  letter-spacing: -0.3px;
+  transform: translateY(-15px);
 }
 
-.chart-lbl-subtitle {
-  font-size: 11px;
-  color: var(--text-muted);
-}
 
 .visual-bar-chart-row {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  height: 160px;
+  height: 150px;
   padding: 20px 10px 0;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .chart-bar-node {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 3px;
   flex-grow: 1;
 }
 
 .bar-track-outer {
-  width: 26px;
+  width: 30px;
   height: 110px;
   background: var(--bg-slate);
   border-radius: 6px;
@@ -106,19 +106,19 @@
 .bar-fill-inner.low    { background: linear-gradient(to top, #ef4444, #f87171); }
 
 .bar-val-pct {
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-secondary);
 }
 
 .bar-sub-code {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--text-muted);
   font-weight: 600;
 }
 
 .bar-sub-name-trunc {
-  font-size: 10px;
+  font-size: 15px;
   color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
@@ -130,7 +130,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  font-size: 10px;
+  font-size: 15px;
   color: var(--text-muted);
   margin-top: 16px;
   border-top: 1px solid var(--border-subtle);
@@ -158,6 +158,7 @@
   .visual-bar-chart-row {
     height: 180px;
     padding: 10px 0 0;
+    
   }
   .chart-axis-legend {
     flex-wrap: wrap;

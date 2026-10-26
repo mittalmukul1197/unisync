@@ -34,7 +34,7 @@ function Performance() {
     const cgpaPct = 93.5;
 
     return (
-        <div className="performance-container page-fade-in">
+        <div className="performance-grid page-fade-in">
             <div className="performance-header-meta">
                 <h2>Academic Performance Ledger</h2>
                 <p>Track your semester-wise grades, credit distribution, and overall grade point average.</p>
@@ -65,8 +65,7 @@ function Performance() {
                 </div>
             </div>
 
-            <div className="performance-semesters-grid">
-                {SEMESTERS.map((sem) => (
+            {SEMESTERS.map((sem) => (
                     <div key={sem.id} className="semester-performance-card glass">
                         <div className="semester-card-header">
                             <span className="semester-title font-mono">{sem.sem}</span>
@@ -95,11 +94,10 @@ function Performance() {
                                         </tr>
                                     ))}
                                 </tbody>
-                            </table>
-                        </div>
+                        </table>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
     );
 }

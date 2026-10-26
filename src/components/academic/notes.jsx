@@ -24,8 +24,8 @@ function Notes() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedSubjectFilter, setSelectedSubjectFilter] = useState("All");
 
+    const query = searchQuery.trim().toLowerCase();
     const filteredNotes = notes.filter((note) => {
-        const query = searchQuery.toLowerCase();
         const matchesSearch = note.title.toLowerCase().includes(query) || note.author.toLowerCase().includes(query);
         const matchesSubject = selectedSubjectFilter === "All" || note.subject === selectedSubjectFilter;
         return matchesSearch && matchesSubject;

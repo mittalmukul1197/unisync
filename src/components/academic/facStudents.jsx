@@ -21,7 +21,12 @@ function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intellige
   const filteredStudents = studentsList.filter((student) => {
     const matchesBatch =
       studentBatchFilter === "All" || student.batch === studentBatchFilter;
-    return matchesBatch;
+    const query = studentSearch.trim().toLowerCase();
+    const matchesSearch =
+      !query ||
+      student.name.toLowerCase().includes(query) ||
+      student.roll.toLowerCase().includes(query);
+    return matchesBatch && matchesSearch;
   });
 
   return (
@@ -46,7 +51,19 @@ function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intellige
               placeholder="Search student by name or roll..."
               value={studentSearch}
               onChange={(e) => setStudentSearch(e.target.value)}
+              aria-label="Search student by name or roll"
             />
+            {studentSearch && (
+              <button
+                type="button"
+                className="search-clear-btn"
+                onClick={() => setStudentSearch("")}
+                title="Clear search"
+                aria-label="Clear search"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
           <div className="fac-students-batches">
@@ -78,36 +95,69 @@ function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intellige
               </tr>
             </thead>
             <tbody>
-              {filteredStudents.map((student, i) => (
-                <tr key={student.roll}>
-                  <td>{i + 1}</td>
-                  <td className="mono-text">{student.roll}</td>
-                  <td>
-                    <strong>{student.name}</strong>
-                  </td>
-                  <td>
-                    <span className="batch-badge">{student.batch}</span>
-                  </td>
-                  <td>
-                    <span
-                      className={`att-rate ${
-                        student.attendance < 75 ? "low" : "high"
-                      }`}
-                    >
-                      {student.attendance}%
-                    </span>
-                  </td>
-                  <td>
-                    <span
-                      className={`badge ${
-                        student.attendance >= 75 ? "positive" : "warning"
-                      }`}
-                    >
-                      {student.status}
-                    </span>
+              {filteredStudents.length === 0 ? (
+                <tr>
+                  <td colSpan="6" style={{ textAlign: "center", padding: "2.5rem 1rem", color: "#64748b" }}>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
+                      <span style={{ fontSize: "1.8rem", opacity: 0.7 }}>🔍</span>
+                      <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                        No students found matching "<strong>{studentSearch}</strong>"
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setStudentSearch("");
+                          setStudentBatchFilter("All");
+                        }}
+                        style={{
+                          marginTop: "0.5rem",
+                          background: "#2563eb",
+                          color: "#fff",
+                          border: "none",
+                          padding: "0.4rem 0.8rem",
+                          borderRadius: "6px",
+                          fontSize: "0.8rem",
+                          fontWeight: 600,
+                          cursor: "pointer",
+                        }}
+                      >
+                        Reset filters
+                      </button>
+                    </div>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filteredStudents.map((student, i) => (
+                  <tr key={student.roll}>
+                    <td>{i + 1}</td>
+                    <td className="mono-text">{student.roll}</td>
+                    <td>
+                      <strong>{student.name}</strong>
+                    </td>
+                    <td>
+                      <span className="batch-badge">{student.batch}</span>
+                    </td>
+                    <td>
+                      <span
+                        className={`att-rate ${
+                          student.attendance < 75 ? "low" : "high"
+                        }`}
+                      >
+                        {student.attendance}%
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        className={`badge ${
+                          student.attendance >= 75 ? "positive" : "warning"
+                        }`}
+                      >
+                        {student.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
