@@ -5,7 +5,7 @@ import ProtectedRoute from './protectedRoute';
 import LandingLogin from '../landinglogin';
 import StudentDashboard from '../components/academic/studentdashboard';
 import FacultyDashboard from '../components/academic/facFacultyDashboard';
-import Pagenotfound from './pagenotfound';
+import Pagenotfound from './PageNotFound';
 import Adminlayout from '../components/academic/admin/Adminlayout';
 import AdminInfo from '../components/academic/admin/AdminInfo';
 import AdminDashboard from '../components/academic/admin/AdminDashboard';
