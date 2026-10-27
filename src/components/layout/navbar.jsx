@@ -1,10 +1,11 @@
-// import React from 'react';
+﻿// import React from 'react';
 import log from '../../assets/logowithbg(1).png';
 import aplh from '../../assets/stylishname(dark).png';
 import './navbar.css';
 import { Navigate} from 'react-router-dom';
 import React, { createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFaculty } from '../../context/FacultyContext';
 export const AdminTabContext = createContext();
 
 function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
@@ -21,7 +22,6 @@ function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
     { name: 'Performance', label: 'Performance', icon: '🏆' },
   ];
 
-
   const handleItemClick = (name) => {
     if (setActiveTab) setActiveTab(name);
     if (onClose) onClose();
@@ -30,49 +30,35 @@ function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
   return (
     <>
       {isOpen && <div className="sdb-overlay" onClick={onClose}></div>}
-
       <aside className={`sdb ${isOpen ? 'open' : ''}`}>
         <div className="sdb-header">
           <div className="sdb-brand-group">
             <img src={log} alt="Logo" className="sdb-logo" />
             <img src={aplh} alt="Unisync" className="sdb-brand-name" />
           </div>
-
           {onClose && (
-            <button
-              className="sdb-close-btn"
-              onClick={onClose}
-              aria-label="Close Sidebar"
-            >
+            <button className="sdb-close-btn" onClick={onClose} aria-label="Close Sidebar">
               ✕
             </button>
           )}
         </div>
-
         <nav className="sdb-nav-section">
           <ul className="sdb-nav-list">
             {mainNavItems.map((item) => (
               <li
                 key={item.name}
-                className={`sdb-nav-item ${
-                  activeTab === item.name ? 'active' : ''
-                }`}
+                className={`sdb-nav-item ${activeTab === item.name ? 'active' : ''}`}
                 onClick={() => handleItemClick(item.name)}
               >
                 <span className="sdb-icon">{item.icon}</span>
-                <span className="sdb-text">
-                  {item.label || item.name}
-                </span>
+                <span className="sdb-text">{item.label || item.name}</span>
               </li>
             ))}
           </ul>
         </nav>
-
         <div className="sdb-footer">
           <div
-            className={`sdb-nav-item ${
-              activeTab === 'Settings' ? 'active' : ''
-            }`}
+            className={`sdb-nav-item ${activeTab === 'Settings' ? 'active' : ''}`}
             onClick={() => handleItemClick('Settings')}
           >
             <span className="sdb-icon">⚙️</span>
@@ -83,8 +69,6 @@ function StudentSidebar({ activeTab = 'home', setActiveTab, isOpen, onClose }) {
     </>
   );
 }
-
-
 
 function AdminSidebar({ isOpen, onClose }) {
   const mainNavItems = [
@@ -98,122 +82,89 @@ function AdminSidebar({ isOpen, onClose }) {
   ];
 
   const navigate = useNavigate();
-
   const { activeTab, setActiveTab } = useContext(AdminTabContext);
 
   const handleItemClick = (item) => {
     setActiveTab(item.name);
-
     sessionStorage.setItem('activeTab', item.name);
-
     navigate(item.path);
-
-    if (onClose) {
-      onClose();
-    }
-  };
-
-  return (
-    <>
-      {isOpen && (
-        <div className="sdb-overlay" onClick={onClose}></div>
-      )}
-
-      <aside className={`sdb ${isOpen ? 'open' : ''}`}>
-        <div className="sdb-header">
-          <div className="sdb-brand-group">
-            <img src={log} alt="Logo" className="sdb-logo" />
-            <img src={aplh} alt="Unisync" className="sdb-brand-name" />
-          </div>
-
-          {onClose && (
-            <button
-              className="sdb-close-btn"
-              onClick={onClose}
-              aria-label="Close Sidebar"
-            >
-              ✕
-            </button>
-          )}
-        </div>
-
-        <nav className="sdb-nav-section">
-          <ul className="sdb-nav-list">
-            {mainNavItems.map((item) => (
-              <li
-                key={item.name}
-                className={`sdb-nav-item ${
-                  activeTab === item.name ? 'active' : ''
-                }`}
-                onClick={() => handleItemClick(item)}
-              >
-                <span className="sdb-icon">{item.icon}</span>
-
-                <span className="sdb-text">
-                  {item.name}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        
-      </aside>
-    </>
-  );
-}
-function FacultySidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose }) {
-  const mainNavItems = [
-    { name: 'Dashboard', icon: '📊' },
-    { name: 'My Info', icon: '👤' },
-    {name: 'Updates', label: 'Updates', icon: '🔔'},
-    { name: 'Attendance Update', icon: '📝' },
-    { name: 'Students', icon: '🎓' },
-    { name: 'Notes Upload', icon: '📤' },
-    { name: 'Performance', icon: '📈' },
-  ];
-    const navigate=useNavigate();
-
-
-  const handleItemClick = (name) => {
-    if (setActiveTab) setActiveTab(name);
-// if (name === "My Info") {
-//           console.log("Navigating to /myinfo");
-
-        // navigate("/myinfo");}
-            if (onClose) onClose();
+    if (onClose) onClose();
   };
 
   return (
     <>
       {isOpen && <div className="sdb-overlay" onClick={onClose}></div>}
-
       <aside className={`sdb ${isOpen ? 'open' : ''}`}>
         <div className="sdb-header">
           <div className="sdb-brand-group">
             <img src={log} alt="Logo" className="sdb-logo" />
             <img src={aplh} alt="Unisync" className="sdb-brand-name" />
           </div>
-
           {onClose && (
-            <button
-              className="sdb-close-btn"
-              onClick={onClose}
-              aria-label="Close Sidebar"
-            >
+            <button className="sdb-close-btn" onClick={onClose} aria-label="Close Sidebar">
               ✕
             </button>
           )}
         </div>
-
         <nav className="sdb-nav-section">
           <ul className="sdb-nav-list">
             {mainNavItems.map((item) => (
               <li
                 key={item.name}
-                className={`sdb-nav-item ${
-                  activeTab === item.name ? 'active' : ''
-                }`}
+                className={`sdb-nav-item ${activeTab === item.name ? 'active' : ''}`}
+                onClick={() => handleItemClick(item)}
+              >
+                <span className="sdb-icon">{item.icon}</span>
+                <span className="sdb-text">{item.name}</span>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    </>
+  );
+}
+
+function FacultySidebar({ isOpen, onClose }) {
+  const mainNavItems = [
+    { name: 'Dashboard', icon: '📊' },
+    { name: 'My Info', icon: '👤' },
+    { name: 'Updates', icon: '🔔' },
+    { name: 'Attendance Update', icon: '📝' },
+    { name: 'Students', icon: '🎓' },
+    { name: 'Notes Upload', icon: '📤' },
+    { name: 'Performance', icon: '📈' },
+  ];
+
+  // activeTab and setActiveTab come from FacultyContext (shared with Header)
+  const { activeTab, setActiveTab } = useFaculty();
+
+  const handleItemClick = (name) => {
+    setActiveTab(name);
+    if (onClose) onClose();
+  };
+
+  return (
+    <>
+      {isOpen && <div className="sdb-overlay" onClick={onClose}></div>}
+      <aside className={`sdb ${isOpen ? 'open' : ''}`}>
+        <div className="sdb-header">
+          <div className="sdb-brand-group">
+            <img src={log} alt="Logo" className="sdb-logo" />
+            <img src={aplh} alt="Unisync" className="sdb-brand-name" />
+          </div>
+          {onClose && (
+            <button className="sdb-close-btn" onClick={onClose} aria-label="Close Sidebar">
+              ✕
+            </button>
+          )}
+        </div>
+        <nav className="sdb-nav-section">
+          <ul className="sdb-nav-list">
+            {mainNavItems.map((item) => (
+              <li
+                key={item.name}
+                className={`sdb-nav-item ${activeTab === item.name ? 'active' : ''}`}
                 onClick={() => handleItemClick(item.name)}
               >
                 <span className="sdb-icon">{item.icon}</span>
@@ -222,12 +173,9 @@ function FacultySidebar({ activeTab = 'Dashboard', setActiveTab, isOpen, onClose
             ))}
           </ul>
         </nav>
-
         <div className="sdb-footer">
           <div
-            className={`sdb-nav-item ${
-              activeTab === 'Settings' ? 'active' : ''
-            }`}
+            className={`sdb-nav-item ${activeTab === 'Settings' ? 'active' : ''}`}
             onClick={() => handleItemClick('Settings')}
           >
             <span className="sdb-icon">⚙️</span>

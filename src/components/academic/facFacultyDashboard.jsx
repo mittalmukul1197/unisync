@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import "./facFacultyDashboard.css";
 import { FacultySidebar } from "../layout/navbar";
 import Header from "../layout/header";
@@ -9,37 +9,28 @@ import TeacherUpdates, { TeacherUpdatesWidget } from "./facTeacherUpdates";
 import FacStudents from "./facStudents";
 import FacNotesUpload from "./facNotesUpload";
 import FacPerformance from "./facPerformance";
-// import { Outlet } from "react-router-dom";
-function FacultyDashboard({ user, onLogout }) {
-    const [activeTab, setActiveTab] = useState("Dashboard");
+import { FacultyProvider, useFaculty } from "../../context/FacultyContext";
+
+const COURSE_CODE = "CS-301";
+const COURSE_NAME = "Artificial Intelligence & Machine Learning";
+
+function FacultyDashboardContent({ user, onLogout }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isUpdatesDrawerOpen, setIsUpdatesDrawerOpen] = useState(false);
-
-    const [autoSync, setAutoSync] = useState(true);
     const [defaulterAlerts, setDefaulterAlerts] = useState(true);
+    const [autoSync, setAutoSync] = useState(true);
 
-    const courseCode = "CS-301";
-    const courseName = "Artificial Intelligence & Machine Learning";
-    const facultyName = "Mr. Rakesh Sharma";
-
-
+    const { activeTab, setActiveTab, fullName } = useFaculty();
 
     return (
         <div className="faculty-dashboard">
-            {/* 1. SIDEBAR NAVIGATION */}
             <FacultySidebar
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
                 isOpen={isMobileMenuOpen}
                 onClose={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* 2. MAIN CONTENT AREA */}
             <main className="faculty-content">
-                {/* Top Header */}
                 <Header
                     role="faculty"
-                    title={activeTab === "Dashboard" ? "Faculty Portal" : activeTab}
                     user={user || { email: "dr.sharma@chitkara.edu.in" }}
                     onLogout={onLogout}
                     onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -48,13 +39,12 @@ function FacultyDashboard({ user, onLogout }) {
                 <div className="faculty-body">
                     {activeTab === "Dashboard" && (
                         <>
-                            {/* Hero Banner */}
                             <div className="faculty-hero-banner">
                                 <div className="hero-content">
                                     <div className="hero-badge-pill">
-                                        <span className="live-dot"></span> Single Assigned Course: <strong>{courseCode} • {courseName}</strong>
+                                        <span className="live-dot"></span> Single Assigned Course: <strong>{COURSE_CODE} • {COURSE_NAME}</strong>
                                     </div>
-                                    <h2>Welcome back, {facultyName} 👋</h2>
+                                    <h2>Welcome back, {fullName || "Faculty"} 👋</h2>
                                     <p>Department of Computer Science & Engineering • Semester 6 (Spring 2026)</p>
                                     <div className="hero-stats-strip">
                                         <span>👥 <strong>180 Students</strong> Enrolled</span>
@@ -106,7 +96,7 @@ function FacultyDashboard({ user, onLogout }) {
                                         <span className="card-label">Course Modules</span>
                                         <div className="card-icon orange-icon">📁</div>
                                     </div>
-                                    <h1>5</h1>
+                                    <h1>3</h1>
                                     <span className="badge warning">Unit 3 In Progress</span>
                                 </div>
                             </div>
@@ -117,7 +107,7 @@ function FacultyDashboard({ user, onLogout }) {
                                         <div className="section-title">
                                             <div>
                                                 <h3>Today's AI & ML Teaching Schedule</h3>
-                                                <span className="sub-caption">All sessions for {courseCode} across batches</span>
+                                                <span className="sub-caption">All sessions for {COURSE_CODE} across batches</span>
                                             </div>
                                             <span className="count-pill">3 Sessions</span>
                                         </div>
@@ -161,7 +151,7 @@ function FacultyDashboard({ user, onLogout }) {
                                     <div className="content-box">
                                         <div className="section-title">
                                             <div>
-                                                <h3>Syllabus Coverage ({courseCode})</h3>
+                                                <h3>Syllabus Coverage ({COURSE_CODE})</h3>
                                                 <span className="sub-caption">Semester 6 Course Blueprint</span>
                                             </div>
                                             <span className="percentage-pill">68% Completed</span>
@@ -210,7 +200,7 @@ function FacultyDashboard({ user, onLogout }) {
 
                                             <div className="syllabus-unit">
                                                 <div className="unit-header">
-                                                    <span>Unit 5: Computer Vision   & NLP Applications</span>
+                                                    <span>Unit 5: Computer Vision  & NLP Applications</span>
                                                     <strong className="unit-pending">0%</strong>
                                                 </div>
                                                 <div className="progress-bar-bg">
@@ -229,7 +219,7 @@ function FacultyDashboard({ user, onLogout }) {
                                                 <span className="action-icon">📋</span>
                                                 <span>Take Attendance</span>
                                             </button>
-                                            <button className="action-btn" onClick={() => setActiveTab("Teacher Updates")}>
+                                            <button className="action-btn" onClick={() => setActiveTab("Updates")}>
                                                 <span className="action-icon">🔔</span>
                                                 <span>Teacher Updates</span>
                                             </button>
@@ -241,7 +231,6 @@ function FacultyDashboard({ user, onLogout }) {
                                                 <span className="action-icon">✍️</span>
                                                 <span>Enter Marks</span>
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -250,13 +239,11 @@ function FacultyDashboard({ user, onLogout }) {
                                     {/* Teacher Updates & Notices Widget */}
                                     <TeacherUpdatesWidget onOpenAll={() => setActiveTab("Updates")} />
 
-
                                     {/* Recent Activity */}
                                     <div className="content-box">
                                         <div className="section-title">
                                             <h3>Recent Subject Activity</h3>
                                         </div>
-
                                         <ul className="activity-list">
                                             <li>
                                                 <span className="dot green-dot"></span>
@@ -294,7 +281,6 @@ function FacultyDashboard({ user, onLogout }) {
                                         <div className="section-title">
                                             <h3>Course Deadlines</h3>
                                         </div>
-
                                         <div className="deadline-item">
                                             <div>
                                                 <strong>Mid-Term Marks Upload (CS-301)</strong>
@@ -302,7 +288,6 @@ function FacultyDashboard({ user, onLogout }) {
                                             </div>
                                             <span className="deadline-tag urgent">Urgent</span>
                                         </div>
-
                                         <div className="deadline-item">
                                             <div>
                                                 <strong>Lab 3 Evaluation Submission</strong>
@@ -310,8 +295,6 @@ function FacultyDashboard({ user, onLogout }) {
                                             </div>
                                             <span className="deadline-tag normal">Upcoming</span>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -319,25 +302,19 @@ function FacultyDashboard({ user, onLogout }) {
                     )}
 
                     {activeTab === "My Info" && <MyInfo />}
-                    {/* <Outlet/> */}
                     {activeTab === "Updates" && (
                         <TeacherUpdates onBack={() => setActiveTab("Dashboard")} />
                     )}
-
                     {activeTab === "Attendance Update" && <AttendanceUpdate />}
-
                     {activeTab === "Students" && (
-                        <FacStudents courseCode={courseCode} courseName={courseName} />
+                        <FacStudents courseCode={COURSE_CODE} courseName={COURSE_NAME} />
                     )}
-
                     {activeTab === "Notes Upload" && (
-                        <FacNotesUpload courseCode={courseCode} courseName={courseName} />
+                        <FacNotesUpload courseCode={COURSE_CODE} courseName={COURSE_NAME} />
                     )}
-
                     {activeTab === "Performance" && (
-                        <FacPerformance courseCode={courseCode} courseName={courseName} />
+                        <FacPerformance courseCode={COURSE_CODE} courseName={COURSE_NAME} />
                     )}
-
                     {activeTab === "Settings" && (
                         <div className="dashboard-tab-container">
                             <div className="tab-page-header">
@@ -346,7 +323,6 @@ function FacultyDashboard({ user, onLogout }) {
                                     <p>Manage course alerts and ERP synchronization</p>
                                 </div>
                             </div>
-
                             <div className="content-box">
                                 <div className="settings-section">
                                     <h3>Subject & Academic Preferences</h3>
@@ -362,7 +338,6 @@ function FacultyDashboard({ user, onLogout }) {
                                             className="toggle-switch"
                                         />
                                     </div>
-
                                     <div className="settings-item">
                                         <div>
                                             <strong>Student Attendance Defaulter Alerts</strong>
@@ -382,10 +357,16 @@ function FacultyDashboard({ user, onLogout }) {
                 </div>
 
                 <Footer />
-
             </main>
-
         </div>
+    );
+}
+
+function FacultyDashboard(props) {
+    return (
+        <FacultyProvider>
+            <FacultyDashboardContent {...props} />
+        </FacultyProvider>
     );
 }
 

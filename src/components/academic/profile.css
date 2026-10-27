@@ -106,10 +106,7 @@
 .id-pill-light {
   font-size: 12px;
   font-weight: 500;
-  background: var(--bg-slate);
-  border: 1px solid var(--border-subtle);
   padding: 1.5px 5px;
-  border-radius: 4px;
 }
 
 .id-card-footer {
@@ -329,7 +326,6 @@
 }
 
 
-/* Action row inside Student ID Card (Bottom-Left placement) */
 .profile-card-action-row {
   display: flex;
   justify-content: flex-start;
@@ -338,7 +334,6 @@
   width: 100%;
 }
 
-/* Edit Profile Trigger Button */
 .profile-edit-btn {
   display: inline-flex;
   align-items: center;
@@ -431,7 +426,6 @@
   bottom: 0;
   background-color: rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -453,7 +447,6 @@
   animation: profileSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Modal Header */
 .profile-modal-header {
   display: flex;
   justify-content: space-between;

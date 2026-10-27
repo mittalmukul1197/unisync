@@ -120,12 +120,9 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                     <div className="welcome-banner-split">
                         <div className="welcome-banner-text-side">
                             <span className="degree-tag font-mono">BE CSE (AI&ML) - Semester III</span>
-                            <h1 className="profile-title">Welcome back, Rohit Verma 👋</h1>
+                            <h1 className="profile-title">Welcome back, Rohit Verma</h1>
                             <p className="student-meta">Roll Number: 25109928 | Mentor: Dr. Lakshita</p>
-                            <div className="welcome-academic-alert">
-                                <span className="alert-emoji">💡</span>
-                                <span className="alert-text">Maintain 75% and more attendance to avoid detention during Term-End exams.</span>
-                            </div>
+                           
                         </div>
                         <div className="welcome-banner-avatar-side">
                             <div className="welcome-avatar-container">
@@ -144,10 +141,10 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                     <div className="profile-academic-focus">
                         <span className="focus-title font-mono">Academic Group & Section:</span>
                         <div className="focus-pills">
-                            <span className="focus-pill neon-cyan-pill">Section: U25AIML-G8</span>
-                            <span className="focus-pill neon-purple-pill">Lab Group: G8-A</span>
-                            <span className="focus-pill neon-pink-pill">Room: LH-501</span>
-                            <span className="focus-pill neon-green-pill">Advisor: Dr. Lakshita</span>
+                            <span class="pills">Section: U25AIML-G8</span>
+                            <span class="pills">Lab Group: G8-A</span>
+                            <span class="pills">Room: LH-501</span>
+                            <span class="pills">Advisor: Dr. Lakshita</span>
                         </div>
                     </div>
 
@@ -221,28 +218,17 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                     <h3>Library Ledger</h3>
                     <span className="card-subtitle">HOLDINGS</span>
                 </div>
-                <div className="library-quota-gauge">
-                    <div className="quota-label-row">
-                        <span className="quota-text">Quota Borrowed</span>
-                        <span className="quota-ratio font-mono">2 / 5 Books</span>
-                    </div>
-                    <div className="quota-bar-track">
-                        <div className="quota-bar-fill library-fill-40"></div>
-                    </div>
-                </div>
                 <div className="library-peek-info">
                     <div className="book-alert-box warning-alert">
                         <span className="book-icon">📖</span>
                         <div className="book-txt">
                             <strong>Generative Deep Learning</strong>
-                            <span className="warning-text font-mono">Due in 2 days ⚠️</span>
                         </div>
                     </div>
                     <div className="book-alert-box safe-alert">
                         <span className="book-icon">📖</span>
                         <div className="book-txt">
                             <strong>Introduction to Algorithms</strong>
-                            <span className="safe-text font-mono">Due in 12 days</span>
                         </div>
                     </div>
                 </div>
@@ -258,7 +244,6 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
                         <span className="pl-tag font-mono pl-tag-exams">EXAMS</span>
                         <div className="pl-details">
                             <strong>Mid-Term Datesheet</strong>
-                            <span className="pl-status font-mono text-neon-orange">Released Today</span>
                         </div>
                     </div>
                     <div className="placement-peek-item">
@@ -274,14 +259,13 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
             <div className="bento-card lms-assignments-bento glass" onClick={() => setActiveTab("profile")}>
                 <div className="card-header-simple">
                     <h3>LMS Deadlines</h3>
-                    <span className="gp-status-label danger">2 PENDING</span>
                 </div>
                 <div className="lms-peek-list">
                     <div className="lms-item">
                         <span className="bullet-dot red"></span>
                         <div className="lms-item-meta">
                             <strong>Database Management System Assignment 3</strong>
-                            <span className="lms-time font-mono">Due in 20 hours ⚠️</span>
+                            <span className="lms-time font-mono">Due in 20 hours</span>
                         </div>
                     </div>
                     <div className="lms-item">
@@ -296,7 +280,7 @@ function StudentDashboard({ activeTab: propActiveTab, setActiveTab: propSetActiv
 
             <div className="bento-card notes-card-bento glass" onClick={() => setActiveTab("notes")}>
                 <div className="card-header-simple">
-                    <h3>Notes Subnet Peek</h3>
+                    <h3>Class Notes</h3>
                     <div className="notes-filter-pills" onClick={(e) => e.stopPropagation()}>
                         <span className="filter-pill active">All</span>
                         <span className="filter-pill">DBMS</span>
