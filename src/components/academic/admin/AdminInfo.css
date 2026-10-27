@@ -157,7 +157,7 @@ flex-grow: 1;
 
 .admininfo-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0 32px;
 }
 
@@ -167,7 +167,6 @@ flex-grow: 1;
     gap: 9px;
     min-width: 0;
     padding: 19px 0;
-    border-bottom: 1px solid #edf1f5;
 }
 
 
@@ -221,10 +220,6 @@ flex-grow: 1;
     font-weight: 600;
 }
 
-.admininfo-role-badge {
-    background: #dbeafe;
-    color: #1d4ed8;
-}
 
 .admininfo-active-badge {
     background: #dcfce7;
@@ -238,6 +233,71 @@ flex-grow: 1;
     background: #22c55e;
 }
 
+.admininfo-page .table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.admininfo-page  .atten-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.admininfo-page  .atten-table thead {
+    background-color: #0e3895;
+
+}
+
+.admininfo-page  .atten-table th {
+    padding: 15px 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admininfo-page  .atten-table td {
+    padding: 15px 20px;
+    color: #4b5563;
+    font-size: 13px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.admininfo-page  .atten-table td strong {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+
+.admininfo-page  .atten-table tbody tr:hover {
+    background-color: #d0e5ff;
+}
+
+
+
+.admininfo-page .admininfo-role-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #dcfce7;
+    background-color: #15803d;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .admininfo-page  .atten-table th,
+    .admininfo-page  .atten-table td {
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+}
 
 @media (max-width: 768px) {
     .admininfo-page {

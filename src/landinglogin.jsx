@@ -10,16 +10,38 @@ export default function LandingLogin({ onLogin }) {
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    e.preventDefault();
 
-    if (!email.trim() || !password) {
+    e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if (!email.trim() && !password) {
       const errorMsg = 'Please enter both email and password.';
       customealert(errorMsg, { timeout: true, time: 3000, button: true });
       return;
     }
+    if (!email.trim() && password) {
+      const errorMsg = 'Please enter email.';
+      customealert(errorMsg, { timeout: true, time: 3000, button: true });
+      return;
+    }
+
+    if (!emailRegex.test(email.trim())) {
+      setEmailError('Please enter a valid email address.');
+      return;
+    }
+
+    if (email.trim() && !password) {
+      const errorMsg = 'Please enter Password.';
+      customealert(errorMsg, { timeout: true, time: 3000, button: true });
+      return;
+    }
+
+    setEmailError('');
 
     let sessionData = null;
 
@@ -39,14 +61,13 @@ export default function LandingLogin({ onLogin }) {
         email: email.trim(),
         role: 'faculty',
       };
-    } 
-    else if(email.trim() === 'admin@gmail.com' &&
-      password === 'admin')
-      {
-        sessionData={
-          email: email.trim(),
+    }
+    else if (email.trim() === 'admin@gmail.com' &&
+      password === 'admin') {
+      sessionData = {
+        email: email.trim(),
         role: 'admin',
-        };
+      };
 
     }
     else {
@@ -71,7 +92,6 @@ export default function LandingLogin({ onLogin }) {
       onLogin(sessionData);
     }
 
-    // Navigate to role-based dashboard route
     if (sessionData.role === 'student') {
       navigate('/student');
     } else if (sessionData.role === 'faculty') {
@@ -93,12 +113,21 @@ export default function LandingLogin({ onLogin }) {
           <div>
             <label htmlFor="email">Email</label>
             <input
-              type="email"
+              type="text"
               id="email"
               placeholder="Enter your mail"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                setEmailError('')
+              }
+              }
             />
+            {emailError && (
+              <span className="email-error">
+                {emailError}
+              </span>
+            )}
           </div>
 
           <div>

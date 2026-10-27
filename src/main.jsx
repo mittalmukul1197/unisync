@@ -6,7 +6,6 @@ import Adminlayout from "./components/academic/admin/Adminlayout";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-{/* <Adminlayout/> */}
   </React.StrictMode>
 );
 
