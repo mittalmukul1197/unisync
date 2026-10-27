@@ -45,7 +45,6 @@ function AttendanceUpdate() {
       }
       return student;
     });
-
     setStudentsData({
       ...studentsData,
       [selectedBatch]: updatedList,
@@ -59,7 +58,6 @@ function AttendanceUpdate() {
       }
       return student;
     });
-
     setStudentsData({
       ...studentsData,
       [selectedBatch]: updatedList,
@@ -185,15 +183,7 @@ function AttendanceUpdate() {
                 </button>
               )}
             </div>
-            {searchText && (
-              <button
-                type="button"
-                className="search-reset-tag"
-                onClick={() => setSearchText("")}
-              >
-                Clear Filter
-              </button>
-            )}
+            
           </div>
         </div>
 

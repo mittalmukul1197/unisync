@@ -16,7 +16,10 @@ const MOCK_COURSE_STUDENTS = [
 function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intelligence & Machine Learning" }) {
   const [studentBatchFilter, setStudentBatchFilter] = useState("All");
   const [studentSearch, setStudentSearch] = useState("");
-  const [studentsList] = useState(MOCK_COURSE_STUDENTS);
+  const studentsList = MOCK_COURSE_STUDENTS;
+
+  const displayCode = courseCode;
+  const displayName = courseName;
 
   const filteredStudents = studentsList.filter((student) => {
     const matchesBatch =
@@ -33,8 +36,8 @@ function FacStudents({ courseCode = "CS-301", courseName = "Artificial Intellige
     <div className="fac-students-container">
       <div className="fac-students-header">
         <div>
-          <h2>🎓 Students Directory ({courseCode})</h2>
-          <p>Enrolled students in {courseName} across Sem 6 Batches</p>
+          <h2>🎓 Students Directory ({displayCode})</h2>
+          <p>Enrolled students in {displayName} across Sem 6 Batches</p>
         </div>
         <div className="fac-students-header-stats">
           <span className="pill">Total: {filteredStudents.length} shown</span>

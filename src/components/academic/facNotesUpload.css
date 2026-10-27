@@ -342,6 +342,7 @@
     transform: translateY(-20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -382,4 +383,12 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Document Title Validation Error */
+.fac-title-error {
+  color: #dc2626;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-top: 0.15rem;
 }
