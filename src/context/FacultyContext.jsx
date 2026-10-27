@@ -1,13 +1,10 @@
 ﻿import React, { createContext, useContext, useState } from "react";
 
-// Create Context
 export const FacultyContext = createContext(null);
 
-// Faculty Context Provider
 export function FacultyProvider({ children }) {
   const [activeTab, setActiveTab] = useState("Dashboard");
 
-  // Shared Faculty Full Name
   const [fullName, setFullName] = useState("Mr. Rakesh Sharma");
 
   const contextValue = {
@@ -24,10 +21,8 @@ export function FacultyProvider({ children }) {
   );
 }
 
-// Custom Hook
 export function useFaculty() {
   return useContext(FacultyContext);
 }
 
-// Default Export
 export default FacultyContext;
