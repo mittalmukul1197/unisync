@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./AdminUpdates.css";
-
+import customealert from "../../layout/errorcustom";
 export default function AdminUpdates() {
   const [activeTab, setActiveTab] = useState("updates");
   const [showPostForm, setShowPostForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [incomingSearchTerm, setIncomingSearchTerm] = useState("");
-
+const [titleError, setTitleError] = useState('');
+const [descriptionError, setDescriptionError] = useState('');
   const [updates, setUpdates] = useState([
     {
       id: 1,
@@ -87,37 +88,57 @@ export default function AdminUpdates() {
     }));
   };
 
-  const handlePostUpdate = (e) => {
+
+const handlePostUpdate = (e) => {
     e.preventDefault();
 
-    if (!newUpdate.title.trim() || !newUpdate.description.trim()) {
-      alert("Please enter both the title and description.");
-      return;
+    setTitleError('');
+    setDescriptionError('');
+
+    let hasError = false;
+
+    if (!newUpdate.title.trim()) {
+        setTitleError('Please enter the announcement title.');
+        hasError = true;
+    }
+
+    if (!newUpdate.description.trim()) {
+        setDescriptionError('Please enter the announcement description.');
+        hasError = true;
+    }
+
+    if (hasError) {
+        return;
     }
 
     const createdUpdate = {
-      id: Date.now(),
-      title: newUpdate.title.trim(),
-      description: newUpdate.description.trim(),
-      category: newUpdate.category,
-      audience: newUpdate.audience,
-      priority: newUpdate.priority,
-      author: "Dean",
-      date: new Date().toISOString().split("T")[0],
+        id: Date.now(),
+        title: newUpdate.title.trim(),
+        description: newUpdate.description.trim(),
+        category: newUpdate.category,
+        audience: newUpdate.audience,
+        priority: newUpdate.priority,
+        author: "Dean",
+        date: new Date().toISOString().split("T")[0],
     };
 
     setUpdates((prev) => [createdUpdate, ...prev]);
 
     setNewUpdate({
-      title: "",
-      description: "",
-      category: "General",
-      audience: "All Batches",
-      priority: "Normal",
+        title: "",
+        description: "",
+        category: "General",
+        audience: "All Batches",
+        priority: "Normal",
     });
 
     setShowPostForm(false);
-  };
+          customealert("Publish Successfully!", { timeout: true, time: 1000, button: false });
+
+
+};
+
+
 
   const filteredUpdates = updates.filter((update) => {
     const search = searchTerm.toLowerCase();
@@ -246,6 +267,8 @@ export default function AdminUpdates() {
 
               <form onSubmit={handlePostUpdate}>
                 <div className="admin-updates-form-grid">
+                  <div>
+
                   <div className="admin-updates-form-group full-width">
                     <label htmlFor="update-title">Update Title</label>
                     <input
@@ -255,10 +278,15 @@ export default function AdminUpdates() {
                       placeholder="Enter announcement title"
                       value={newUpdate.title}
                       onChange={handleInputChange}
-                      required
+                      
                     />
+                    {titleError && (
+    <span className="admin-update-error">
+        {titleError}
+    </span>
+)}
+             
                   </div>
-
                   <div className="admin-updates-form-group full-width">
                     <label htmlFor="update-description">Description</label>
                     <textarea
@@ -267,10 +295,18 @@ export default function AdminUpdates() {
                       placeholder="Write your announcement here..."
                       value={newUpdate.description}
                       onChange={handleInputChange}
-                      rows={4}
-                      required
+                      rows={2}
+                      
                     />
+                           {descriptionError && (
+    <span className="admin-update-error">
+        {descriptionError}
+    </span>
+)}
                   </div>
+                      </div>
+
+<div>
 
                   <div className="admin-updates-form-group">
                     <label htmlFor="update-category">Category</label>
@@ -279,7 +315,7 @@ export default function AdminUpdates() {
                       name="category"
                       value={newUpdate.category}
                       onChange={handleInputChange}
-                    >
+                      >
                       <option value="General">General</option>
                       <option value="Academic">Academic</option>
                       <option value="Attendance">Attendance</option>
@@ -289,6 +325,8 @@ export default function AdminUpdates() {
                     </select>
                   </div>
 
+                  
+
                   <div className="admin-updates-form-group">
                     <label htmlFor="update-audience">Publish To</label>
                     <select
@@ -296,7 +334,7 @@ export default function AdminUpdates() {
                       name="audience"
                       value={newUpdate.audience}
                       onChange={handleInputChange}
-                    >
+                      >
                       <option value="All Batches">All Batches</option>
                       <option value="G1">G1</option>
                       <option value="G2">G2</option>
@@ -312,7 +350,7 @@ export default function AdminUpdates() {
                       name="priority"
                       value={newUpdate.priority}
                       onChange={handleInputChange}
-                    >
+                      >
                       <option value="Normal">Normal</option>
                       <option value="Important">Important</option>
                       <option value="Urgent">Urgent</option>
@@ -320,6 +358,7 @@ export default function AdminUpdates() {
                   </div>
                 </div>
 
+            </div> 
                 <div className="admin-updates-form-actions">
                   <button
                     type="button"

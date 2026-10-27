@@ -16,7 +16,6 @@ export default function AdminInfo() {
         status: "Active",
     };
 
-    // Dean Attendance & Work Statistics
     const attendanceStats = {
         overallPercentage: "96%",
         totalWorkingDays: 180,
@@ -26,7 +25,6 @@ export default function AdminInfo() {
         lateArrivals: 2
     };
 
-    // Monthly attendance log preview
     const monthlyAttendanceLog = [
         { month: "October 2026", workingDays: 22, present: 21, leaves: 1, percentage: "95.4%" },
         { month: "September 2026", workingDays: 24, present: 23, leaves: 1, percentage: "95.8%" },
@@ -137,7 +135,7 @@ export default function AdminInfo() {
                 <div className="admininfo-grid">
                     <div className="admininfo-item">
                         <span>Overall Attendance</span>
-                        <strong style={{ color: "#16a34a" }}>{attendanceStats.overallPercentage}</strong>
+                        <strong >{attendanceStats.overallPercentage}</strong>
                     </div>
 
                     <div className="admininfo-item">
@@ -156,10 +154,10 @@ export default function AdminInfo() {
                     </div>
                 </div>
 
-                <div style={{ marginTop: "24px" }}>
-                    <h4 style={{ marginBottom: "12px", color: "#374151" }}>Recent Monthly Attendance Logs</h4>
+                <div >
+                    <h4 >Recent Monthly Attendance Logs</h4>
                     <div className="table-container">
-                        <table className="students-table" style={{ width: "100%", textAlign: "left" }}>
+                        <table className="atten-table" >
                             <thead>
                                 <tr>
                                     <th>Month</th>
