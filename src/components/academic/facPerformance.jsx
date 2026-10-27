@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./facPerformance.css";
 
 const MOCK_STUDENT_MARKS = [
@@ -17,7 +17,9 @@ function FacPerformance({
   courseCode = "CS-301",
   courseName = "Artificial Intelligence & Machine Learning",
 }) {
-  const [marksList] = useState(MOCK_STUDENT_MARKS);
+  const marksList = MOCK_STUDENT_MARKS;
+  const displayCode = courseCode;
+  const displayName = courseName;
 
   return (
     <div className="fac-perf-container">
@@ -25,8 +27,8 @@ function FacPerformance({
         <div>
           <h2>📈 Subject Performance & Gradebook</h2>
           <p>
-            Internal assessment breakdown and analytics for {courseName} (
-            {courseCode})
+            Internal assessment breakdown and analytics for {displayName} (
+            {displayCode})
           </p>
         </div>
         <div className="fac-perf-header-stats">

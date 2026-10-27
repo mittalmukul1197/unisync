@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./facTeacherUpdates.css";
 
@@ -244,24 +243,24 @@ export default function TeacherUpdates({ onBack }) {
                 } ${noticeClass}`}
             >
               <div className="notice-card-top">
-              
-                <div>
-                <span className={`priority-badge ${priorityClass}`}>
-                      {notice.priority}
-                    </span>
 
-                    <span className="category-tag">
-                      {notice.category}
-                    </span>
-                
+                <div>
+                  <span className={`priority-badge ${priorityClass}`}>
+                    {notice.priority}
+                  </span>
+
+                  <span className="category-tag">
+                    {notice.category}
+                  </span>
+
 
                 </div>
                 <div className="notice-badges-row">
 
-                  
-                    <span className="notice-date-text">
-                      {notice.date} - {notice.time}
-                    </span>
+
+                  <span className="notice-date-text">
+                    {notice.date} - {notice.time}
+                  </span>
 
                 </div>
               </div>
@@ -364,8 +363,8 @@ export function TeacherUpdatesWidget({ onOpenAll }) {
               <div className="widget-item-meta">
                 <span
                   className={`widget-priority ${notice.priority === "Urgent"
-                      ? "urgent"
-                      : "normal"
+                    ? "urgent"
+                    : "normal"
                     }`}
                 >
                   {notice.priority}

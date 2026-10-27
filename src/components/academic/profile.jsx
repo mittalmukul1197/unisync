@@ -112,15 +112,30 @@ function Profile() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!trimmedEmail) {
             errors.personalEmail = "Personal email is required.";
+        } else if (!trimmedEmail.includes("@")) {
+            errors.personalEmail = "Personal email must include '@' and domain (e.g. name@gmail.com).";
         } else if (!emailRegex.test(trimmedEmail)) {
-            errors.personalEmail = "Please enter a valid email address (e.g. name@example.com).";
+            errors.personalEmail = "Please enter a valid email address (e.g. name@gmail.com).";
         }
 
-        const phoneRegex = /^(\+91[\s-]?)?[6789]\d{9}$/;
         if (!trimmedContact) {
             errors.contactNumber = "Contact number is required.";
-        } else if (!phoneRegex.test(trimmedContact)) {
-            errors.contactNumber = "Please enter a valid 10-digit mobile number (e.g. +91 9876543210).";
+        } else if (/[^\d\s\-+()]/.test(trimmedContact)) {
+            errors.contactNumber = "Contact number should only contain numbers and optional +91.";
+        } else {
+            const contactDigits = trimmedContact.replace(/\D/g, "");
+            let localContactDigits = contactDigits;
+            if (contactDigits.length === 12 && contactDigits.startsWith("91")) {
+                localContactDigits = contactDigits.slice(2);
+            } else if (contactDigits.length === 11 && contactDigits.startsWith("0")) {
+                localContactDigits = contactDigits.slice(1);
+            }
+
+            if (localContactDigits.length !== 10) {
+                errors.contactNumber = "Please enter a valid 10-digit mobile number (e.g. +91 9876543210).";
+            } else if (!/^[6-9]\d{9}$/.test(localContactDigits)) {
+                errors.contactNumber = "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.";
+            }
         }
 
         return errors;
@@ -136,12 +151,14 @@ function Profile() {
             return;
         }
 
-        let formattedContact = formData.contactNumber.trim();
-        if (!formattedContact.startsWith("+91")) {
-            formattedContact = `+91 ${formattedContact.replace(/^0+/, "")}`;
-        } else {
-            formattedContact = formattedContact.replace(/^(\+91)[\s-]*/, "+91 ");
+        const contactDigits = formData.contactNumber.trim().replace(/\D/g, "");
+        let localContactDigits = contactDigits;
+        if (contactDigits.length === 12 && contactDigits.startsWith("91")) {
+            localContactDigits = contactDigits.slice(2);
+        } else if (contactDigits.length === 11 && contactDigits.startsWith("0")) {
+            localContactDigits = contactDigits.slice(1);
         }
+        const formattedContact = `+91 ${localContactDigits}`;
 
         const updatedEditableFields = {
             fullName: formData.fullName.trim(),

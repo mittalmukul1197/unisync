@@ -638,3 +638,43 @@ background: linear-gradient(120deg, #eef2ff 0%, #f5f3ff 45%, #ecfeff 100%);  pad
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
 }
+
+/* Form Validation Styles */
+.fac-req-star {
+  color: #ef4444;
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+.fac-input-group input.fac-input-error {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2 !important;
+}
+
+.fac-input-group input.fac-input-error:focus {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18) !important;
+}
+
+.fac-field-error-msg {
+  color: #dc2626;
+  font-size: 0.76rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+  line-height: 1.25;
+  animation: facErrorFadeIn 0.2s ease-out;
+}
+
+@keyframes facErrorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

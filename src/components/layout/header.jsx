@@ -1,5 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 import './header.css';
+import { useFaculty } from '../../context/FacultyContext';
 
 function StudentHeader({ title = 'Student Dashboard', user, onLogout, onToggleMobileMenu }) {
   const email = user?.email || 'student@gmail.com';
@@ -16,11 +17,8 @@ function StudentHeader({ title = 'Student Dashboard', user, onLogout, onToggleMo
         <h1 className="header-title">{title}</h1>
       </div>
       <div className='header-center'>
-
         <h2>Explore <span>Your</span> Potential</h2>
-
       </div>
-
       <div className="header-right">
         <div className="userbadge">
           <div className="avatar student-avatar">
@@ -31,7 +29,6 @@ function StudentHeader({ title = 'Student Dashboard', user, onLogout, onToggleMo
             <span className="user-role">Student <b>-</b>CSE Dept</span>
           </div>
         </div>
-
         {onLogout && (
           <button className="logoutbtn" onClick={onLogout} title="Logout">
             Logout
@@ -42,9 +39,14 @@ function StudentHeader({ title = 'Student Dashboard', user, onLogout, onToggleMo
   );
 }
 
-function FacultyHeader({ title = 'Faculty Portal', user, onLogout, onToggleMobileMenu }) {
+function FacultyHeader({ user, onLogout, onToggleMobileMenu }) {
   const email = user?.email || 'faculty@gmail.com';
   const name = email.split('@')[0];
+
+  // Read the active tab from FacultyContext to display the correct page title
+  const facultyCtx = useFaculty();
+  const activeTab = facultyCtx?.activeTab || 'Dashboard';
+  const pageTitle = activeTab === 'Dashboard' ? 'Faculty Portal' : activeTab;
 
   return (
     <header className="appheader">
@@ -54,20 +56,12 @@ function FacultyHeader({ title = 'Faculty Portal', user, onLogout, onToggleMobil
             ☰
           </button>
         )}
-        <h1 className="header-title">{title}</h1>
+        <h1 className="header-title">{pageTitle}</h1>
       </div>
-
-<div className='header-center'>
-
+      <div className='header-center'>
         <h2>Explore <span>Your</span> Potential</h2>
-
       </div>
-
-      
-
       <div className="header-right">
-        
-
         <div className="userbadge">
           <div className="avatar faculty-avatar">
             {name.charAt(0).toUpperCase()}
@@ -77,7 +71,6 @@ function FacultyHeader({ title = 'Faculty Portal', user, onLogout, onToggleMobil
             <span className="user-role">Faculty <b>-</b> CS Dept</span>
           </div>
         </div>
-
         {onLogout && (
           <button className="logoutbtn" onClick={onLogout} title="Logout">
             Logout
@@ -92,7 +85,6 @@ function AdminHeader({ title = 'Admin Control Panel', user, onLogout, onToggleMo
   const email = user?.email || 'admin@gmail.com';
   const name = "Dean";
 
-
   return (
     <header className="appheader">
       <div className="header-left">
@@ -103,9 +95,7 @@ function AdminHeader({ title = 'Admin Control Panel', user, onLogout, onToggleMo
         )}
         <h1 className="header-title">{title}</h1>
       </div>
-
       <div className="header-right">
-
         <div className="userbadge">
           <div className="avatar admin-avatar">
             {name.charAt(0).toUpperCase()}
@@ -115,7 +105,6 @@ function AdminHeader({ title = 'Admin Control Panel', user, onLogout, onToggleMo
             <span className="user-role">Dean - AIML</span>
           </div>
         </div>
-
         {onLogout && (
           <button className="logoutbtn" onClick={onLogout} title="Logout">
             Logout
@@ -130,7 +119,7 @@ export default function Header({ role, title, user, onLogout, onToggleMobileMenu
   const activeRole = role || user?.role || 'student';
 
   if (activeRole === 'faculty') {
-    return <FacultyHeader title={title} user={user} onLogout={onLogout} onToggleMobileMenu={onToggleMobileMenu} />;
+    return <FacultyHeader user={user} onLogout={onLogout} onToggleMobileMenu={onToggleMobileMenu} />;
   }
   if (activeRole === 'admin') {
     return <AdminHeader title={title} user={user} onLogout={onLogout} onToggleMobileMenu={onToggleMobileMenu} />;
